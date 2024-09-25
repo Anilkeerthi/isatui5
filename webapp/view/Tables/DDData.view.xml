@@ -1,0 +1,160 @@
+<mvc:View
+    controllerName="com.isat.isatui5.controller.Tables.DDData"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:tnt="sap.tnt"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:uxap="sap.uxap"
+>
+
+    <Panel>
+        <SearchField
+            width="auto"
+            class="searchFieldCustomWidth"
+            id="searchFieldDDdata"
+            placeholder="Search for entitys"
+        >
+            <layoutData>
+                <OverflowToolbarLayoutData
+                    priority="NeverOverflow"
+                    group="1"
+                />
+            </layoutData>
+        </SearchField>
+
+    
+
+<Table id="idDDData"
+		inset="false"
+		items="{
+			path: 'jsonModel>/DDData'
+		
+		}">
+		
+		<infoToolbar>
+			<OverflowToolbar>
+				<Label text="DDData"/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column
+				width="12em">
+				<Text text="autoid" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="ddType_id_autoid" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="name" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="value" />
+			</Column>
+			
+			<Column
+				hAlign="Center">
+				<Text text="Actions" />
+			</Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<ObjectIdentifier
+						
+						text="{jsonModel>autoid}"/>
+					<Text
+						text="{jsonModel>ddType_id_autoid}" />
+						<Text
+						text="{jsonModel>name}" />
+						<Text
+						text="{jsonModel>value}" />
+						
+						 <Button type="Emphasized"
+                           press=".onShowDetails"
+                                        icon="sap-icon://display" />		
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+	 <Dialog
+                id="DDDataDialog"
+                title="Interface Details"
+                stretch="false"
+                afterClose="onDialogClose"
+            >
+                <content>
+                    <HBox class="adminScreenActions">
+                        <VBox>
+                            <Label text="autoid :" />
+                            <Input
+                                value="{dialogModel>/autoid}"
+                                editable="{dialogModel>/editable}"
+                            />
+                        </VBox>
+                        <VBox>
+                            <Label text="custid :" />
+                            <Input
+                                value="{dialogModel>/custid}"
+                                editable="{dialogModel>/editable}"
+                            />
+                        </VBox>
+                    </HBox>
+
+                    <HBox class="adminScreenActions">
+                        <VBox>
+                            <Label text="description :" />
+                            <Input
+                                value="{dialogModel>/description}"
+                                editable="{dialogModel>/editable}"
+                            />
+                        </VBox>
+                        <VBox>
+                            <Label text="location" />
+                            <Input
+                                value="{dialogModel>/location}"
+                                editable="{dialogModel>/editable}"
+                            />
+                        </VBox>
+                    </HBox>
+
+                    <HBox class="adminScreenActions">
+                        <VBox>
+                            <Label text="name" />
+                            <Input
+                                value="{dialogModel>/name}"
+                                editable="{dialogModel>/editable}"
+                            />
+                        </VBox>
+                    </HBox>
+                </content>
+
+                <beginButton>
+                    <Button
+                        text="{dialogModel>/buttonText}"
+                        press="onToggleEdit"
+                    />
+                </beginButton>
+                <endButton>
+                    <Button
+                        text="Cancel"
+                        press="onCloseDialog"
+                    />
+                </endButton>
+            </Dialog>
+    </Panel>
+   
+</mvc:View>

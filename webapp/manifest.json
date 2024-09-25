@@ -83,6 +83,10 @@
       "CustomerData": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "./model/CustomerData.json"
+      },
+      "TableNames": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "./model/TableNamesAdmin.json"
       }
     },
     "resources": {

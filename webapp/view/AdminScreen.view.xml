@@ -25,7 +25,7 @@
                                 />
                                 <Label text="Select the entity" />
 
-                                <ComboBox
+                                <!-- <ComboBox
                                     id="entityComboBox"
                                     placeholder="All"
                                     change="onEntityChange"
@@ -42,7 +42,19 @@
                                         key="Users"
                                         text="Users"
                                     />
-                                </ComboBox>
+                                </ComboBox> -->
+
+                            <ComboBox
+                                id="entityComboBox"
+                                change="onEntityChange"
+                                placeholder="All"
+				items="{
+					path: 'TableNames>/ISAT'
+					
+				}">
+				<core:Item key="{TableNames>key}" text="{TableNames>name}" />
+			</ComboBox>
+
                             </Toolbar>
                         </uxap:expandedHeading>
 
@@ -88,12 +100,25 @@
                 visible="false"
             />
 
-              <mvc:XMLView
+             <mvc:XMLView
                 id="UsersView"
                 viewName="com.isat.isatui5.view.Tables.Users"
                 visible="false"
             />
-            <!-- Other views can also be added here if needed -->
+            <!--  -->
+              <mvc:XMLView
+                id="DDDataView"
+                viewName="com.isat.isatui5.view.Tables.DDData"
+                visible="false"
+            />
+
+             <!-- Other views can also be added here if needed -->
+              <mvc:XMLView
+                id="DDTypeView"
+                viewName="com.isat.isatui5.view.Tables.DDType"
+                visible="false"
+            />
+
         </VBox>
 
 

@@ -5,12 +5,19 @@ sap.ui.define([
   ], (Controller, MessageToast,JSONModel) => {
     "use strict";
   
-    return Controller.extend("com.isat.isatui5.controller.Tables.Customer", {
+    return Controller.extend("com.isat.isatui5.controller.Tables.DDData", {
+  
         onInit: function () {
-          var Model = this.getOwnerComponent().getModel("CustomerData");
-          this.getView().setModel(Model, "jsonModel")
+        //   var Model = this.getOwnerComponent().getModel("CustomerData");
+        //   this.getView().setModel(Model, "jsonModel")
+        //   console.log(Model)
 
+          var odataModel = this.getOwnerComponent().getModel();
+          this.getView().setModel(odataModel, "jsonModel")
+          console.log(odataModel)
+           
         },
+  
         onShowDetails: function (oEvent) {
           // Get the selected row's data
           var oSelectedItem = oEvent.getSource().getParent();
@@ -32,7 +39,7 @@ sap.ui.define([
           this.getView().setModel(oDialogModel, "dialogModel");
          
           // Open the dialog
-          this.byId("detailsDialogA").open();
+          this.byId("DDDataDialog").open();
       },
      
       onToggleEdit: function () {
@@ -75,7 +82,7 @@ sap.ui.define([
      
       onCloseDialog: function () {
           // Close the dialog
-          this.byId("detailsDialogA").close();
+          this.byId("DDDataDialog").close();
       },
        
       

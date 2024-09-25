@@ -20,6 +20,9 @@ sap.ui.define(
           this.getView().setModel(Model, "jsonModel")
           console.log(Model)
                 
+          var TModel = this.getOwnerComponent().getModel("TableNames");
+          this.getView().setModel(TModel, "TableNames")
+         
     },
   
         //Routing back to dashBoard
@@ -35,6 +38,11 @@ sap.ui.define(
         // Get the reference of embedded Customer View
         var oCustomerView = this.byId("CustomerView");
         var oUsersView = this.byId("UsersView");
+
+        // Get the reference of embedded DDData View
+        var oDDDataView = this.byId("DDDataView");
+        
+        var oDDTypeView = this.byId("DDTypeView");
     
         // Hide all child views initially
         oVBox.getItems().forEach(function(oItem) {
@@ -42,16 +50,135 @@ sap.ui.define(
         });
     
         // Show the appropriate view based on the selected key
-        if (selectedKey === "CustomersData") {
-            // Show Customer view
-            oCustomerView.setVisible(true);
-        } 
+        // if (selectedKey === "CustomersData") {
+        //     // Show Customer view
+        //     oCustomerView.setVisible(true);
+        // } 
   
-        if (selectedKey === "Users") {
-          // Show Customer view
-          oUsersView.setVisible(true);
-      } 
-        // Handle other keys accordingly
+        // if (selectedKey === "UsersData") {
+        //   // Show Customer view
+        //   oUsersView.setVisible(true);
+        // } 
+
+// Show the appropriate view based on the selected key
+switch (selectedKey) {
+  case "CustomersData":
+      // Show Customer view
+      oCustomerView.setVisible(true);
+      break;
+
+  case "UsersData":
+      // Show Users view
+      oUsersView.setVisible(true);
+      break;
+
+  case "ProjectsData":
+      // Show Projects view
+      oProjectsView.setVisible(true);
+      break;
+
+  case "DDTypeData":
+      // Show DDType view
+      oDDTypeView.setVisible(true);
+      break;
+
+  case "ComponentTaskListData":
+      // Show Component Task List view
+      oComponentTaskListView.setVisible(true);
+      break;
+
+  case "CustomersProjectsData":
+      // Show Customers Projects view
+      oCustomersProjectsView.setVisible(true);
+      break;
+
+  case "TasklistData":
+      // Show Tasklist view
+      oTasklistView.setVisible(true);
+      break;
+
+  case "RolesData":
+      // Show Roles view
+      oRolesView.setVisible(true);
+      break;
+
+  case "InterfaceDetailsData":
+      // Show Interface Details view
+      oInterfaceDetailsView.setVisible(true);
+      break;
+
+  case "TasksData":
+      // Show Tasks view
+      oTasksView.setVisible(true);
+      break;
+
+  case "TeamsData":
+      // Show Teams view
+      oTeamsView.setVisible(true);
+      break;
+
+  case "DDDataDetails":
+      // Show DD Data view
+      oDDDataView.setVisible(true);
+      break;
+
+  case "StagesData":
+      // Show Stages view
+      oStagesView.setVisible(true);
+      break;
+
+  case "CommentsData":
+      // Show Comments view
+      oCommentsView.setVisible(true);
+      break;
+
+  case "TimeCaptureData":
+      // Show Time Capture view
+      oTimeCaptureView.setVisible(true);
+      break;
+
+  case "TeamsUsersData":
+      // Show Teams Users view
+      oTeamsUsersView.setVisible(true);
+      break;
+
+  case "ComponentStagesData":
+      // Show Component Stages view
+      oComponentStagesView.setVisible(true);
+      break;
+
+  case "TaskNotesData":
+      // Show Task Notes view
+      oTaskNotesView.setVisible(true);
+      break;
+
+  case "TimeLinesData":
+      // Show Time Lines view
+      oTimeLinesView.setVisible(true);
+      break;
+
+  case "PhasesData":
+      // Show Phases view
+      oPhasesView.setVisible(true);
+      break;
+
+  case "UsersRolesData":
+      // Show Users Roles view
+      oUsersRolesView.setVisible(true);
+      break;
+
+  case "IssueData":
+      // Show Issue view
+      oIssueView.setVisible(true);
+      break;
+
+  default:
+      // Handle unknown key
+      console.warn("Unknown selected key: " + selectedKey);
+      break;
+}
+
+       
     },
     
   

@@ -1,0 +1,27 @@
+{
+    "ISAT": [
+      { "name": "Customers", "key": "CustomersData" },
+      { "name": "Projects", "key": "ProjectsData" },
+      { "name": "Users", "key": "UsersData" },
+      { "name": "DDType", "key": "DDTypeData" },
+      { "name": "Component_TaskList", "key": "ComponentTaskListData" },
+      { "name": "Customers_Projects", "key": "CustomersProjectsData" },
+      { "name": "Tasklist", "key": "TasklistData" },
+      { "name": "Roles", "key": "RolesData" },
+      { "name": "InterfaceDetails", "key": "InterfaceDetailsData" },
+      { "name": "Tasks", "key": "TasksData" },
+      { "name": "Teams", "key": "TeamsData" },
+      { "name": "DDData", "key": "DDDataDetails" },
+      { "name": "Stages", "key": "StagesData" },
+      { "name": "Comments", "key": "CommentsData" },
+      { "name": "TimeCapture", "key": "TimeCaptureData" },
+      { "name": "Teams_Users", "key": "TeamsUsersData" },
+      { "name": "Component_Stages", "key": "ComponentStagesData" },
+      { "name": "TaskNotes", "key": "TaskNotesData" },
+      { "name": "TimeLines", "key": "TimeLinesData" },
+      { "name": "Phases", "key": "PhasesData" },
+      { "name": "Users_Roles", "key": "UsersRolesData" },
+      { "name": "Issue", "key": "IssueData" }
+    ]
+  }
+  

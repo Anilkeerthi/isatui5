@@ -30,61 +30,70 @@
             items="{
 			path: 'jsonModel>/EntitySet/CustomersData'
 		
-		}"
-        >
-            <infoToolbar>
-                <OverflowToolbar>
-                    <Label text="Customer Data" />
-                </OverflowToolbar>
-            </infoToolbar>
-            <columns>
-                <Column width="12em">
-                    <Text text="autoid" />
-                </Column>
-                <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
-                    <Text text="custid" />
-                </Column>
-                <Column
-                    minScreenWidth="Desktop"
-                    demandPopin="true"
-                    hAlign="Center"
-                >
-                    <Text text="description" />
-                </Column>
-                <Column
-                    minScreenWidth="Desktop"
-                    demandPopin="true"
-                    hAlign="Center"
-                >
-                    <Text text="location" />
-                </Column>
-                <Column hAlign="Center">
-                    <Text text="name" />
-                </Column>
-                <Column hAlign="Center">
-                    <Text text="Actions" />
-                </Column>
-            </columns>
-            <items>
-                <ColumnListItem vAlign="Middle">
-                    <cells>
-                        <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <Text text="{jsonModel>custid}" />
-                        <Text text="{jsonModel>description}" />
-                        <Text text="{jsonModel>location}" />
-                        <Text text="{jsonModel>name}" />
-                        <Button
-                            type="Emphasized"
-                            press=".onShowDetails"
-                            icon="sap-icon://display"
-                        />
-                    </cells>
-                </ColumnListItem>
-            </items>
-        </Table>
+
+		}">
+		
+		<infoToolbar>
+			<OverflowToolbar>
+				<Label text="Customer Data"/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column
+				width="12em">
+				<Text text="autoid" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="custid" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="description" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="location" />
+			</Column>
+			<Column
+				hAlign="Center">
+				<Text text="name" />
+			</Column>
+			<Column
+				hAlign="Center">
+				<Text text="Actions" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<ObjectIdentifier
+						
+						text="{jsonModel>autoid}"/>
+					<Text
+						text="{jsonModel>custid}" />
+						<Text
+						text="{jsonModel>description}" />
+						<Text
+						text="{jsonModel>location}" />
+						<Text
+						text="{jsonModel>name}" />
+						 <Button type="Emphasized"
+                           press=".onShowDetails"
+                                        icon="sap-icon://display" />
+					
+					
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
 
         <Dialog
             id="detailsDialogA"
