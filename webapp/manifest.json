@@ -1,0 +1,163 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "com.isat.isatui5",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.15.0",
+      "toolsId": "cae77789-169d-422f-a8bd-7741eab9ff06"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/isat/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.128.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.isat.isatui5.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "comboJsonModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "./model/ComboBox.json"
+      },
+      "dataJsonModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "./model/data.json"
+      },
+      "CustomerData": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "./model/CustomerData.json"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.isat.isatui5.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteDashboard",
+          "pattern": ":?query:",
+          "target": [
+            "TargetDashboard"
+          ]
+        },
+        {
+          "name": "RouteHomeScreen",
+          "pattern": "HomeScreen",
+          "target": [
+            "TargetHomeScreen"
+          ]
+        },
+        {
+          "name": "RouteAdminScreen",
+          "pattern": "AdminScreen",
+          "target": [
+            "TargetAdminScreen"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetDashboard": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Dashboard",
+          "viewName": "Dashboard"
+        },
+        "TargetHomeScreen": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "HomeScreen",
+          "viewName": "HomeScreen"
+        },
+        "TargetAdminScreen": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AdminScreen",
+          "viewName": "AdminScreen"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.isat.isatui5.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "comisatisatui5"
+  }
+}

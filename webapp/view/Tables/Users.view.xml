@@ -1,0 +1,180 @@
+<mvc:View
+    controllerName="com.isat.isatui5.controller.Tables.Users"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:tnt="sap.tnt"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:uxap="sap.uxap"
+>
+    <Panel>
+        <SearchField
+            width="auto"
+            class="searchFieldCustomWidth"
+            id="AsearchFielddUsers"
+            placeholder="Search for entitys"
+        >
+            <layoutData>
+                <OverflowToolbarLayoutData
+                    priority="NeverOverflow"
+                    group="1"
+                />
+            </layoutData>
+        </SearchField>
+
+        <Table
+            id="idProductssTableUsers"
+            inset="false"
+            items="{
+			path: 'jsonModel>/EntitySet/Users'
+		
+		}"
+        >
+            <infoToolbar>
+                <OverflowToolbar>
+                    <Label text="Users Data" />
+                </OverflowToolbar>
+            </infoToolbar>
+            <columns>
+                <Column width="12em">
+                    <Text text="active" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                >
+                    <Text text="autoid" />
+                </Column>
+                <Column
+                    minScreenWidth="Desktop"
+                    demandPopin="true"
+                    hAlign="End"
+                >
+                    <Text text="custid" />
+                </Column>
+                <Column
+                    minScreenWidth="Desktop"
+                    demandPopin="true"
+                    hAlign="Center"
+                >
+                    <Text text="emailid" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="name" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="role" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="userid" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="Actions" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem vAlign="Middle">
+                    <cells>
+                        <ObjectIdentifier text="{jsonModel>active}" />
+                        <Text text="{jsonModel>autoid}" />
+                        <Text text="{jsonModel>custid}" />
+                        <Text text="{jsonModel>emailid}" />
+                        <Text text="{jsonModel>name}" />
+                        <Text text="{jsonModel>role}" />
+                        <Text text="{jsonModel>userid}" />
+                        <Button
+                            type="Emphasized"
+                            press=".onShowDetailsUsers"
+                            icon="sap-icon://display"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        <Dialog
+            id="detailsDialogUsers"
+            title="Interface Details"
+            stretch="false"
+            afterClose="onDialogClose"
+        >
+            <content>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="autoid :" />
+                        <Input
+                            value="{dialogModel>/active}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="custid :" />
+                        <Input
+                            value="{dialogModel>/autoid}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="description :" />
+                        <Input
+                            value="{dialogModel>/custid}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="location" />
+                        <Input
+                            value="{dialogModel>/emailid}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="name" />
+                        <Input
+                            value="{dialogModel>/name}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="name" />
+                        <Input
+                            value="{dialogModel>/role}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+                  <HBox class="adminScreenActions">
+                    
+                    <VBox>
+                        <Label text="name" />
+                        <Input
+                            value="{dialogModel>/userid}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+            </content>
+
+            <beginButton>
+                <Button
+                    text="{dialogModel>/buttonText}"
+                    press="onToggleEdit"
+                />
+            </beginButton>
+            <endButton>
+                <Button
+                    text="Cancel"
+                    press="onCloseDialog"
+                />
+            </endButton>
+        </Dialog>
+    </Panel>
+</mvc:View>

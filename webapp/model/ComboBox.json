@@ -1,0 +1,25 @@
+{
+    "ProductCollection": [
+      {
+        "ProductId": "P001",
+        "Name": "Product A"
+      },
+      {
+        "ProductId": "P002",
+        "Name": "Product B"
+      },
+      {
+        "ProductId": "P003",
+        "Name": "Product C"
+      },
+      {
+        "ProductId": "P004",
+        "Name": "Product D"
+      },
+      {
+        "ProductId": "P005",
+        "Name": "Product E"
+      }
+    ]
+  }
+  

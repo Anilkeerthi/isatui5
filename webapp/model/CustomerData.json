@@ -1,0 +1,95 @@
+{
+    "EntitySet": {
+      "CustomersData": [
+        {
+          "autoid": 1000000,
+          "custid": "CUST_003",
+          "description": "SAP customer",
+          "location": "Dubai",
+          "name": "James Smith"
+        },
+        {
+          "autoid": 1000002,
+          "custid": "CUST_003",
+          "description": "SAP client",
+          "location": "Hyd",
+          "name": "Manasa Arella"
+        },
+        {
+          "autoid": 1000003,
+          "custid": "CUST_002",
+          "description": "SAP customer",
+          "location": "Bangalore",
+          "name": "James Miller"
+        },
+        {
+          "autoid": 1000004,
+          "custid": "CUST_002",
+          "description": "SAP customer",
+          "location": "Bangalore",
+          "name": "James Miller"
+        },
+        {
+          "autoid": 1000005,
+          "custid": "CUST_003",
+          "description": "SAP client",
+          "location": "Hyd",
+          "name": "Manasa Arella"
+        }
+      ],
+      "ProjectsData": [
+        {
+          "autoid": 100000,
+          "description": "creating project",
+          "name": "ISAT-1",
+          "projid": "PROJECT-1",
+          "status": true
+        },
+        {
+          "autoid": 100001,
+          "description": "deleting project",
+          "name": "Remote working",
+          "projid": "PROJECT-3",
+          "status": true
+        },
+        {
+          "autoid": 100002,
+          "description": "creating project",
+          "name": "ISAT-1",
+          "projid": "PROJECT-2",
+          "status": true
+        }
+      ],
+      "Users": [
+    {
+      "active": true,
+      "autoid": 1000002,
+      "custid": "CUST_002",
+      "emailid": "Bhag@gimail.com",
+      "name": "Bhagi",
+      "role": "CAPDevelop",
+      "userid": "bhagi-002"
+    },
+    {
+      "active": true,
+      "autoid": 1000003,
+      "custid": "CUST_002",
+      "emailid": "manasa@gmail.com",
+      "name": "Manasa Arella",
+      "role": "UI5Develop",
+      "userid": "bhagi-002"
+    },
+    {
+      "active": true,
+      "autoid": 1000004,
+      "custid": "CUST_002",
+      "emailid": "manasa@gmail.com",
+      "name": "Manasa Arella",
+      "role": "UI5Develop",
+      "userid": "bhagi-002"
+    }
+  ]
+
+    }
+  }
+  

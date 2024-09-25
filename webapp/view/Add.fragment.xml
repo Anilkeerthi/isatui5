@@ -1,0 +1,242 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+>
+    <Dialog
+        title="New Lead"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+    >
+        <content>
+        
+        
+        
+            <HBox class="hbox">
+                <VBox>
+                    <Label text="Compid : " />
+                    <ComboBox
+                        items="{
+					path: '/CountriesCollection',
+					sorter: { path: 'text' }
+				}"
+                    >
+                        <core:Item
+                            key="{key}"
+                            text="{text}"
+                        />
+                    </ComboBox>
+                </VBox>
+                <VBox>
+                    <Label text="Module : " />
+                    <ComboBox
+                        items="{
+					path: '/CountriesCollection',
+					sorter: { path: 'text' }
+				}"
+                    >
+                        <core:Item
+                            key="{key}"
+                            text="{text}"
+                        />
+                    </ComboBox>
+                </VBox>
+            </HBox>
+            <HBox class="hbox">
+                <VBox>
+                    <Label text="Package : " />
+                    <ComboBox
+                        items="{
+					path: '/CountriesCollection',
+					sorter: { path: 'text' }
+				}"
+                    >
+                        <core:Item
+                            key="{key}"
+                            text="{text}"
+                        />
+                    </ComboBox>
+                </VBox>
+                <VBox>
+                    <Label text="Sendersystem : " />
+                    <ComboBox
+                        items="{
+					path: '/CountriesCollection',
+					sorter: { path: 'text' }
+				}"
+                    >
+                        <core:Item
+                            key="{key}"
+                            text="{text}"
+                        />
+                    </ComboBox>
+                </VBox>
+            </HBox>
+            <HBox class="hbox">
+                <VBox>
+                    <Label text="Recieversystem : " />
+                    <ComboBox
+                        items="{
+					path: '/CountriesCollection',
+					sorter: { path: 'text' }
+				}"
+                    >
+                        <core:Item
+                            key="{key}"
+                            text="{text}"
+                        />
+                    </ComboBox>
+                </VBox>
+                <VBox>
+                    <Label text="Processtype : " />
+                    <ComboBox
+                        items="{
+					path: '/CountriesCollection',
+					sorter: { path: 'text' }
+				}"
+                    >
+                        <core:Item
+                            key="{key}"
+                            text="{text}"
+                        />
+                    </ComboBox>
+                </VBox>
+            </HBox>
+            <HBox class="hbox">
+                <VBox>
+                    <Label text="Sourceadapter : " />
+                    <ComboBox
+                        items="{
+					path: '/CountriesCollection',
+					sorter: { path: 'text' }
+				}"
+                    >
+                        <core:Item
+                            key="{key}"
+                            text="{text}"
+                        />
+                    </ComboBox>
+                </VBox>
+                <VBox>
+                    <Label text="Targetadapter : " />
+                    <ComboBox
+                        items="{
+					path: '/CountriesCollection',
+					sorter: { path: 'text' }
+				}"
+                    >
+                        <core:Item
+                            key="{key}"
+                            text="{text}"
+                        />
+                    </ComboBox>
+                </VBox>
+            </HBox>
+            <HBox class="hbox">
+                <VBox>
+                    <Label text="Techpoc : " />
+                    <MultiComboBox
+                        selectionChange="handleSelectionChange"
+                        selectionFinish="handleSelectionFinish"
+                        width="200px"
+                        items="{
+				path: '/ProductCollection',
+				sorter: { path: 'Name' }
+			}"
+                    >
+                        <core:Item
+                            key="{ProductId}"
+                            text="{Name}"
+                        />
+                    </MultiComboBox>
+                </VBox>
+                <VBox>
+                    <Label text="Functionalpoc : " />
+                    <MultiComboBox
+                        selectionChange="handleSelectionChange"
+                        selectionFinish="handleSelectionFinish"
+                        width="200px"
+                        items="{
+				path: '/ProductCollection',
+				sorter: { path: 'Name' }
+			}"
+                    >
+                        <core:Item
+                            key="{ProductId}"
+                            text="{Name}"
+                        />
+                    </MultiComboBox>
+                </VBox>
+            </HBox>
+            <HBox class="hbox">
+                <VBox>
+                    <Label text="Businesspoc : " />
+                    <MultiComboBox
+                        selectionChange="handleSelectionChange"
+                        selectionFinish="handleSelectionFinish"
+                        width="200px"
+                        items="{
+				path: '/ProductCollection',
+				sorter: { path: 'Name' }
+			}"
+                    >
+                        <core:Item
+                            key="{ProductId}"
+                            text="{Name}"
+                        />
+                    </MultiComboBox>
+                </VBox>
+                <VBox>
+                    <Label text="Doctype : " />
+                    <ComboBox
+                        items="{
+					path: '/CountriesCollection',
+					sorter: { path: 'text' }
+				}"
+                    >
+                        <core:Item
+                            key="{key}"
+                            text="{text}"
+                        />
+                    </ComboBox>
+                </VBox>
+            </HBox>
+            <HBox class="hbox">
+                <VBox>
+                    <Label text="Frequency : " />
+                    <ComboBox
+                        items="{
+					path: '/CountriesCollection',
+					sorter: { path: 'text' }
+				}"
+                    >
+                        <core:Item
+                            key="{key}"
+                            text="{text}"
+                        />
+                    </ComboBox>
+                </VBox>
+                <VBox>
+                <Label text="Ccenabled : " />
+                    <Switch state="true">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
+                </VBox>
+            </HBox>
+        </content>
+        <buttons>
+            <Button
+                text="Create"
+                type="Accept"
+                press="OnboardCustomer"
+            />
+            <Button
+                text="Cancel"
+                type="Reject"
+                press="OnCancelPress"
+            />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

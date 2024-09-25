@@ -1,0 +1,82 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+>
+    <Dialog
+        title="New Lead"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+    >
+<VBox>
+        <Label text="Auto ID" />
+        <Input placeholder="Enter auto ID" />
+
+        <Label text="Customer ID" />
+        <Input placeholder="Enter customer ID" />
+
+        <Label text="Description" />
+        <Input placeholder="Enter description" />
+
+        <Label text="Location" />
+        <Input placeholder="Enter location" />
+
+        <Label text="Name" />
+        <Input placeholder="Enter name" />
+    </VBox>
+
+        <VBox>
+        <Label text="Auto ID" />
+        <Input placeholder="Enter auto ID" />
+
+        <Label text="Description" />
+        <Input placeholder="Enter description" />
+
+        <Label text="Name" />
+        <Input placeholder="Enter name" />
+
+        <Label text="Project ID" />
+        <Input placeholder="Enter project ID" />
+
+        <Label text="Status" />
+        <Input placeholder="Enter status" />
+    </VBox>
+
+     <VBox>
+        <Label text="Active" />
+        <Switch />
+
+        <Label text="Auto ID" />
+        <Input placeholder="Enter auto ID" />
+
+        <Label text="Customer ID" />
+        <Input placeholder="Enter customer ID" />
+
+        <Label text="Email ID" />
+        <Input placeholder="Enter email ID" />
+
+        <Label text="Name" />
+        <Input placeholder="Enter name" />
+
+        <Label text="Role" />
+        <Input placeholder="Enter role" />
+
+        <Label text="User ID" />
+        <Input placeholder="Enter user ID" />
+    </VBox>
+    
+        
+        <buttons>
+            <Button
+                text="Create"
+                type="Accept"
+                press="OnboardCustomer"
+            />
+            <Button
+                text="Cancel"
+                type="Reject"
+                press="OnCancelPress"
+            />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="IsatService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotation Term="Core.Links">
+                <Collection>
+                    <Record>
+                        <PropertyValue Property="rel" String="author"/>
+                        <PropertyValue Property="href" String="https://cap.cloud.sap"/>
+                    </Record>
+                </Collection>
+            </Annotation>
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Customers" EntityType="IsatService.Customers"/>
+                <EntitySet Name="Projects" EntityType="IsatService.Projects"/>
+                <EntitySet Name="Customers_Projects" EntityType="IsatService.Customers_Projects">
+                    <NavigationPropertyBinding Path="customer_id" Target="Customers"/>
+                    <NavigationPropertyBinding Path="proj_id" Target="Projects"/>
+                </EntitySet>
+                <EntitySet Name="Users" EntityType="IsatService.Users"/>
+                <EntitySet Name="Roles" EntityType="IsatService.Roles"/>
+                <EntitySet Name="Teams" EntityType="IsatService.Teams"/>
+                <EntitySet Name="Teams_Users" EntityType="IsatService.Teams_Users">
+                    <NavigationPropertyBinding Path="team_id" Target="Teams"/>
+                    <NavigationPropertyBinding Path="user_id" Target="Users"/>
+                </EntitySet>
+                <EntitySet Name="Users_Roles" EntityType="IsatService.Users_Roles">
+                    <NavigationPropertyBinding Path="user_id" Target="Users"/>
+                    <NavigationPropertyBinding Path="role_id" Target="Roles"/>
+                </EntitySet>
+                <EntitySet Name="Tasklist" EntityType="IsatService.Tasklist"/>
+                <EntitySet Name="Tasks" EntityType="IsatService.Tasks">
+                    <NavigationPropertyBinding Path="tasklist_id" Target="Tasklist"/>
+                </EntitySet>
+                <EntitySet Name="TimeCapture" EntityType="IsatService.TimeCapture">
+                    <NavigationPropertyBinding Path="task_id" Target="Tasks"/>
+                </EntitySet>
+                <EntitySet Name="Component_TaskList" EntityType="IsatService.Component_TaskList">
+                    <NavigationPropertyBinding Path="tasklist_id" Target="Tasklist"/>
+                    <NavigationPropertyBinding Path="stage_id" Target="Stages"/>
+                </EntitySet>
+                <EntitySet Name="Comments" EntityType="IsatService.Comments"/>
+                <EntitySet Name="Timelines" EntityType="IsatService.Timelines"/>
+                <EntitySet Name="Phases" EntityType="IsatService.Phases"/>
+                <EntitySet Name="Component_Stages" EntityType="IsatService.Component_Stages">
+                    <NavigationPropertyBinding Path="stage_id" Target="Stages"/>
+                </EntitySet>
+                <EntitySet Name="Stages" EntityType="IsatService.Stages"/>
+                <EntitySet Name="DDData" EntityType="IsatService.DDData">
+                    <NavigationPropertyBinding Path="ddType_id" Target="DDType"/>
+                </EntitySet>
+                <EntitySet Name="DDType" EntityType="IsatService.DDType"/>
+                <EntitySet Name="InterfaceDetails" EntityType="IsatService.InterfaceDetails"/>
+                <EntitySet Name="TaskAttachments" EntityType="IsatService.TaskAttachments">
+                    <NavigationPropertyBinding Path="task_id" Target="Tasks"/>
+                </EntitySet>
+                <EntitySet Name="TaskNotes" EntityType="IsatService.TaskNotes">
+                    <NavigationPropertyBinding Path="task_id" Target="Tasks"/>
+                </EntitySet>
+                <EntitySet Name="Issues" EntityType="IsatService.Issues"/>
+            </EntityContainer>
+            <EntityType Name="Customers">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="custid" Type="Edm.String" MaxLength="10"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="location" Type="Edm.String" MaxLength="100"/>
+                <Property Name="description" Type="Edm.String" MaxLength="100"/>
+            </EntityType>
+            <EntityType Name="Projects">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="projid" Type="Edm.String" MaxLength="10"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="description" Type="Edm.String" MaxLength="100"/>
+                <Property Name="status" Type="Edm.Boolean"/>
+            </EntityType>
+            <EntityType Name="Customers_Projects">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="customer_id" Type="IsatService.Customers">
+                    <ReferentialConstraint Property="customer_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="customer_id_autoid" Type="Edm.Int32"/>
+                <NavigationProperty Name="proj_id" Type="IsatService.Projects">
+                    <ReferentialConstraint Property="proj_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="proj_id_autoid" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Users">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="userid" Type="Edm.String" MaxLength="10"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="role" Type="Edm.String" MaxLength="10"/>
+                <Property Name="active" Type="Edm.Boolean"/>
+                <Property Name="emailid" Type="Edm.String" MaxLength="20"/>
+                <Property Name="custid" Type="Edm.String" MaxLength="10"/>
+            </EntityType>
+            <EntityType Name="Roles">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="roleid" Type="Edm.String" MaxLength="10"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="description" Type="Edm.String" MaxLength="100"/>
+            </EntityType>
+            <EntityType Name="Teams">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="teamid" Type="Edm.String" MaxLength="10"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="description" Type="Edm.String" MaxLength="100"/>
+            </EntityType>
+            <EntityType Name="Teams_Users">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="team_id" Type="IsatService.Teams">
+                    <ReferentialConstraint Property="team_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="team_id_autoid" Type="Edm.Int32"/>
+                <NavigationProperty Name="user_id" Type="IsatService.Users">
+                    <ReferentialConstraint Property="user_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="user_id_autoid" Type="Edm.Int32"/>
+                <Property Name="active" Type="Edm.Boolean"/>
+            </EntityType>
+            <EntityType Name="Users_Roles">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="user_id" Type="IsatService.Users">
+                    <ReferentialConstraint Property="user_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="user_id_autoid" Type="Edm.Int32"/>
+                <NavigationProperty Name="role_id" Type="IsatService.Roles">
+                    <ReferentialConstraint Property="role_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="role_id_autoid" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Tasklist">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="description" Type="Edm.String" MaxLength="100"/>
+            </EntityType>
+            <EntityType Name="Tasks">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="task_name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="duration" Type="Edm.String"/>
+                <Property Name="startdate" Type="Edm.Date"/>
+                <Property Name="enddate" Type="Edm.Date"/>
+                <Property Name="status" Type="Edm.String" MaxLength="10"/>
+                <Property Name="type" Type="Edm.String" MaxLength="10"/>
+                <Property Name="parent_task_id" Type="Edm.Int32"/>
+                <Property Name="assignedto" Type="Edm.String" MaxLength="20"/>
+                <Property Name="created_by" Type="Edm.String" MaxLength="20"/>
+                <Property Name="updated_datetime" Type="Edm.DateTimeOffset"/>
+                <Property Name="created_datetime" Type="Edm.DateTimeOffset"/>
+                <Property Name="updated_by" Type="Edm.String"/>
+                <NavigationProperty Name="tasklist_id" Type="IsatService.Tasklist">
+                    <ReferentialConstraint Property="tasklist_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="tasklist_id_autoid" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="TimeCapture">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="start_time" Type="Edm.TimeOfDay"/>
+                <Property Name="end_time" Type="Edm.TimeOfDay"/>
+                <NavigationProperty Name="task_id" Type="IsatService.Tasks">
+                    <ReferentialConstraint Property="task_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="task_id_autoid" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Component_TaskList">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="tasklist_id" Type="IsatService.Tasklist">
+                    <ReferentialConstraint Property="tasklist_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="tasklist_id_autoid" Type="Edm.Int32"/>
+                <NavigationProperty Name="stage_id" Type="IsatService.Stages">
+                    <ReferentialConstraint Property="stage_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="stage_id_autoid" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Comments">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="comment" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="refid" Type="Edm.String" MaxLength="10"/>
+                <Property Name="type" Type="Edm.String" MaxLength="10"/>
+                <Property Name="created_by" Type="Edm.String" MaxLength="20"/>
+                <Property Name="created_datetime" Type="Edm.DateTimeOffset"/>
+            </EntityType>
+            <EntityType Name="Timelines">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="start_datetime" Type="Edm.TimeOfDay"/>
+                <Property Name="end_datetime" Type="Edm.TimeOfDay"/>
+                <Property Name="refid" Type="Edm.Int32"/>
+                <Property Name="type" Type="Edm.String" MaxLength="10"/>
+            </EntityType>
+            <EntityType Name="Phases">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="phase_name" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityType Name="Component_Stages">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="stage_id" Type="IsatService.Stages">
+                    <ReferentialConstraint Property="stage_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="stage_id_autoid" Type="Edm.Int32"/>
+                <Property Name="status" Type="Edm.String" MaxLength="10"/>
+            </EntityType>
+            <EntityType Name="Stages">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="description" Type="Edm.String" MaxLength="100"/>
+            </EntityType>
+            <EntityType Name="DDData">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="value" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="ddType_id" Type="IsatService.DDType">
+                    <ReferentialConstraint Property="ddType_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="ddType_id_autoid" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="DDType">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="description" Type="Edm.String" MaxLength="100"/>
+            </EntityType>
+            <EntityType Name="InterfaceDetails">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="description" Type="Edm.String" MaxLength="20"/>
+                <Property Name="module" Type="Edm.String" MaxLength="20"/>
+                <Property Name="package" Type="Edm.String" MaxLength="20"/>
+                <Property Name="senderssystem" Type="Edm.String" MaxLength="20"/>
+                <Property Name="receiversystem" Type="Edm.String" MaxLength="20"/>
+                <Property Name="process" Type="Edm.String" MaxLength="20"/>
+                <Property Name="sourceadapter" Type="Edm.String" MaxLength="20"/>
+                <Property Name="targetadapter" Type="Edm.String" MaxLength="20"/>
+                <Property Name="techpoc" Type="Edm.String" MaxLength="200"/>
+                <Property Name="functionalpoc" Type="Edm.String" MaxLength="200"/>
+                <Property Name="businesspoc" Type="Edm.String" MaxLength="200"/>
+                <Property Name="doctype" Type="Edm.String" MaxLength="20"/>
+                <Property Name="frequency" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ccenabled" Type="Edm.Boolean"/>
+            </EntityType>
+            <EntityType Name="TaskAttachments">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="task_id" Type="IsatService.Tasks">
+                    <ReferentialConstraint Property="task_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="task_id_autoid" Type="Edm.Int32"/>
+                <Property Name="attachmenturl" Type="Edm.String" MaxLength="100"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="type" Type="Edm.String" MaxLength="10"/>
+            </EntityType>
+            <EntityType Name="TaskNotes">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="task_id" Type="IsatService.Tasks">
+                    <ReferentialConstraint Property="task_id_autoid" ReferencedProperty="autoid"/>
+                </NavigationProperty>
+                <Property Name="task_id_autoid" Type="Edm.Int32"/>
+                <Property Name="notes" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="name" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityType Name="Issues">
+                <Key>
+                    <PropertyRef Name="autoid"/>
+                </Key>
+                <Property Name="autoid" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="issueDesc" Type="Edm.String" MaxLength="100"/>
+                <Property Name="detailedDesc" Type="Edm.String" MaxLength="100"/>
+                <Property Name="type" Type="Edm.String" MaxLength="20"/>
+                <Property Name="status" Type="Edm.String" MaxLength="10"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="10"/>
+                <Property Name="updatedBy" Type="Edm.String" MaxLength="100"/>
+                <Property Name="createdTime" Type="Edm.String" MaxLength="20"/>
+                <Property Name="updatedTime" Type="Edm.String" MaxLength="10"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

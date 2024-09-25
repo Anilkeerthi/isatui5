@@ -1,0 +1,394 @@
+<mvc:View
+    controllerName="com.isat.isatui5.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:unified="sap.ui.unified"
+    xmlns:micro="sap.suite.ui.microchart"
+      xmlns:uxap="sap.uxap"
+>
+    <Page>
+        <content>
+             <uxap:ObjectPageLayout
+            height="16%"
+            id="AobjectPageLayout"
+        >
+            <uxap:headerTitle>
+                <uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:expandedHeading>
+                        <Toolbar>
+                            <Title text=" Integrations Support Automation Toolkit" />
+                        </Toolbar>
+                    </uxap:expandedHeading>
+                    <uxap:expandedContent>
+                        <m:Text text="One Stop dashboard for all Projects and Interfaces." />
+                    </uxap:expandedContent>
+
+                    <uxap:actions>
+
+                        <m:Button
+                            text="Admin"
+                            press="onAdminButtonPress"
+                        />
+                        <m:Button
+                            text="HomeScreen"
+                   
+                    press="onClick"
+                        />
+                      
+                    </uxap:actions>
+                </uxap:ObjectPageDynamicHeaderTitle>
+            </uxap:headerTitle>
+        </uxap:ObjectPageLayout>
+        <Text
+            text="Welcome User :)"
+            class="welcome"
+        />
+ 
+            <l:BlockLayout class="layout-container">
+                <!-- First Main Section with 4 Subsections -->
+                <l:BlockLayoutRow>
+                    <l:BlockLayoutCell
+                        width="8"
+                        class="responsiveCell"
+                    >
+                        <!-- First main section -->
+                        <l:BlockLayout>
+                            <!-- Top Two Sections -->
+                            <l:BlockLayoutRow>
+                                <l:BlockLayoutCell
+                                    width="12"
+                                    class="responsiveCell data"
+                                >
+                                    <VBox class="chartBox">
+                                        <f:Card
+                                            class="sapUiMediumMargin"
+                                            width="100%"
+                                        >
+                                            <f:header>
+                                                <card:Header
+                                                    title="List of Interfaces Project wise"
+                                                >
+                                               
+                                                       
+                                                           
+                                                       
+                                                 
+                                                </card:Header>
+                                            </f:header>
+                                            <f:content>
+                                                <viz:VizFrame
+                                                    id="idScenariosReleaseChart"
+                                                    height="200px"
+                                                    width="100%"
+                                                    vizType="column"
+                                                >
+                                                    <viz:dataset>
+                                                        <viz.data:FlattenedDataset
+                                                            data="{viewModel>/ListOfInterfaces}"
+                                                        >
+                                                            <viz.data:dimensions
+                                                            >
+                                                                <viz.data:DimensionDefinition
+                                                                    name="project"
+                                                                    value="{project}"
+                                                                />
+                                                            </viz.data:dimensions>
+                                                            <viz.data:measures>
+                                                                <viz.data:MeasureDefinition
+                                                                    name="interfaces"
+                                                                    value="{interfaces}"
+                                                                />
+                                                            </viz.data:measures>
+                                                        </viz.data:FlattenedDataset>
+                                                    </viz:dataset>
+                                                    <viz:feeds>
+                                                        <viz.feeds:FeedItem
+                                                            uid="valueAxis"
+                                                            type="Measure"
+                                                            values="interfaces"
+                                                        />
+                                                        <viz.feeds:FeedItem
+                                                            uid="categoryAxis"
+                                                            type="Dimension"
+                                                            values="project"
+                                                        />
+                                                    </viz:feeds>
+                                                </viz:VizFrame>
+                                            </f:content>
+                                        </f:Card>
+                                    </VBox>
+                                </l:BlockLayoutCell>
+                                <l:BlockLayoutCell
+                                    width="12"
+                                    class="responsiveCell"
+                                >
+                                    <Panel
+                                        class="sapUiContentPadding calendar-container"
+                                    >
+                                        <VBox class="chartBox">
+                                            <FlexBox
+                                                justifyContent="SpaceBetween"
+                                                alignItems="Center"
+                                            >
+                                                <Title
+                                                    text="Scenarios by Portfolios"
+                                                    level="H2"
+                                                />
+                                                <Select
+                                                    id="portfolioFilter"
+                                                    change="onPortfolioFilterChange"
+                                                    items="{ path: 'viewModel>/portfolios', sorter: { path: 'text' }}"
+                                                >
+                                                    <core:Item
+                                                        key="{viewModel>key}"
+                                                        text="{viewModel>text}"
+                                                    />
+                                                </Select>
+                                            </FlexBox>
+                                            <viz:VizFrame
+                                                id="idScenariosPortfoliosChart"
+                                                height="200px"
+                                                width="100%"
+                                                vizType="column"
+                                            >
+                                                <viz:dataset>
+                                                    <viz.data:FlattenedDataset
+                                                        data="{viewModel>/scenariosByPortfolios}"
+                                                    >
+                                                        <viz.data:dimensions>
+                                                            <viz.data:DimensionDefinition
+                                                                name="Portfolio"
+                                                                value="{portfolio}"
+                                                            />
+                                                        </viz.data:dimensions>
+                                                        <viz.data:measures>
+                                                            <viz.data:MeasureDefinition
+                                                                name="Count"
+                                                                value="{count}"
+                                                            />
+                                                        </viz.data:measures>
+                                                    </viz.data:FlattenedDataset>
+                                                </viz:dataset>
+                                                <viz:feeds>
+                                                    <viz.feeds:FeedItem
+                                                        uid="valueAxis"
+                                                        type="Measure"
+                                                        values="Count"
+                                                    />
+                                                    <viz.feeds:FeedItem
+                                                        uid="categoryAxis"
+                                                        type="Dimension"
+                                                        values="Portfolio"
+                                                    />
+                                                </viz:feeds>
+                                            </viz:VizFrame>
+                                        </VBox>
+                                    </Panel>
+                                </l:BlockLayoutCell>
+                            </l:BlockLayoutRow>
+ 
+                            <!-- Bottom Two Sections -->
+                            <l:BlockLayoutRow>
+                                <l:BlockLayoutCell
+                                    width="12"
+                                    class="responsiveCell"
+                                >
+                                    <Panel
+                                        class="sapUiContentPadding calendar-container"
+                                    >
+                                        <VBox class="chartBox initiativeChart">
+                                            <FlexBox
+                                                justifyContent="SpaceBetween"
+                                                alignItems="Center"
+                                            >
+                                                <Title
+                                                    text="Scenarios by Initiative"
+                                                    level="H2"
+                                                />
+                                                <Select
+                                                    id="initiativeFilter"
+                                                    change="onInitiativeFilterChange"
+                                                    items="{ path: 'viewModel>/initiatives', sorter: { path: 'text' }}"
+                                                >
+                                                    <core:Item
+                                                        key="{viewModel>key}"
+                                                        text="{viewModel>text}"
+                                                    />
+                                                </Select>
+                                            </FlexBox>
+                                            <viz:VizFrame
+                                                id="idScenariosInitiativeChart"
+                                                height="200px"
+                                                width="100%"
+                                                vizType="donut"
+                                            >
+                                                <viz:dataset>
+                                                    <viz.data:FlattenedDataset
+                                                        data="{viewModel>/scenariosByInitiative}"
+                                                    >
+                                                        <viz.data:dimensions>
+                                                            <viz.data:DimensionDefinition
+                                                                name="Initiative"
+                                                                value="{initiative}"
+                                                            />
+                                                        </viz.data:dimensions>
+                                                        <viz.data:measures>
+                                                            <viz.data:MeasureDefinition
+                                                                name="Percentage"
+                                                                value="{percentage}"
+                                                            />
+                                                        </viz.data:measures>
+                                                    </viz.data:FlattenedDataset>
+                                                </viz:dataset>
+                                                <viz:feeds>
+                                                    <viz.feeds:FeedItem
+                                                        uid="size"
+                                                        type="Measure"
+                                                        values="Percentage"
+                                                    />
+                                                    <viz.feeds:FeedItem
+                                                        uid="color"
+                                                        type="Dimension"
+                                                        values="Initiative"
+                                                    />
+                                                </viz:feeds>
+                                            </viz:VizFrame>
+                                        </VBox>
+                                    </Panel>
+                                </l:BlockLayoutCell>
+ 
+                                <l:BlockLayoutCell
+                                    width="12"
+                                    class="responsiveCell"
+                                >
+                                    <Panel
+                                        class="sapUiContentPadding calendar-container"
+                                    >
+                                        <VBox
+                                            height="220px"
+                                            width="100%"
+                                        >
+                                            <HBox>
+                                                <GenericTile
+                                                    class="sapUiTinyMarginEnd sapUiTinyMarginBottom tileSize"
+                                                    header="Nominate Scenario"
+                                                    press="onPressNominateScenario"
+                                                >
+                                                    <TileContent>
+                                                        <ImageContent
+                                                            src="sap-icon://add-document"
+                                                        />
+                                                    </TileContent>
+                                                </GenericTile>
+                                                <GenericTile
+                                                    class="sapUiTinyMarginEnd sapUiTinyMarginBottom tileSize"
+                                                    header="Partner Demo Library"
+                                                    press="onPressPartnerDemoLibrary"
+                                                >
+                                                    <TileContent>
+                                                        <ImageContent
+                                                            src="sap-icon://library"
+                                                        />
+                                                    </TileContent>
+                                                </GenericTile>
+                                            </HBox>
+                                            <HBox>
+                                                <GenericTile
+                                                    class="sapUiTinyMarginEnd sapUiTinyMarginBottom tileSize"
+                                                    header="Partner Edge Portal"
+                                                    press="onPressPartnerEdgePortal"
+                                                >
+                                                    <TileContent>
+                                                        <ImageContent
+                                                            src="sap-icon://customer-and-supplier"
+                                                        />
+                                                    </TileContent>
+                                                </GenericTile>
+                                                <GenericTile
+                                                    class="sapUiTinyMarginEnd sapUiTinyMarginBottom tileSize"
+                                                    header="Overview of Partner Demo Environment"
+                                                    press="onPressOverviewPartnerDemoEnvironment"
+                                                >
+                                                    <TileContent>
+                                                        <ImageContent
+                                                            src="sap-icon://overview-chart"
+                                                        />
+                                                    </TileContent>
+                                                </GenericTile>
+                                            </HBox>
+                                        </VBox>
+                                    </Panel>
+                                </l:BlockLayoutCell>
+                            </l:BlockLayoutRow>
+                        </l:BlockLayout>
+                    </l:BlockLayoutCell>
+ 
+                    <!-- Second Main Section -->
+                    <l:BlockLayoutCell
+                        width="4"
+                        class="responsiveCell"
+                    >
+                        <Panel
+                            class="sapUiContentPadding calendar-container"
+                            height="100%"
+                        >
+                            <VBox class="chartBox">
+                                <Toolbar>
+                                    <Title
+                                        text="Scenarios by Release"
+                                        level="H2"
+                                    />
+                                </Toolbar>
+                                <viz:VizFrame
+                                    id="idScenariosReleaseChartt"
+                                    height="200px"
+                                    width="100%"
+                                    vizType="column"
+                                >
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset
+                                            data="{viewModel>/scenariosByRelease}"
+                                        >
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition
+                                                    name="Release"
+                                                    value="{release}"
+                                                />
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition
+                                                    name="Count"
+                                                    value="{count}"
+                                                />
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem
+                                            uid="valueAxis"
+                                            type="Measure"
+                                            values="Count"
+                                        />
+                                        <viz.feeds:FeedItem
+                                            uid="categoryAxis"
+                                            type="Dimension"
+                                            values="Release"
+                                        />
+                                    </viz:feeds>
+                                </viz:VizFrame>
+                            </VBox>
+                        </Panel>
+                    </l:BlockLayoutCell>
+                </l:BlockLayoutRow>
+            </l:BlockLayout>
+        </content>
+    </Page>
+</mvc:View>

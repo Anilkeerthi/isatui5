@@ -1,0 +1,169 @@
+<mvc:View
+    controllerName="com.isat.isatui5.controller.Tables.Customer"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:tnt="sap.tnt"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:uxap="sap.uxap"
+>
+
+    <Panel>
+        <SearchField
+            width="auto"
+            class="searchFieldCustomWidth"
+            id="AsearchFieldd"
+            placeholder="Search for entitys"
+        >
+            <layoutData>
+                <OverflowToolbarLayoutData
+                    priority="NeverOverflow"
+                    group="1"
+                />
+            </layoutData>
+        </SearchField>
+
+    
+
+<Table id="idProductssTable"
+		inset="false"
+		items="{
+			path: 'jsonModel>/EntitySet/CustomersData'
+		
+		}">
+		
+		<infoToolbar>
+			<OverflowToolbar>
+				<Label text="Customer Data"/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column
+				width="12em">
+				<Text text="autoid" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="custid" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="End">
+				<Text text="description" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="location" />
+			</Column>
+			<Column
+				hAlign="End">
+				<Text text="name" />
+			</Column>
+			<Column
+				hAlign="End">
+				<Text text="Actions" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<ObjectIdentifier
+						
+						text="{jsonModel>autoid}"/>
+					<Text
+						text="{jsonModel>custid}" />
+						<Text
+						text="{jsonModel>description}" />
+						<Text
+						text="{jsonModel>location}" />
+						<Text
+						text="{jsonModel>name}" />
+						 <Button type="Emphasized"
+                           press=".onShowDetails"
+                                        icon="sap-icon://display" />
+					
+					
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+	 <Dialog
+                id="detailsDialogA"
+                title="Interface Details"
+                stretch="false"
+                afterClose="onDialogClose"
+            >
+                <content>
+                    <HBox class="adminScreenActions">
+                        <VBox>
+                            <Label text="autoid :" />
+                            <Input
+                                value="{dialogModel>/autoid}"
+                                editable="{dialogModel>/editable}"
+                            />
+                        </VBox>
+                        <VBox>
+                            <Label text="custid :" />
+                            <Input
+                                value="{dialogModel>/custid}"
+                                editable="{dialogModel>/editable}"
+                            />
+                        </VBox>
+                    </HBox>
+
+                    <HBox class="adminScreenActions">
+                        <VBox>
+                            <Label text="description :" />
+                            <Input
+                                value="{dialogModel>/description}"
+                                editable="{dialogModel>/editable}"
+                            />
+                        </VBox>
+                        <VBox>
+                            <Label text="location" />
+                            <Input
+                                value="{dialogModel>/location}"
+                                editable="{dialogModel>/editable}"
+                            />
+                        </VBox>
+                    </HBox>
+
+                    <HBox class="adminScreenActions">
+                        <VBox>
+                            <Label text="name" />
+                            <Input
+                                value="{dialogModel>/name}"
+                                editable="{dialogModel>/editable}"
+                            />
+                        </VBox>
+                    </HBox>
+                </content>
+
+                <beginButton>
+                    <Button
+                        text="{dialogModel>/buttonText}"
+                        press="onToggleEdit"
+                    />
+                </beginButton>
+                <endButton>
+                    <Button
+                        text="Cancel"
+                        press="onCloseDialog"
+                    />
+                </endButton>
+            </Dialog>
+
+    	
+
+    </Panel>
+
+   
+</mvc:View>

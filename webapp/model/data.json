@@ -1,0 +1,87 @@
+{
+    "InterfaceDetails": [
+      {
+        "name": "Interface A",
+        "module": "SAP Module",
+        "package": "com.cytechies.package1",
+        "sendersystem": "System A",
+        "receiversystem": "System B",
+        "process": "Procurement",
+        "sourceadapter": "Adapter A",
+        "targetadapter": "Adapter B",
+        "techpoc": "TechPOC 1",
+        "functionalpoc": "FuncPOC 1",
+        "businesspoc": "BizPOC 1",
+        "doctype": "XML",
+        "frequency": "Daily",
+        "ccenabled": true
+      },
+      {
+        "name": "Interface B",
+        "module": "CRM",
+        "package": "com.cytechies.package2",
+        "sendersystem": "System C",
+        "receiversystem": "System D",
+        "process": "Sales",
+        "sourceadapter": "Adapter C",
+        "targetadapter": "Adapter D",
+        "techpoc": "TechPOC 2",
+        "functionalpoc": "FuncPOC 2",
+        "businesspoc": "BizPOC 2",
+        "doctype": "JSON",
+        "frequency": "Weekly",
+        "ccenabled": false
+      },
+      {
+        "name": "Interface C",
+        "module": "PLM",
+        "package": "com.cytechies.package3",
+        "sendersystem": "System E",
+        "receiversystem": "System F",
+        "process": "Product Lifecycle",
+        "sourceadapter": "Adapter E",
+        "targetadapter": "Adapter F",
+        "techpoc": "TechPOC 3",
+        "functionalpoc": "FuncPOC 3",
+        "businesspoc": "BizPOC 3",
+        "doctype": "CSV",
+        "frequency": "Monthly",
+        "ccenabled": true
+      },
+      {
+       
+        "name": "Interface D",
+        "module": "ERP",
+        "package": "com.cytechies.package4",
+        "sendersystem": "System G",
+        "receiversystem": "System H",
+        "process": "Supply Chain",
+        "sourceadapter": "Adapter G",
+        "targetadapter": "Adapter H",
+        "techpoc": "TechPOC 4",
+        "functionalpoc": "FuncPOC 4",
+        "businesspoc": "BizPOC 4",
+        "doctype": "PDF",
+        "frequency": "Quarterly",
+        "ccenabled": false
+      },
+      {
+       
+        "name": "Interface E",
+        "module": "R&D",
+        "package": "com.cytechies.package5",
+        "sendersystem": "System I",
+        "receiversystem": "System J",
+        "process": "Innovation",
+        "sourceadapter": "Adapter I",
+        "targetadapter": "Adapter J",
+        "techpoc": "TechPOC 5",
+        "functionalpoc": "FuncPOC 5",
+        "businesspoc": "BizPOC 5",
+        "doctype": "DOC",
+        "frequency": "Annually",
+        "ccenabled": true
+      }
+    ]
+  }
+  

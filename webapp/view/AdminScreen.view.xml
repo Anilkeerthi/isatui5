@@ -1,0 +1,99 @@
+<mvc:View
+    controllerName="com.isat.isatui5.controller.AdminScreen"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:tnt="sap.tnt"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:uxap="sap.uxap"
+>
+    <Page>
+        <content>
+            <uxap:ObjectPageLayout
+                height="12%"
+                id="BobjectPageLayout"
+            >
+                <uxap:headerTitle>
+                    <uxap:ObjectPageDynamicHeaderTitle>
+                        <uxap:expandedHeading>
+                            <Toolbar>
+                                <Button
+                                    icon="sap-icon://home"
+                                    press="backToDashBoard"
+                                />
+                                <Label text="Select the entity" />
+
+                                <ComboBox
+                                    id="entityComboBox"
+                                    placeholder="All"
+                                    change="onEntityChange"
+                                >
+                                    <core:ListItem
+                                        key="CustomersData"
+                                        text="Customers Data"
+                                    />
+                                    <core:ListItem
+                                        key="ProjectsData"
+                                        text="Projects Data"
+                                    />
+                                    <core:ListItem
+                                        key="Users"
+                                        text="Users"
+                                    />
+                                </ComboBox>
+                            </Toolbar>
+                        </uxap:expandedHeading>
+
+                        <uxap:actions>
+                            <m:Button
+                                text="NEW"
+                                press="onAdminButtonPress"
+                            />
+                            <m:Button
+                                text="Import"
+                                press="onClickImport"
+                            />
+                            <m:Button
+                                text="Export"
+                                press="onClick"
+                            />
+                        </uxap:actions>
+                    </uxap:ObjectPageDynamicHeaderTitle>
+                </uxap:headerTitle>
+            </uxap:ObjectPageLayout>
+
+            <!-- <Panel>
+                <SearchField
+                    width="auto"
+                    class="searchFieldCustomWidth"
+                    id="AsearchField"
+                    placeholder="Search for entitys"
+                >
+                    <layoutData>
+                        <OverflowToolbarLayoutData
+                            priority="NeverOverflow"
+                            group="1"
+                        />
+                    </layoutData>
+                </SearchField>
+            </Panel> -->
+        </content>
+
+        <VBox id="tablePlaceholder">
+            <mvc:XMLView
+                id="CustomerView"
+                viewName="com.isat.isatui5.view.Tables.Customer"
+                visible="false"
+            />
+
+              <mvc:XMLView
+                id="UsersView"
+                viewName="com.isat.isatui5.view.Tables.Users"
+                visible="false"
+            />
+            <!-- Other views can also be added here if needed -->
+        </VBox>
+    </Page>
+</mvc:View>

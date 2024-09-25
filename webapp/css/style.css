@@ -1,0 +1,177 @@
+/* .tileSize{
+    width: 150px !important;
+    height: 160px !important;
+} */
+
+.sapUiBlockLayoutSizeXL:not(.sapUiBlockLayoutKeepFontSize) .sapUiBlockCellContent {
+    padding: 10px 10px !important;
+    font-size: 1rem;
+}
+
+g.v-legend-element.v-legend-item {
+    display: none !important;
+}
+
+.layout-container {
+    padding: 1rem;
+}
+
+
+
+.dashboardGrid {
+    height: 100%;
+ }
+.data{
+    display: flex !important;
+}
+
+.topRow, .bottomRow {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.chartBox {
+    width: 30%;
+    min-width: 300px;
+}
+
+.calendarBox {
+    width: 30%;
+    min-width: 300px;
+}
+
+.initiativeChart {
+    width: 45%;
+}
+
+.tileContainer {
+    width: 50%;
+    justify-content: flex-end;
+}
+
+.tileSize {
+    width: 10rem;
+    height: 10rem;
+}
+
+/* Adjust the Select control to be smaller and align with the title */
+ .sapMSlt {
+    max-width: 150px;
+    margin-left: 1rem;
+} 
+
+/* Make the calendar more compact */
+ .sapUiCal {
+    padding: 0.5rem;
+} 
+
+
+
+ @media (max-width: 1200px) {
+    .topRow, .bottomRow {
+        flex-direction: column;
+    }
+
+    .chartBox, .calendarBox, .initiativeChart, .tileContainer {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+.welcome{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}  
+
+.data{
+    display: flex !important;
+}
+
+/* Enter your custom styles here -------------------------------------------------------------------------------------> */
+
+/* div#__hbox1 {
+    padding: 15px;
+} */
+
+@media only screen and (max-width: 320px) {
+    .multiComboBoxx {
+        width: 100% !important;
+    }
+}
+
+div#__page0-intHeader {
+    display: none !important;
+}
+.sapMPageHeader{
+    display: none !important;
+}
+.sapUiSizeCompact .sapMPageWithHeader>section {
+    top: 0px !important;
+}
+
+div#__title0-expand-wrapper {
+    margin-left: 10px;
+}
+.sapTntToolHeader .sapMSF .sapMSFF {
+    border-radius: 0rem !important;
+    height: 2.5rem;
+    background-color: #eff1f2;
+}
+.hbox{
+    gap:10px
+}
+.sapUiIcon::before {
+
+    
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+}
+
+.sapMTB.sapMTBStandard {
+    border-bottom: none !important
+}
+
+/* Add this in your CSS file */
+.searchFieldCustomWidth {
+    width: 16rem !important; /* Default width */
+
+    /* Media query for tablets and above */
+    @media (min-width: 600px) {
+        width: 23rem !important;
+    }
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+    .hbox {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sapMComboBox {
+        width: 100% !important;
+    }
+
+    .sapMButton {
+        width: 100% !important;
+    }
+
+    .hbox{
+        gap:10px
+    }
+}
+
+.adminScreenActions{
+    gap: 10px !important;
+    padding: 10px !important;
+}
+.Actions{
+    gap: 10px !important;
+    padding: 10px !important;
+}
+
+
