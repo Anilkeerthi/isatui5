@@ -210,10 +210,19 @@
 
                     <Dialog
                         id="detailsDialog"
-                        title="Interface Details"
                         stretch="false"
                         afterClose="onDialogClose"
                     >
+                        <customHeader>
+                            <Toolbar>
+                                <Title text="Interface details" />
+                                <ToolbarSpacer />
+                                <Button
+                                    icon="sap-icon://decline"
+                                    press="onCloseDialog"
+                                />
+                            </Toolbar>
+                        </customHeader>
                         <content>
                             <HBox class="Actions">
                                 <VBox>
@@ -370,31 +379,31 @@
                                         class="sapUiSmallMarginEnd"
                                     />
                                 </uxap:expandedHeading>
-                                <uxap:navigationActions>
-                                    <OverflowToolbarButton
-                                        type="Transparent"
-                                        icon="sap-icon://full-screen"
-                                        press="handleFullScreen"
-                                        id="enterFullScreenBtn"
-                                        tooltip="Enter Full Screen Mode"
-                                        visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"
-                                    />
-                                    <OverflowToolbarButton
-                                        type="Transparent"
-                                        icon="sap-icon://exit-full-screen"
-                                        press="handleExitFullScreen"
-                                        id="exitFullScreenBtn"
-                                        tooltip="Exit Full Screen Mode"
-                                        visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"
-                                    />
-                                    <OverflowToolbarButton
-                                        type="Transparent"
-                                        icon="sap-icon://decline"
-                                        press="handleClose"
-                                        tooltip="Close middle column"
-                                        visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"
-                                    />
-                                </uxap:navigationActions>
+                              <uxap:navigationActions>
+    <OverflowToolbarButton
+        type="Transparent"
+        icon="sap-icon://full-screen"
+        press="handleFullScreen"
+        id="enterFullScreenBtn"
+        tooltip="Enter Full Screen Mode"
+        visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"
+    />
+    <OverflowToolbarButton
+        type="Transparent"
+        icon="sap-icon://exit-full-screen"
+        press="handleExitFullScreen"
+        id="exitFullScreenBtn"
+        tooltip="Exit Full Screen Mode"
+        visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"
+    />
+    <OverflowToolbarButton
+        type="Transparent"
+        icon="sap-icon://decline"
+        press="handleClose"
+        tooltip="Close middle column"
+        visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"
+    />
+</uxap:navigationActions>
                             </uxap:ObjectPageDynamicHeaderTitle>
                         </uxap:headerTitle>
                         <uxap:sections>
@@ -424,155 +433,7 @@
                                                     title="Select ICO"
                                                     activate="onActivate"
                                                 >
-                                                    <!-- <Table
-                                                        id="idProductsTable"
-                                                        inset="false"
-                                                        items="{
-			path: 'comboJsonModel>/ProductCollection',
-			sorter: {
-				path: 'Name'
-			}
-		}"
-                                                    >
-                                                        <headerToolbar>
-                                                            <OverflowToolbar>
-                                                                <content>
-                                                                    <Title
-                                                                        text="Products"
-                                                                        level="H2"
-                                                                    />
-                                                                    <ToolbarSpacer
-                                                                    />
-                                                                    <ComboBox
-                                                                        id="idPopinLayoutt"
-                                                                        placeholder="Popin layout options"
-                                                                        change="onPopinLayoutChanged"
-                                                                    >
-                                                                        <items>
-                                                                            <core:Item
-                                                                                text="Block"
-                                                                                key="Block"
-                                                                            />
-                                                                            <core:Item
-                                                                                text="Grid Large"
-                                                                                key="GridLarge"
-                                                                            />
-                                                                            <core:Item
-                                                                                text="Grid Small"
-                                                                                key="GridSmall"
-                                                                            />
-                                                                        </items>
-                                                                    </ComboBox>
-                                                                    <Label
-                                                                        text="Sticky options:"
-                                                                    />
-                                                                    <CheckBox
-                                                                        text="ColumnHeaders"
-                                                                        select="onSelect"
-                                                                    />
-                                                                    <CheckBox
-                                                                        text="HeaderToolbar"
-                                                                        select="onSelect"
-                                                                    />
-                                                                    <CheckBox
-                                                                        text="InfoToolbar"
-                                                                        select="onSelect"
-                                                                    />
-                                                                    <ToggleButton
-                                                                        id="toggleInfoToolbarr"
-                                                                        text="Hide/Show InfoToolbar"
-                                                                        press="onToggleInfoToolbar"
-                                                                    />
-                                                                </content>
-                                                            </OverflowToolbar>
-                                                        </headerToolbar>
-                                                        <infoToolbar>
-                                                            <OverflowToolbar>
-                                                                <Label
-                                                                    text="Wide range of available products"
-                                                                />
-                                                            </OverflowToolbar>
-                                                        </infoToolbar>
-                                                        <columns>
-                                                            <Column
-                                                                width="12em"
-                                                            >
-                                                                <Text
-                                                                    text="Product"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                minScreenWidth="Tablet"
-                                                                demandPopin="true"
-                                                            >
-                                                                <Text
-                                                                    text="Supplier"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                minScreenWidth="Desktop"
-                                                                demandPopin="true"
-                                                                hAlign="End"
-                                                            >
-                                                                <Text
-                                                                    text="Dimensions"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                minScreenWidth="Desktop"
-                                                                demandPopin="true"
-                                                                hAlign="Center"
-                                                            >
-                                                                <Text
-                                                                    text="Weight"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                hAlign="End"
-                                                            >
-                                                                <Text
-                                                                    text="Price"
-                                                                />
-                                                            </Column>
-                                                        </columns>
-                                                        <items>
-                                                            <ColumnListItem
-                                                                vAlign="Middle"
-                                                            >
-                                                                <cells>
-                                                                    <ObjectIdentifier
-                                                                        title="{Name}"
-                                                                        text="{ProductId}"
-                                                                    />
-                                                                    <Text
-                                                                        text="{SupplierName}"
-                                                                    />
-                                                                    <Text
-                                                                        text="{Width} x {Depth} x {Height} {DimUnit}"
-                                                                    />
-                                                                    <ObjectNumber
-                                                                        number="{WeightMeasure}"
-                                                                        unit="{WeightUnit}"
-                                                                        state="{
-							parts: [
-								{path: 'WeightMeasure'},
-								{path: 'WeightUnit'}
-							],
-							formatter: 'sap.m.sample.Table.Formatter.weightState'
-						}"
-                                                                    />
-                                                                    <ObjectNumber
-                                                                        number="{
-								parts:[{path:'Price'},{path:'CurrencyCode'}],
-								type: 'sap.ui.model.type.Currency',
-								formatOptions: {showMeasure: false}
-							}"
-                                                                        unit="{CurrencyCode}"
-                                                                    />
-                                                                </cells>
-                                                            </ColumnListItem>
-                                                        </items>
-                                                    </Table> -->
+                                                   
                                                 </WizardStep>
                                                 <WizardStep
                                                     id="OptionalInfoStep"
@@ -580,310 +441,14 @@
                                                     title="Select Messages"
                                                     activate="onActivate"
                                                 >
-                                                    <!-- <Table
-                                                        id="idProductsTablee"
-                                                        inset="false"
-                                                        items="{
-			path: 'comboJsonModel>/ProductCollection',
-			sorter: {
-				path: 'Name'
-			}
-		}"
-                                                    >
-                                                        <headerToolbar>
-                                                            <OverflowToolbar>
-                                                                <content>
-                                                                    <Title
-                                                                        text="Products"
-                                                                        level="H2"
-                                                                    />
-                                                                    <ToolbarSpacer
-                                                                    />
-                                                                    <ComboBox
-                                                                        id="idPopinLayout"
-                                                                        placeholder="Popin layout options"
-                                                                        change="onPopinLayoutChanged"
-                                                                    >
-                                                                        <items>
-                                                                            <core:Item
-                                                                                text="Block"
-                                                                                key="Block"
-                                                                            />
-                                                                            <core:Item
-                                                                                text="Grid Large"
-                                                                                key="GridLarge"
-                                                                            />
-                                                                            <core:Item
-                                                                                text="Grid Small"
-                                                                                key="GridSmall"
-                                                                            />
-                                                                        </items>
-                                                                    </ComboBox>
-                                                                    <Label
-                                                                        text="Sticky options:"
-                                                                    />
-                                                                    <CheckBox
-                                                                        text="ColumnHeaders"
-                                                                        select="onSelect"
-                                                                    />
-                                                                    <CheckBox
-                                                                        text="HeaderToolbar"
-                                                                        select="onSelect"
-                                                                    />
-                                                                    <CheckBox
-                                                                        text="InfoToolbar"
-                                                                        select="onSelect"
-                                                                    />
-                                                                    <ToggleButton
-                                                                        id="toggleInfoToolbar"
-                                                                        text="Hide/Show InfoToolbar"
-                                                                        press="onToggleInfoToolbar"
-                                                                    />
-                                                                </content>
-                                                            </OverflowToolbar>
-                                                        </headerToolbar>
-                                                        <infoToolbar>
-                                                            <OverflowToolbar>
-                                                                <Label
-                                                                    text="Wide range of available products"
-                                                                />
-                                                            </OverflowToolbar>
-                                                        </infoToolbar>
-                                                        <columns>
-                                                            <Column
-                                                                width="12em"
-                                                            >
-                                                                <Text
-                                                                    text="Product"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                minScreenWidth="Tablet"
-                                                                demandPopin="true"
-                                                            >
-                                                                <Text
-                                                                    text="Supplier"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                minScreenWidth="Desktop"
-                                                                demandPopin="true"
-                                                                hAlign="End"
-                                                            >
-                                                                <Text
-                                                                    text="Dimensions"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                minScreenWidth="Desktop"
-                                                                demandPopin="true"
-                                                                hAlign="Center"
-                                                            >
-                                                                <Text
-                                                                    text="Weight"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                hAlign="End"
-                                                            >
-                                                                <Text
-                                                                    text="Price"
-                                                                />
-                                                            </Column>
-                                                        </columns>
-                                                        <items>
-                                                            <ColumnListItem
-                                                                vAlign="Middle"
-                                                            >
-                                                                <cells>
-                                                                    <ObjectIdentifier
-                                                                        title="{Name}"
-                                                                        text="{ProductId}"
-                                                                    />
-                                                                    <Text
-                                                                        text="{SupplierName}"
-                                                                    />
-                                                                    <Text
-                                                                        text="{Width} x {Depth} x {Height} {DimUnit}"
-                                                                    />
-                                                                    <ObjectNumber
-                                                                        number="{WeightMeasure}"
-                                                                        unit="{WeightUnit}"
-                                                                        state="{
-							parts: [
-								{path: 'WeightMeasure'},
-								{path: 'WeightUnit'}
-							],
-							formatter: 'sap.m.sample.Table.Formatter.weightState'
-						}"
-                                                                    />
-                                                                    <ObjectNumber
-                                                                        number="{
-								parts:[{path:'Price'},{path:'CurrencyCode'}],
-								type: 'sap.ui.model.type.Currency',
-								formatOptions: {showMeasure: false}
-							}"
-                                                                        unit="{CurrencyCode}"
-                                                                    />
-                                                                </cells>
-                                                            </ColumnListItem>
-                                                        </items>
-                                                    </Table> -->
+                                                   
                                                 </WizardStep>
                                                 <WizardStep
                                                     id="PricingStep"
                                                     title="Link Flow"
                                                     activate="onActivate"
                                                 >
-                                                    <!-- <Table
-                                                        id="idProductsTableee"
-                                                        inset="false"
-                                                        items="{
-			path: 'comboJsonModel>/ProductCollection',
-			sorter: {
-				path: 'Name'
-			}
-		}"
-                                                    >
-                                                        <headerToolbar>
-                                                            <OverflowToolbar>
-                                                                <content>
-                                                                    <Title
-                                                                        text="Products"
-                                                                        level="H2"
-                                                                    />
-                                                                    <ToolbarSpacer
-                                                                    />
-                                                                    <ComboBox
-                                                                        id="idPopinLayouttt"
-                                                                        placeholder="Popin layout options"
-                                                                        change="onPopinLayoutChanged"
-                                                                    >
-                                                                        <items>
-                                                                            <core:Item
-                                                                                text="Block"
-                                                                                key="Block"
-                                                                            />
-                                                                            <core:Item
-                                                                                text="Grid Large"
-                                                                                key="GridLarge"
-                                                                            />
-                                                                            <core:Item
-                                                                                text="Grid Small"
-                                                                                key="GridSmall"
-                                                                            />
-                                                                        </items>
-                                                                    </ComboBox>
-                                                                    <Label
-                                                                        text="Sticky options:"
-                                                                    />
-                                                                    <CheckBox
-                                                                        text="ColumnHeaders"
-                                                                        select="onSelect"
-                                                                    />
-                                                                    <CheckBox
-                                                                        text="HeaderToolbar"
-                                                                        select="onSelect"
-                                                                    />
-                                                                    <CheckBox
-                                                                        text="InfoToolbar"
-                                                                        select="onSelect"
-                                                                    />
-                                                                    <ToggleButton
-                                                                        id="toggleInfoToolbarrr"
-                                                                        text="Hide/Show InfoToolbar"
-                                                                        press="onToggleInfoToolbar"
-                                                                    />
-                                                                </content>
-                                                            </OverflowToolbar>
-                                                        </headerToolbar>
-                                                        <infoToolbar>
-                                                            <OverflowToolbar>
-                                                                <Label
-                                                                    text="Wide range of available products"
-                                                                />
-                                                            </OverflowToolbar>
-                                                        </infoToolbar>
-                                                        <columns>
-                                                            <Column
-                                                                width="12em"
-                                                            >
-                                                                <Text
-                                                                    text="Product"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                minScreenWidth="Tablet"
-                                                                demandPopin="true"
-                                                            >
-                                                                <Text
-                                                                    text="Supplier"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                minScreenWidth="Desktop"
-                                                                demandPopin="true"
-                                                                hAlign="End"
-                                                            >
-                                                                <Text
-                                                                    text="Dimensions"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                minScreenWidth="Desktop"
-                                                                demandPopin="true"
-                                                                hAlign="Center"
-                                                            >
-                                                                <Text
-                                                                    text="Weight"
-                                                                />
-                                                            </Column>
-                                                            <Column
-                                                                hAlign="End"
-                                                            >
-                                                                <Text
-                                                                    text="Price"
-                                                                />
-                                                            </Column>
-                                                        </columns>
-                                                        <items>
-                                                            <ColumnListItem
-                                                                vAlign="Middle"
-                                                            >
-                                                                <cells>
-                                                                    <ObjectIdentifier
-                                                                        title="{Name}"
-                                                                        text="{ProductId}"
-                                                                    />
-                                                                    <Text
-                                                                        text="{SupplierName}"
-                                                                    />
-                                                                    <Text
-                                                                        text="{Width} x {Depth} x {Height} {DimUnit}"
-                                                                    />
-                                                                    <ObjectNumber
-                                                                        number="{WeightMeasure}"
-                                                                        unit="{WeightUnit}"
-                                                                        state="{
-							parts: [
-								{path: 'WeightMeasure'},
-								{path: 'WeightUnit'}
-							],
-							formatter: 'sap.m.sample.Table.Formatter.weightState'
-						}"
-                                                                    />
-                                                                    <ObjectNumber
-                                                                        number="{
-								parts:[{path:'Price'},{path:'CurrencyCode'}],
-								type: 'sap.ui.model.type.Currency',
-								formatOptions: {showMeasure: false}
-							}"
-                                                                        unit="{CurrencyCode}"
-                                                                    />
-                                                                </cells>
-                                                            </ColumnListItem>
-                                                        </items>
-                                                    </Table> -->
+                                                   
                                                 </WizardStep>
                                             </Wizard>
                                         </uxap:blocks>

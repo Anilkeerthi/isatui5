@@ -1,0 +1,9 @@
+{
+    "actionButtonsInfo": {
+      "midColumn": {
+        "fullScreen": true,
+        "exitFullScreen": false,
+        "closeColumn": true
+      }
+    }
+  }

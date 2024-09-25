@@ -6,14 +6,11 @@ sap.ui.define([
     "use strict";
   
     return Controller.extend("com.isat.isatui5.controller.Tables.Customer", {
-  
         onInit: function () {
           var Model = this.getOwnerComponent().getModel("CustomerData");
           this.getView().setModel(Model, "jsonModel")
-          console.log(Model)
-           
+          console.log(Model)  
         },
-  
         onShowDetails: function (oEvent) {
           // Get the selected row's data
           var oSelectedItem = oEvent.getSource().getParent();

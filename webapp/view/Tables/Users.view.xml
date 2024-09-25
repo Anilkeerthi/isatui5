@@ -96,10 +96,20 @@
 
         <Dialog
             id="detailsDialogUsers"
-            title="Interface Details"
             stretch="false"
             afterClose="onDialogClose"
         >
+        <customHeader>
+                            <Toolbar>
+                                <Title text="Interface details" />
+                                <ToolbarSpacer />
+                                <Button
+                                    icon="sap-icon://decline"
+                                    press="onCloseDialog"
+                                />
+                            </Toolbar>
+                        </customHeader>
+        
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>

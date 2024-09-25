@@ -5,9 +5,16 @@
     xmlns:f="sap.ui.layout.form"
 >
     <Dialog
-        title="New Lead"
         class="sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer"
     >
+
+    <customHeader>
+        <Toolbar>
+            <Title text="New Lead" />
+            <ToolbarSpacer />
+            <Button icon="sap-icon://decline" type="Reject" press="onCloseDialog" />
+        </Toolbar>
+    </customHeader>
         <content>
         
         

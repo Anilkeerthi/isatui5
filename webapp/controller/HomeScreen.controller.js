@@ -14,6 +14,20 @@ sap.ui.define([
 		return Controller.extend("com.isat.isatui5.controller.HomeScreen", {
 			onInit: function () {
 
+
+				var oModel = new sap.ui.model.json.JSONModel({
+					actionButtonsInfo: {
+						midColumn: {
+							fullScreen: true,       // This controls the visibility of the full screen button
+							exitFullScreen: false,  // This controls the visibility of the exit full screen button
+							closeColumn: true       // This controls the visibility of the close column button
+						}
+					}
+				});
+			
+				// Set the model to the view
+				this.getView().setModel(oModel);
+
 				this.oFlexibleColumnLayout = this.byId("flexibleColumnLayout");
 
 				var oModell = this.getOwnerComponent().getModel("comboJsonModel");
@@ -94,11 +108,11 @@ sap.ui.define([
 			handleFullScreen: function () {
 				this.oFlexibleColumnLayout.setLayout(fioriLibrary.LayoutType.MidColumnFullScreen);
 			},
-
+			
 			handleExitFullScreen: function () {
 				this.oFlexibleColumnLayout.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
 			},
-
+			
 			handleClose: function () {
 				this.oFlexibleColumnLayout.setLayout(fioriLibrary.LayoutType.OneColumn);
 			},
@@ -176,4 +190,3 @@ sap.ui.define([
 		});
 
 	});
-
