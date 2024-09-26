@@ -24,9 +24,6 @@
                                     press="backToDashBoard"
                                 />
                                 <Label text="Select the entity" />
-
-                              
-
                             <ComboBox
                                 id="entityComboBox"
                                 change="onEntityChange"
@@ -41,26 +38,12 @@
                             </Toolbar>
                         </uxap:expandedHeading>
 
-                     
+
                     </uxap:ObjectPageDynamicHeaderTitle>
                 </uxap:headerTitle>
             </uxap:ObjectPageLayout>
 
-            <!-- <Panel>
-                <SearchField
-                    width="auto"
-                    class="searchFieldCustomWidth"
-                    id="AsearchField"
-                    placeholder="Search for entitys"
-                >
-                    <layoutData>
-                        <OverflowToolbarLayoutData
-                            priority="NeverOverflow"
-                            group="1"
-                        />
-                    </layoutData>
-                </SearchField>
-            </Panel> -->
+           
         </content>
 
         <VBox id="tablePlaceholder">
@@ -90,7 +73,6 @@
             />
 
         </VBox>
-
 
     </Page>
 </mvc:View>

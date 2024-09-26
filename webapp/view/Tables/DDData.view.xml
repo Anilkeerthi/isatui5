@@ -9,156 +9,179 @@
     xmlns:m="sap.m"
     xmlns:uxap="sap.uxap"
 >
-
-    <Panel>
-        <SearchField
-            width="auto"
-            class="searchFieldCustomWidth"
-            id="searchFieldDDdata"
-            placeholder="Search for entitys"
+    <mvc:content>
+        <tnt:ToolHeader
+            id="shellLikeToolHeaderDDTypee"
+            class="sapUiTinyMargin"
         >
-            <layoutData>
-                <OverflowToolbarLayoutData
-                    priority="NeverOverflow"
-                    group="1"
-                />
-            </layoutData>
-        </SearchField>
+            <SearchField
+                width="auto"
+                class="searchFieldCustomWidth"
+                id="searchFieldDDdataaa"
+                placeholder="Search here"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        priority="NeverOverflow"
+                        group="1"
+                    />
+                </layoutData>
+            </SearchField>
 
-       
-             
-      
+            <ToolbarSpacer />
+            <Button
+                text="NEW"
+                tooltip="New"
+                press="onClickNew"
+            />
+            <Button
+                text="Import"
+                tooltip="Import"
+            />
+            <Button
+                text="Export"
+                tooltip="Export"
+            />
+        </tnt:ToolHeader>
 
 
-
-<Table id="idDDData"
-		inset="false"
-		items="{
+        <Table
+            id="idDDData"
+            inset="false"
+            items="{
 			path: 'jsonModel>/DDData'
 		
-		}">
-		
-		<infoToolbar>
-			<OverflowToolbar>
-				<Label text="DDData"/>
-			</OverflowToolbar>
-		</infoToolbar>
-		<columns>
-			<Column
-				width="12em">
-				<Text text="autoid" />
-			</Column>
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="true">
-				<Text text="ddType_id_autoid" />
-			</Column>
-			<Column
-				minScreenWidth="Desktop"
-				demandPopin="true"
-				hAlign="Center">
-				<Text text="name" />
-			</Column>
-			<Column
-				minScreenWidth="Desktop"
-				demandPopin="true"
-				hAlign="Center">
-				<Text text="value" />
-			</Column>
-			
-			<Column
-				hAlign="Center">
-				<Text text="Actions" />
-			</Column>
-			
-		</columns>
-		<items>
-			<ColumnListItem vAlign="Middle">
-				<cells>
-					<ObjectIdentifier
-						
-						text="{jsonModel>autoid}"/>
-					<Text
-						text="{jsonModel>ddType_id_autoid}" />
-						<Text
-						text="{jsonModel>name}" />
-						<Text
-						text="{jsonModel>value}" />
-						
-						 <Button type="Emphasized"
-                           press=".onShowDetails"
-                                        icon="sap-icon://display" />		
-					
-				</cells>
-			</ColumnListItem>
-		</items>
-	</Table>
+		}"
+        >
+            <infoToolbar>
+                <OverflowToolbar>
+                    <Label text="DDData" />
+                </OverflowToolbar>
+            </infoToolbar>
+            <columns>
+                <Column width="12em">
+                    <Text text="autoid" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                >
+                    <Text text="ddType_id_autoid" />
+                </Column>
+                <Column
+                    minScreenWidth="Desktop"
+                    demandPopin="true"
+                    hAlign="Center"
+                >
+                    <Text text="name" />
+                </Column>
+                <Column
+                    minScreenWidth="Desktop"
+                    demandPopin="true"
+                    hAlign="Center"
+                >
+                    <Text text="value" />
+                </Column>
 
-	 <Dialog
-                id="DDDataDialog"
-                title="Interface Details"
-                stretch="false"
-                afterClose="onDialogClose"
-            >
-                <content>
-                    <HBox class="adminScreenActions">
-                        <VBox>
-                            <Label text="autoid :" />
-                            <Input
-                                value="{dialogModel>/autoid}"
-                                editable="{dialogModel>/editable}"
-                            />
-                        </VBox>
-                        <VBox>
-                            <Label text="custid :" />
-                            <Input
-                                value="{dialogModel>/custid}"
-                                editable="{dialogModel>/editable}"
-                            />
-                        </VBox>
-                    </HBox>
+                <Column hAlign="Center">
+                    <Text text="Actions" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem vAlign="Middle">
+                    <cells>
+                        <ObjectIdentifier text="{jsonModel>autoid}" />
+                        <Text text="{jsonModel>ddType_id_autoid}" />
+                        <Text text="{jsonModel>name}" />
+                        <Text text="{jsonModel>value}" />
 
-                    <HBox class="adminScreenActions">
-                        <VBox>
-                            <Label text="description :" />
-                            <Input
-                                value="{dialogModel>/description}"
-                                editable="{dialogModel>/editable}"
-                            />
-                        </VBox>
-                        <VBox>
-                            <Label text="location" />
-                            <Input
-                                value="{dialogModel>/location}"
-                                editable="{dialogModel>/editable}"
-                            />
-                        </VBox>
-                    </HBox>
+                        <Button
+                            type="Emphasized"
+                            press=".onShowDetails"
+                            icon="sap-icon://display"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
 
-                    <HBox class="adminScreenActions">
-                        <VBox>
-                            <Label text="name" />
-                            <Input
-                                value="{dialogModel>/name}"
-                                editable="{dialogModel>/editable}"
-                            />
-                        </VBox>
-                    </HBox>
-                </content>
-
-                <beginButton>
+        <Dialog
+            id="DDDataDialog"
+            title="Interface Details"
+            stretch="false"
+            afterClose="onDialogClose"
+              resizable="true"
+            draggable="true"
+        >
+         <customHeader>
+                <Toolbar>
+                    <Title text="Interface details" />
+                    <ToolbarSpacer />
                     <Button
-                        text="{dialogModel>/buttonText}"
-                        press="onToggleEdit"
-                    />
-                </beginButton>
-                <endButton>
-                    <Button
-                        text="Cancel"
+                        icon="sap-icon://decline"
                         press="onCloseDialog"
                     />
-                </endButton>
-            </Dialog>
-    </Panel>
-   
+                </Toolbar>
+            </customHeader>
+ 
+            <content>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="autoid :" />
+                        <Input
+                            value="{dialogModel>/autoid}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="custid :" />
+                        <Input
+                            value="{dialogModel>/custid}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="description :" />
+                        <Input
+                            value="{dialogModel>/description}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="location" />
+                        <Input
+                            value="{dialogModel>/location}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="name" />
+                        <Input
+                            value="{dialogModel>/name}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+            </content>
+
+            <beginButton>
+                <Button
+                    text="{dialogModel>/buttonText}"
+                    press="onToggleEdit"
+                />
+            </beginButton>
+            <endButton>
+                <Button
+                    text="Cancel"
+                    press="onCloseDialog"
+                />
+            </endButton>
+        </Dialog>
+    </mvc:content>
 </mvc:View>
