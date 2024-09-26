@@ -8,10 +8,7 @@ sap.ui.define([
     return Controller.extend("com.isat.isatui5.controller.Tables.DDData", {
   
         onInit: function () {
-        //   var Model = this.getOwnerComponent().getModel("CustomerData");
-        //   this.getView().setModel(Model, "jsonModel")
-        //   console.log(Model)
-
+          
           var odataModel = this.getOwnerComponent().getModel();
           this.getView().setModel(odataModel, "jsonModel")
           console.log(odataModel)

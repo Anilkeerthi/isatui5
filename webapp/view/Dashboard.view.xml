@@ -12,46 +12,47 @@
     xmlns:viz="sap.viz.ui5.controls"
     xmlns:unified="sap.ui.unified"
     xmlns:micro="sap.suite.ui.microchart"
-      xmlns:uxap="sap.uxap"
+    xmlns:uxap="sap.uxap"
 >
     <Page>
         <content>
-             <uxap:ObjectPageLayout
-            height="16%"
-            id="AobjectPageLayout"
-        >
-            <uxap:headerTitle>
-                <uxap:ObjectPageDynamicHeaderTitle>
-                    <uxap:expandedHeading>
-                        <Toolbar>
-                            <Title text=" Integrations Support Automation Toolkit" />
-                        </Toolbar>
-                    </uxap:expandedHeading>
-                    <uxap:expandedContent>
-                        <m:Text text="One Stop dashboard for all Projects and Interfaces." />
-                    </uxap:expandedContent>
+            <uxap:ObjectPageLayout
+                height="16%"
+                id="AobjectPageLayout"
+            >
+                <uxap:headerTitle>
+                    <uxap:ObjectPageDynamicHeaderTitle>
+                        <uxap:expandedHeading>
+                            <Toolbar>
+                                <Title
+                                    text=" Integrations Support Automation Toolkit"
+                                />
+                            </Toolbar>
+                        </uxap:expandedHeading>
+                        <uxap:expandedContent>
+                            <m:Text
+                                text="One Stop dashboard for all Projects and Interfaces."
+                            />
+                        </uxap:expandedContent>
 
-                    <uxap:actions>
+                        <uxap:actions>
+                            <m:Button
+                                text="Admin"
+                                press="onAdminButtonPress"
+                            />
+                            <m:Button
+                                text="HomeScreen"
+                                press="onClick"
+                            />
+                        </uxap:actions>
+                    </uxap:ObjectPageDynamicHeaderTitle>
+                </uxap:headerTitle>
+            </uxap:ObjectPageLayout>
+            <Text
+                text="Welcome User :)"
+                class="welcome"
+            />
 
-                        <m:Button
-                            text="Admin"
-                            press="onAdminButtonPress"
-                        />
-                        <m:Button
-                            text="HomeScreen"
-                   
-                    press="onClick"
-                        />
-                      
-                    </uxap:actions>
-                </uxap:ObjectPageDynamicHeaderTitle>
-            </uxap:headerTitle>
-        </uxap:ObjectPageLayout>
-        <Text
-            text="Welcome User :)"
-            class="welcome"
-        />
- 
             <l:BlockLayout class="layout-container">
                 <!-- First Main Section with 4 Subsections -->
                 <l:BlockLayoutRow>
@@ -75,13 +76,7 @@
                                             <f:header>
                                                 <card:Header
                                                     title="List of Interfaces Project wise"
-                                                >
-                                               
-                                                       
-                                                           
-                                                       
-                                                 
-                                                </card:Header>
+                                                />
                                             </f:header>
                                             <f:content>
                                                 <viz:VizFrame
@@ -194,7 +189,7 @@
                                     </Panel>
                                 </l:BlockLayoutCell>
                             </l:BlockLayoutRow>
- 
+
                             <!-- Bottom Two Sections -->
                             <l:BlockLayoutRow>
                                 <l:BlockLayoutCell
@@ -264,7 +259,7 @@
                                         </VBox>
                                     </Panel>
                                 </l:BlockLayoutCell>
- 
+
                                 <l:BlockLayoutCell
                                     width="12"
                                     class="responsiveCell"
@@ -330,7 +325,7 @@
                             </l:BlockLayoutRow>
                         </l:BlockLayout>
                     </l:BlockLayoutCell>
- 
+
                     <!-- Second Main Section -->
                     <l:BlockLayoutCell
                         width="4"
