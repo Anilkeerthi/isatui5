@@ -63,39 +63,46 @@ sap.ui.define([
     },
 
     _saveChanges: function (oData) {
-     
-        let itemID = oData.autoid;
-     
-        let oModel = this.getView().getModel();
-        let oBindList = oModel.bindList("/DDType");
+      var that = this;
+      let itemID = oData.autoid;
+  
+      let oModel = this.getView().getModel();
+      let oBindList = oModel.bindList("/DDType");
+  
+      let aFilter = new sap.ui.model.Filter("autoid", sap.ui.model.FilterOperator.EQ, itemID);
+  
+      // Filter and request contexts (rows) to update data
+      oBindList.filter(aFilter).requestContexts().then(function (aContexts) {
+          if (aContexts && aContexts.length > 0) {
+              // Set the new property values
+              aContexts[0].setProperty("description", oData.description);
+              aContexts[0].setProperty("name", oData.name);
+  
+              // Submit the changes for OData V4
+              oModel.submitBatch("myBatchGroup").then(function () {
+                  MessageToast.show("Changes saved successfully!");
+                  that._refreshTable();  // Trigger the table refresh after successful save
+              }).catch(function () {
+                  MessageToast.show("Error saving changes.");
+              });
+          }
+      });
+  
+      this.onCloseDialogAction();
+  },
+  onCloseDialogAction: function () {
+    this.byId("DDTypeDialog").close();
+},
 
-        let aFilter = new sap.ui.model.Filter("autoid", sap.ui.model.FilterOperator.EQ, itemID);
+_refreshTable: function () {
+    var oTable = this.byId("idDDtype");  
+    var oBinding = oTable.getBinding("items");
 
-        oBindList.filter(aFilter).requestContexts().then(function (aContexts) {
-            aContexts[0].setProperty("description", oData.description);
-            aContexts[0].setProperty("name",oData.name);
-
-            
-        });
-
-
+    if (oBinding) {
         
-        this.onCloseDialogAction();
-
-    
-  },
-
-  onRefresh : function () {
-    var oBinding = this.byId("idDDtype").getBinding("items");
-    oBinding.refresh();
-  },
-
-
-
-    onCloseDialogAction: function () {
-      this.byId("DDTypeDialog").close();
-      this.onRefresh();
-    },
+        oBinding.refresh(); 
+    }
+},
 
 
     //Creating a New DDType Data
@@ -146,7 +153,9 @@ sap.ui.define([
       // Close the dialog
       this.byId("DDTypeDialogNew").close();
     },
-    
+
+     //Delete the DDType
+
   onDeleteDDType: function (oEvent) {
     var oTable = this.byId("idDDtype");
     var oItem = oEvent.getSource().getParent(); // Get the button's parent (ColumnListItem)

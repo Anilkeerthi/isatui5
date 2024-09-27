@@ -38,7 +38,7 @@
                                 selectionFinish="handleSelectionFinish"
                                 placeholder="All"
                                 showSelectAll="true"
-                                width="200px"
+                                width="100%"
                                 items="{
 				path: 'comboJsonModel>/ProductCollection',
 				 sorter: { path: 'Name' }

@@ -173,6 +173,9 @@ div#__title0-expand-wrapper {
     gap: 10px !important;
     padding: 10px !important;
 }
+.ActionButtons{
+    gap: 3px;
+}
 
 
 

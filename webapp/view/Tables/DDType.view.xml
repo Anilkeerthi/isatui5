@@ -76,7 +76,7 @@
                 >
                     <Text text="name" />
                 </Column>
-                <Column hAlign="Center" >
+                <Column hAlign="Begin" width="12em">
                     <Text text="Actions" />
                 </Column>
             </columns>
@@ -87,23 +87,18 @@
                         <ObjectIdentifier text="{jsonModel>description}" />
                         <ObjectIdentifier text="{jsonModel>name}" />
 
-                   
-                                    <HBox>
-                                    
-                                          <Button
-                            type="Emphasized"
-
-                            press=".onShowDetails"
-                            icon="sap-icon://display"
-                        />
-                        <Button
-                    text="Delete"
-                    press="onDeleteDDType"
-                />
-
-                                    </HBox>
-                      
-                    
+                        <HBox class="ActionButtons">
+                            <Button
+                                type="Emphasized"
+                                press=".onShowDetails"
+                                icon="sap-icon://display"
+                            />
+                            <Button
+                               type="Reject"
+                                press="onDeleteDDType"
+                                icon="sap-icon://delete"
+                            />
+                        </HBox>
                     </cells>
                 </ColumnListItem>
             </items>
@@ -132,7 +127,10 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name:" required="true" />
+                        <Label
+                            text="name:"
+                            required="true"
+                        />
                         <Input
                             value=""
                             id="DDTypeName"
@@ -142,7 +140,10 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description:" required="true" />
+                        <Label
+                            text="description:"
+                            required="true"
+                        />
                         <Input
                             value=""
                             id="DDTypeDescription"
@@ -192,7 +193,7 @@
                         <Label text="autoid :" />
                         <Input
                             value="{dialogModel>/autoid}"
-                           editable="false"
+                            editable="false"
                         />
                     </VBox>
                 </HBox>

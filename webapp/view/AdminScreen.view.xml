@@ -28,6 +28,7 @@
                                 id="entityComboBox"
                                 change="onEntityChange"
                                 placeholder="All"
+                                 width="100%"
 				items="{
 					path: 'TableNames>/ISAT'
 					
