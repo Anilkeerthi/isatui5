@@ -5,7 +5,7 @@ sap.ui.define([
   ], (Controller, MessageToast,JSONModel) => {
     "use strict";
   
-    return Controller.extend("com.isat.isatui5.controller.Tables.Users", {
+    return Controller.extend("com.isat.isatui5.controller.Tables.TimeCapture", {
   
         onInit: function () {
           var oDataModel = this.getOwnerComponent().getModel();

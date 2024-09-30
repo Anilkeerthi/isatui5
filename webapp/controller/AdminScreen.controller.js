@@ -37,13 +37,56 @@ sap.ui.define(
     
         // Get the reference of embedded Customer View
         var oCustomerView = this.byId("CustomerView");
+
         var oUsersView = this.byId("UsersView");
+
+        var oProjectsView = this.byId("ProjectsView");
 
         // Get the reference of embedded DDData View
         var oDDDataView = this.byId("DDDataView");
         
         var oDDTypeView = this.byId("DDTypeView");
+
+        var oComponent_TaskListView = this.byId("Component_TaskListView");
+
+        var oCustomersProjectsView = this.byId("Customers_ProjectsView");
+
+        var oTasklistView = this.byId("TasklistView");
     
+        var oRolesView = this.byId("RolesView");
+
+        var oInterfaceDetailsView = this.byId("Interface_DetailsView");
+
+        var oTasksView = this.byId("TasksView");
+
+        var oTeamsView = this.byId("TeamsView");
+      
+        var oStagesView = this.byId("StagesView");
+      
+        var oCommentsView = this.byId("CommentsView");
+
+        var oTimeCaptureView = this.byId("TimeCaptureView");
+
+        var oTeamsUsersView = this.byId("Teams_UsersView");
+
+        var oComponentStagesView = this.byId("Component_StagesView");
+
+        var oTaskNotesView = this.byId("TaskNotesView");
+
+        var oTimeLinesView = this.byId("TimeLinesView");
+
+        var oPhasesView = this.byId("PhasesView");
+
+        var oUsersRolesView = this.byId("Users_RolesView");
+
+        var oIssueView = this.byId("IssuesView");
+
+
+
+
+
+
+
         // Hide all child views initially
         oVBox.getItems().forEach(function(oItem) {
             oItem.setVisible(false);
@@ -72,6 +115,11 @@ switch (selectedKey) {
       oUsersView.setVisible(true);
       break;
 
+      case "ProjectsData":
+      // Show Users view
+      oProjectsView.setVisible(true);
+      break;
+
   case "ProjectsData":
       // Show Projects view
       oProjectsView.setVisible(true);
@@ -84,7 +132,7 @@ switch (selectedKey) {
 
   case "ComponentTaskListData":
       // Show Component Task List view
-      oComponentTaskListView.setVisible(true);
+      oComponent_TaskListView.setVisible(true);
       break;
 
   case "CustomersProjectsData":

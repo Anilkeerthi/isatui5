@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.isat.isatui5.controller.Tables.Users"
+    controllerName="com.isat.isatui5.controller.Tables.Roles"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
@@ -11,13 +11,13 @@
 >
     <mvc:content>
         <tnt:ToolHeader
-            id="shellLikeToolHeaderUsers"
+            id="shellLikeToolHeaderRoles"
             class="sapUiTinyMargin"
         >
             <SearchField
                 width="auto"
                 class="searchFieldCustomWidth"
-                id="searchFieldUsers"
+                id="searchFieldRoles"
                 placeholder="Search here"
             >
                 <layoutData>
@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onUsersNew"
+                press="onDDTypeNew"
             />
             <Button
                 text="Import"
@@ -47,16 +47,16 @@
         <ToolbarSpacer />
 
         <Table
-            id="idUsers"
+            id="idRoles"
             inset="false"
             items="{
-			path: 'jsonModel>/Users'
+			path: 'jsonModel>/Roles'
 		
 		}"
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="Users" />
+                    <Label text="Roles" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
@@ -67,45 +67,21 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="CustID" />
-                </Column>
-
-                   <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
-                    <Text text="EmailID" />
-                </Column>
-
-                 <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
                     <Text text="Name" />
                 </Column>
-            
-
-                 <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
-                    <Text text="Role" />
-                </Column>
-            
-
-                 <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
-                    <Text text="UserID" />
-                </Column>
-            
                 <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
                     hAlign="Center"
                 >
-                    <Text text="Active" />
+                    <Text text="Description" />
+                </Column>
+                 <Column
+                    minScreenWidth="Desktop"
+                    demandPopin="true"
+                    hAlign="Center"
+                >
+                    <Text text="RoleID" />
                 </Column>
                 <Column hAlign="Begin" width="12em">
                     <Text text="Actions" />
@@ -115,13 +91,9 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <ObjectIdentifier text="{jsonModel>custid}" />
-                        <ObjectIdentifier text="{jsonModel>emailid}" />
-                         <ObjectIdentifier text="{jsonModel>name}" />
-                        <ObjectIdentifier text="{jsonModel>role}" />
-                        <ObjectIdentifier text="{jsonModel>userid}" />
-                         <ObjectIdentifier text="{jsonModel>active}" />
-
+                        <ObjectIdentifier text="{jsonModel>name}" />
+                        <ObjectIdentifier text="{jsonModel>description}" />
+                        <ObjectIdentifier text="{jsonModel>roleid}" />
 
                         <HBox class="ActionButtons">
                             <Button
@@ -143,7 +115,7 @@
         <!-- Dialog Box for New -->
 
         <Dialog
-            id="usersDialogNew"
+            id="RolesDialogNew"
             stretch="false"
             resizable="true"
             draggable="true"
@@ -151,7 +123,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Roles Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -169,7 +141,7 @@
                         />
                         <Input
                             value=""
-                            id="usersName"
+                            id="RolesName"
                         />
                     </VBox>
                 </HBox>
@@ -182,7 +154,7 @@
                         />
                         <Input
                             value=""
-                            id="usersDescription"
+                            id="RolesDescription"
                         />
                     </VBox>
                 </HBox>
@@ -207,7 +179,7 @@
         <!-- Dialog Box for Actions -->
 
         <Dialog
-            id="usersDialog"
+            id="RolesDialog"
             stretch="false"
             resizable="true"
             draggable="true"

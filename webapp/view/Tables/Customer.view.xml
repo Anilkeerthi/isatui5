@@ -9,26 +9,46 @@
     xmlns:m="sap.m"
     xmlns:uxap="sap.uxap"
 >
-    <Panel>
-        <SearchField
-            width="auto"
-            class="searchFieldCustomWidth"
-            id="AsearchFieldd"
-            placeholder="Search for entitys"
+   <mvc:content>
+        <tnt:ToolHeader
+            id="shellLikeToolHeaderCustomer"
+            class="sapUiTinyMargin"
         >
-            <layoutData>
-                <OverflowToolbarLayoutData
-                    priority="NeverOverflow"
-                    group="1"
-                />
-            </layoutData>
-        </SearchField>
+            <SearchField
+                width="auto"
+                class="searchFieldCustomWidth"
+                id="searchFieldCustomer"
+                placeholder="Search here"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        priority="NeverOverflow"
+                        group="1"
+                    />
+                </layoutData>
+            </SearchField>
+
+            <ToolbarSpacer />
+            <Button
+                text="NEW"
+                tooltip="New"
+                press="onDDTypeNew"
+            />
+            <Button
+                text="Import"
+                tooltip="Import"
+            />
+            <Button
+                text="Export"
+                tooltip="Export"
+            />
+        </tnt:ToolHeader>
 
         <Table
             id="idProductssTable"
             inset="false"
             items="{
-			path: 'jsonModel>/EntitySet/CustomersData'
+			path: 'jsonModel>/Customers'
 		
 
 		}">
@@ -41,18 +61,18 @@
 		<columns>
 			<Column
 				width="12em">
-				<Text text="autoid" />
+				<Text text="AutoID" />
 			</Column>
 			<Column
 				minScreenWidth="Tablet"
 				demandPopin="true">
-				<Text text="custid" />
+				<Text text="CustID" />
 			</Column>
 			<Column
 				minScreenWidth="Desktop"
 				demandPopin="true"
 				hAlign="Center">
-				<Text text="description" />
+				<Text text="Name" />
 			</Column>
 			<Column
 				minScreenWidth="Desktop"
@@ -62,7 +82,7 @@
 			</Column>
 			<Column
 				hAlign="Center">
-				<Text text="name" />
+				<Text text="Description" />
 			</Column>
 			<Column
 				hAlign="Center">
@@ -77,12 +97,14 @@
 						text="{jsonModel>autoid}"/>
 					<Text
 						text="{jsonModel>custid}" />
-						<Text
-						text="{jsonModel>description}" />
+                        <Text
+						text="{jsonModel>name}" />
+						
 						<Text
 						text="{jsonModel>location}" />
-						<Text
-						text="{jsonModel>name}" />
+                        <Text
+						text="{jsonModel>description}" />
+						
 						 <Button type="Emphasized"
                            press=".onShowDetails"
                                         icon="sap-icon://display" />
@@ -96,8 +118,74 @@
 
 
         <Dialog
-            id="detailsDialogA"
+            id="CustomersDialogNew"
             stretch="false"
+            resizable="true"
+            draggable="true"
+            afterClose="onDialogClose"
+        >
+            <customHeader>
+                <Toolbar>
+                    <Title text="Add New DDType Data" />
+                    <ToolbarSpacer />
+                    <Button
+                        icon="sap-icon://decline"
+                        press="onCloseDialog"
+                        tooltip="Close"
+                    />
+                </Toolbar>
+            </customHeader>
+            <content>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="name:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="CustomersName"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="description:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="CustomersDescription"
+                        />
+                    </VBox>
+                </HBox>
+            </content>
+
+            <beginButton>
+                <Button
+                    text="Save"
+                    tooltip="Save"
+                    press="onSaveDDTypeNew"
+                />
+            </beginButton>
+            <endButton>
+                <Button
+                    text="Clear"
+                    tooltip="Clear"
+                    press="onClearDialog"
+                />
+            </endButton>
+        </Dialog>
+
+        <!-- Dialog Box for Actions -->
+
+        <Dialog
+            id="CustomersDialog"
+            stretch="false"
+            resizable="true"
+            draggable="true"
             afterClose="onDialogClose"
         >
             <customHeader>
@@ -106,7 +194,7 @@
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialog"
+                        press="onCloseDialogAction"
                     />
                 </Toolbar>
             </customHeader>
@@ -116,14 +204,7 @@
                         <Label text="autoid :" />
                         <Input
                             value="{dialogModel>/autoid}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                    <VBox>
-                        <Label text="custid :" />
-                        <Input
-                            value="{dialogModel>/custid}"
-                            editable="{dialogModel>/editable}"
+                            editable="false"
                         />
                     </VBox>
                 </HBox>
@@ -133,13 +214,6 @@
                         <Label text="description :" />
                         <Input
                             value="{dialogModel>/description}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                    <VBox>
-                        <Label text="location" />
-                        <Input
-                            value="{dialogModel>/location}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -164,10 +238,10 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Cancel"
-                    press="onCloseDialog"
+                    text="Delete"
+                    press="onDeleteDDType"
                 />
             </endButton>
         </Dialog>
-    </Panel>
+     </mvc:content>
 </mvc:View>

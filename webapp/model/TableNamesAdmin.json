@@ -18,10 +18,10 @@
       { "name": "Teams_Users", "key": "TeamsUsersData" },
       { "name": "Component_Stages", "key": "ComponentStagesData" },
       { "name": "TaskNotes", "key": "TaskNotesData" },
-      { "name": "TimeLines", "key": "TimeLinesData" },
+      { "name": "Timelines", "key": "TimeLinesData" },
       { "name": "Phases", "key": "PhasesData" },
       { "name": "Users_Roles", "key": "UsersRolesData" },
-      { "name": "Issue", "key": "IssueData" }
+      { "name": "Issues", "key": "IssueData" }
     ]
   }
   

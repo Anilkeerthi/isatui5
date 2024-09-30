@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.isat.isatui5.controller.Tables.Users"
+    controllerName="com.isat.isatui5.controller.Tables.Comments"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
@@ -11,13 +11,13 @@
 >
     <mvc:content>
         <tnt:ToolHeader
-            id="shellLikeToolHeaderUsers"
+            id="shellLikeToolHeaderComments"
             class="sapUiTinyMargin"
         >
             <SearchField
                 width="auto"
                 class="searchFieldCustomWidth"
-                id="searchFieldUsers"
+                id="searchFieldComments"
                 placeholder="Search here"
             >
                 <layoutData>
@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onUsersNew"
+                press="onDDTypeNew"
             />
             <Button
                 text="Import"
@@ -47,16 +47,16 @@
         <ToolbarSpacer />
 
         <Table
-            id="idUsers"
+            id="idComments"
             inset="false"
             items="{
-			path: 'jsonModel>/Users'
+			path: 'jsonModel>/Comments'
 		
 		}"
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="Users" />
+                    <Label text="DDType" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
@@ -67,45 +67,32 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="CustID" />
+                    <Text text="Comment" />
                 </Column>
-
-                   <Column
+                <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="EmailID" />
+                    <Text text="Created By" />
                 </Column>
-
-                 <Column
+                <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="Name" />
+                    <Text text="Create Datetime" />
                 </Column>
-            
-
-                 <Column
+                <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="Role" />
+                    <Text text="RefID" />
                 </Column>
-            
-
-                 <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
-                    <Text text="UserID" />
-                </Column>
-            
                 <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
                     hAlign="Center"
                 >
-                    <Text text="Active" />
+                    <Text text="Type" />
                 </Column>
                 <Column hAlign="Begin" width="12em">
                     <Text text="Actions" />
@@ -115,12 +102,11 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <ObjectIdentifier text="{jsonModel>custid}" />
-                        <ObjectIdentifier text="{jsonModel>emailid}" />
-                         <ObjectIdentifier text="{jsonModel>name}" />
-                        <ObjectIdentifier text="{jsonModel>role}" />
-                        <ObjectIdentifier text="{jsonModel>userid}" />
-                         <ObjectIdentifier text="{jsonModel>active}" />
+                        <ObjectIdentifier text="{jsonModel>comment}" />
+                        <ObjectIdentifier text="{jsonModel>created_by}" />
+                         <ObjectIdentifier text="{jsonModel>created_datetime}" />
+                        <ObjectIdentifier text="{jsonModel>refid}" />
+                         <ObjectIdentifier text="{jsonModel>type}" />
 
 
                         <HBox class="ActionButtons">
@@ -143,7 +129,7 @@
         <!-- Dialog Box for New -->
 
         <Dialog
-            id="usersDialogNew"
+            id="CommentsDialogNew"
             stretch="false"
             resizable="true"
             draggable="true"
@@ -169,7 +155,7 @@
                         />
                         <Input
                             value=""
-                            id="usersName"
+                            id="CommentsName"
                         />
                     </VBox>
                 </HBox>
@@ -182,7 +168,7 @@
                         />
                         <Input
                             value=""
-                            id="usersDescription"
+                            id="CommentsDescription"
                         />
                     </VBox>
                 </HBox>
@@ -207,7 +193,7 @@
         <!-- Dialog Box for Actions -->
 
         <Dialog
-            id="usersDialog"
+            id="CommentsDialog"
             stretch="false"
             resizable="true"
             draggable="true"

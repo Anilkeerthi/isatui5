@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.isat.isatui5.controller.Tables.Users"
+    controllerName="com.isat.isatui5.controller.Tables.Teams_Users"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
@@ -11,13 +11,13 @@
 >
     <mvc:content>
         <tnt:ToolHeader
-            id="shellLikeToolHeaderUsers"
+            id="shellLikeToolHeaderTeams_Users"
             class="sapUiTinyMargin"
         >
             <SearchField
                 width="auto"
                 class="searchFieldCustomWidth"
-                id="searchFieldUsers"
+                id="searchFieldTeams_Users"
                 placeholder="Search here"
             >
                 <layoutData>
@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onUsersNew"
+                press="onDDTypeNew"
             />
             <Button
                 text="Import"
@@ -47,59 +47,38 @@
         <ToolbarSpacer />
 
         <Table
-            id="idUsers"
+            id="idTeams_Users"
             inset="false"
             items="{
-			path: 'jsonModel>/Users'
+			path: 'jsonModel>/Teams_Users'
 		
 		}"
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="Users" />
+                    <Label text="DDType" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
                 <Column width="12em">
                     <Text text="AutoID" />
                 </Column>
+
+                 <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                >
+                    <Text text="User ID AutoID" />
+                </Column>
+
                 <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="CustID" />
+                    <Text text="Team ID AutoID" />
                 </Column>
 
-                   <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
-                    <Text text="EmailID" />
-                </Column>
-
-                 <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
-                    <Text text="Name" />
-                </Column>
-            
-
-                 <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
-                    <Text text="Role" />
-                </Column>
-            
-
-                 <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
-                    <Text text="UserID" />
-                </Column>
-            
+                 
                 <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
@@ -115,13 +94,9 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <ObjectIdentifier text="{jsonModel>custid}" />
-                        <ObjectIdentifier text="{jsonModel>emailid}" />
-                         <ObjectIdentifier text="{jsonModel>name}" />
-                        <ObjectIdentifier text="{jsonModel>role}" />
-                        <ObjectIdentifier text="{jsonModel>userid}" />
+                        <ObjectIdentifier text="{jsonModel>user_id_autoid}" />
+                        <ObjectIdentifier text="{jsonModel>team_id_autoid}" />
                          <ObjectIdentifier text="{jsonModel>active}" />
-
 
                         <HBox class="ActionButtons">
                             <Button
@@ -143,7 +118,7 @@
         <!-- Dialog Box for New -->
 
         <Dialog
-            id="usersDialogNew"
+            id="Teams_UsersDialogNew"
             stretch="false"
             resizable="true"
             draggable="true"
@@ -169,7 +144,7 @@
                         />
                         <Input
                             value=""
-                            id="usersName"
+                            id="Teams_UsersName"
                         />
                     </VBox>
                 </HBox>
@@ -182,7 +157,7 @@
                         />
                         <Input
                             value=""
-                            id="usersDescription"
+                            id="Teams_UsersDescription"
                         />
                     </VBox>
                 </HBox>
@@ -207,7 +182,7 @@
         <!-- Dialog Box for Actions -->
 
         <Dialog
-            id="usersDialog"
+            id="Teams_UsersDialog"
             stretch="false"
             resizable="true"
             draggable="true"

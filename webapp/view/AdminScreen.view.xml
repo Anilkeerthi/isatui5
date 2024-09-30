@@ -24,27 +24,26 @@
                                     press="backToDashBoard"
                                 />
                                 <Label text="Select the entity" />
-                            <ComboBox
-                                id="entityComboBox"
-                                change="onEntityChange"
-                                placeholder="All"
-                                 width="100%"
-				items="{
+                                <ComboBox
+                                    id="entityComboBox"
+                                    change="onEntityChange"
+                                    placeholder="All"
+                                    width="100%"
+                                    items="{
 					path: 'TableNames>/ISAT'
 					
-				}">
-				<core:Item key="{TableNames>key}" text="{TableNames>name}" />
-			</ComboBox>
-
+				}"
+                                >
+                                    <core:Item
+                                        key="{TableNames>key}"
+                                        text="{TableNames>name}"
+                                    />
+                                </ComboBox>
                             </Toolbar>
                         </uxap:expandedHeading>
-
-
                     </uxap:ObjectPageDynamicHeaderTitle>
                 </uxap:headerTitle>
             </uxap:ObjectPageLayout>
-
-           
         </content>
 
         <VBox id="tablePlaceholder">
@@ -54,26 +53,131 @@
                 visible="false"
             />
 
-             <mvc:XMLView
+            <mvc:XMLView
                 id="UsersView"
                 viewName="com.isat.isatui5.view.Tables.Users"
                 visible="false"
             />
+
+             <mvc:XMLView
+                id="ProjectsView"
+                viewName="com.isat.isatui5.view.Tables.Projects"
+                visible="false"
+            />
             <!--  -->
-              <mvc:XMLView
+            <mvc:XMLView
                 id="DDDataView"
                 viewName="com.isat.isatui5.view.Tables.DDData"
                 visible="false"
             />
 
-             <!-- Other views can also be added here if needed -->
-              <mvc:XMLView
+            <!-- Other views can also be added here if needed -->
+            <mvc:XMLView
                 id="DDTypeView"
                 viewName="com.isat.isatui5.view.Tables.DDType"
                 visible="false"
             />
+            <mvc:XMLView
+                id="Component_TaskListView"
+                viewName="com.isat.isatui5.view.Tables.Component_TaskList"
+                visible="false"
+            />
 
+            <mvc:XMLView
+                id="Customers_ProjectsView"
+                viewName="com.isat.isatui5.view.Tables.Customers_Projects"
+                visible="false"
+            />
+
+            <mvc:XMLView
+                id="TasklistView"
+                viewName="com.isat.isatui5.view.Tables.Tasklist"
+                visible="false"
+            />
+
+            <mvc:XMLView
+                id="RolesView"
+                viewName="com.isat.isatui5.view.Tables.Roles"
+                visible="false"
+            />
+
+            <mvc:XMLView
+                id="Interface_DetailsView"
+                viewName="com.isat.isatui5.view.Tables.Interface_Details"
+                visible="false"
+            />
+
+            <mvc:XMLView
+                id="TasksView"
+                viewName="com.isat.isatui5.view.Tables.Tasks"
+                visible="false"
+            />
+
+            <mvc:XMLView
+                id="TeamsView"
+                viewName="com.isat.isatui5.view.Tables.Teams"
+                visible="false"
+            />
+
+            <mvc:XMLView
+                id="StagesView"
+                viewName="com.isat.isatui5.view.Tables.Stages"
+                visible="false"
+            />
+
+            <mvc:XMLView
+                id="CommentsView"
+                viewName="com.isat.isatui5.view.Tables.Comments"
+                visible="false"
+            />
+
+              <mvc:XMLView
+                id="TimeCaptureView"
+                viewName="com.isat.isatui5.view.Tables.TimeCapture"
+                visible="false"
+            />
+
+            <mvc:XMLView
+                id="Teams_UsersView"
+                viewName="com.isat.isatui5.view.Tables.Teams_Users"
+                visible="false"
+            />
+
+              <mvc:XMLView
+                id="Component_StagesView"
+                viewName="com.isat.isatui5.view.Tables.Component_Stages"
+                visible="false"
+            />
+
+              <mvc:XMLView
+                id="TaskNotesView"
+                viewName="com.isat.isatui5.view.Tables.TaskNotes"
+                visible="false"
+            />
+
+            <mvc:XMLView
+                id="TimeLinesView"
+                viewName="com.isat.isatui5.view.Tables.TimeLines"
+                visible="false"
+            />
+
+              <mvc:XMLView
+                id="PhasesView"
+                viewName="com.isat.isatui5.view.Tables.Phases"
+                visible="false"
+            />
+
+            <mvc:XMLView
+                id="Users_RolesView"
+                viewName="com.isat.isatui5.view.Tables.Users_Roles"
+                visible="false"
+            />
+
+             <mvc:XMLView
+                id="IssuesView"
+                viewName="com.isat.isatui5.view.Tables.Issues"
+                visible="false"
+            />
         </VBox>
-
     </Page>
 </mvc:View>
