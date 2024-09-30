@@ -106,8 +106,6 @@ _refreshTable: function () {
 
 
     //Creating a New DDType Data
-
-
     onDDTypeNew: function () {
       // Open the dialog
       this.byId("DDTypeDialogNew").open();
@@ -137,8 +135,10 @@ _refreshTable: function () {
         description: sDescription
       });
 
-      // Clear the input fields after saving
+      // Close the dialog after saving
       this.onCloseDialog();
+
+
     },
 
     onClearDialog: function () {
@@ -152,6 +152,12 @@ _refreshTable: function () {
     onCloseDialog: function () {
       // Close the dialog
       this.byId("DDTypeDialogNew").close();
+      
+      // Clear the input fields after saving 
+      this.onClearDialog();
+
+      //call the refresh function
+      this._refreshTable();
     },
 
      //Delete the DDType

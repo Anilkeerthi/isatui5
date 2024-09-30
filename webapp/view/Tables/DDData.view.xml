@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onClickNew"
+                press="onDDDataNew"
             />
             <Button
                 text="Import"
@@ -43,7 +43,6 @@
                 tooltip="Export"
             />
         </tnt:ToolHeader>
-
 
         <Table
             id="idDDData"
@@ -66,7 +65,7 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="ddType_id_autoid" />
+                    <Text text="ddType_Name" />
                 </Column>
                 <Column
                     minScreenWidth="Desktop"
@@ -91,13 +90,13 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <Text text="{jsonModel>ddType_id_autoid}" />
+                        <Text text="{jsonModel>ddType_id/name}" />
                         <Text text="{jsonModel>name}" />
                         <Text text="{jsonModel>value}" />
 
                         <Button
                             type="Emphasized"
-                            press=".onShowDetails"
+                            press=".onShowDetailsOfDDData"
                             icon="sap-icon://display"
                         />
                     </cells>
@@ -105,15 +104,103 @@
             </items>
         </Table>
 
+        <!-- Dialog Box for New -->
+
+        <Dialog
+            id="DDDataDialogNew"
+            stretch="false"
+            resizable="true"
+            draggable="true"
+            afterClose="onDialogClose"
+        >
+            <customHeader>
+                <Toolbar>
+                    <Title text="Add New DD Data" />
+                    <ToolbarSpacer />
+                    <Button
+                        icon="sap-icon://decline"
+                        press="onCloseDDDataNewDialog"
+                        tooltip="Close"
+                    />
+                </Toolbar>
+            </customHeader>
+            <content>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="name:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="DDDataName"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <Label
+                            text="value:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="DDDataValue"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="DDType Name"
+                            required="true"
+                        />
+
+                        <ComboBox
+                            id="DDTypeNameComboBox"
+                            change="onDDTypeNameComboBoxChange"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+					                 path: 'jsonModel>/DDType'
+					
+				                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
+                    </VBox>
+                </HBox>
+            </content>
+
+            <beginButton>
+                <Button
+                    text="Save"
+                    tooltip="Save"
+                    press="onSaveDDDataNew"
+                />
+            </beginButton>
+            <endButton>
+                <Button
+                    text="Clear"
+                    tooltip="Clear"
+                    press="onClearNewDialog"
+                />
+            </endButton>
+        </Dialog>
+
+        <!-- Dialog Box for ACTIONS -->
         <Dialog
             id="DDDataDialog"
             title="Interface Details"
             stretch="false"
             afterClose="onDialogClose"
-              resizable="true"
+            resizable="true"
             draggable="true"
         >
-         <customHeader>
+            <customHeader>
                 <Toolbar>
                     <Title text="Interface details" />
                     <ToolbarSpacer />
@@ -123,7 +210,7 @@
                     />
                 </Toolbar>
             </customHeader>
- 
+
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
@@ -134,36 +221,51 @@
                         />
                     </VBox>
                     <VBox>
-                        <Label text="custid :" />
+                        <!-- <Label text="DDType_Name :" />
                         <Input
-                            value="{dialogModel>/custid}"
+                            value="{dialogModel>/ddType_id/name}"
                             editable="{dialogModel>/editable}"
+                        /> -->
+
+                        <Label text="DDType_Name :" />
+
+                        <Input
+                            id="DDTypeNameInput"
+                            value="{dialogModel>/ddType_id/name}"
+                            editable="{dialogModel>/editable}"
+                            visible="{dialogModel>/editable === false}"
                         />
+
+                        <ComboBox
+                            id="DDTypeNameComboBoxx"
+                            change="onDDTypeNameComboBoxChange"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+                                     path: 'jsonModel>/DDType'
+                                }"
+                            visible="{dialogModel>/editable}"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
                     </VBox>
                 </HBox>
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
-                        <Input
-                            value="{dialogModel>/description}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                    <VBox>
-                        <Label text="location" />
-                        <Input
-                            value="{dialogModel>/location}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="name" />
+                        <Label text="name :" />
                         <Input
                             value="{dialogModel>/name}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="value" />
+                        <Input
+                            value="{dialogModel>/value}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -178,7 +280,7 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Cancel"
+                    text="{dialogModel>/deleteButtonText}"
                     press="onCloseDialog"
                 />
             </endButton>

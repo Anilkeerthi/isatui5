@@ -67,14 +67,14 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="description" />
+                    <Text text="name" />
                 </Column>
                 <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
                     hAlign="Center"
                 >
-                    <Text text="name" />
+                    <Text text="description" />
                 </Column>
                 <Column hAlign="Begin" width="12em">
                     <Text text="Actions" />
@@ -84,8 +84,8 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <ObjectIdentifier text="{jsonModel>description}" />
                         <ObjectIdentifier text="{jsonModel>name}" />
+                        <ObjectIdentifier text="{jsonModel>description}" />
 
                         <HBox class="ActionButtons">
                             <Button
