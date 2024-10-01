@@ -139,7 +139,7 @@
                 <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
-                    hAlign="Center"
+                  
                 >
                     <Text text="UpdatedDatetime" />
                 </Column>

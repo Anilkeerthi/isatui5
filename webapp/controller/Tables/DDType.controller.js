@@ -12,7 +12,7 @@ sap.ui.define([
 
       var oDataModel = this.getOwnerComponent().getModel();
       this.getView().setModel(oDataModel, "jsonModel")
-      console.log(oDataModel)
+      console.log(oDataModel)d
 
     },
 
