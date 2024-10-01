@@ -87,18 +87,18 @@
                         <ObjectIdentifier text="{jsonModel>name}" />
                         <ObjectIdentifier text="{jsonModel>description}" />
 
-                        <HBox class="ActionButtons">
+                       
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
+                            <!-- <Button
                                type="Reject"
                                 press="onDeleteDDType"
                                 icon="sap-icon://delete"
-                            />
-                        </HBox>
+                            /> -->
+                        
                     </cells>
                 </ColumnListItem>
             </items>
@@ -221,14 +221,14 @@
 
             <beginButton>
                 <Button
-                    text="{dialogModel>/buttonText}"
+                  text="{dialogModel>/buttonText}"
                     press="onToggleEdit"
                 />
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>
