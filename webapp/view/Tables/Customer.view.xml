@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onCustomerNew"
             />
             <Button
                 text="Import"
@@ -45,7 +45,7 @@
         </tnt:ToolHeader>
 
         <Table
-            id="idProductssTable"
+            id="idCustomer"
             inset="false"
             items="{
 			path: 'jsonModel>/Customers'
@@ -66,7 +66,7 @@
 			<Column
 				minScreenWidth="Tablet"
 				demandPopin="true">
-				<Text text="CustID" />
+				<Text text="CustomerID" />
 			</Column>
 			<Column
 				minScreenWidth="Desktop"
@@ -107,6 +107,7 @@
 						
 						 <Button type="Emphasized"
                            press=".onShowDetails"
+                            tooltip="ShowDetails"
                                         icon="sap-icon://display" />
 					
 					
@@ -116,6 +117,7 @@
 		</items>
 	</Table>
 
+ <!-- Dialog Box for New -->
 
         <Dialog
             id="CustomersDialogNew"
@@ -126,7 +128,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Customer Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -139,7 +141,7 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="Name:"
                             required="true"
                         />
                         <Input
@@ -147,17 +149,39 @@
                             id="CustomersName"
                         />
                     </VBox>
-                </HBox>
 
-                <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="description:"
+                            text="Description:"
                             required="true"
                         />
                         <Input
                             value=""
                             id="CustomersDescription"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="CustomerID:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="CustomersCustID"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <Label
+                            text="Location:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="CustomersLocation"
                         />
                     </VBox>
                 </HBox>
@@ -167,7 +191,7 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveCustomerNew"
                 />
             </beginButton>
             <endButton>
@@ -190,7 +214,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Customers Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -201,45 +225,60 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
                             editable="false"
                         />
                     </VBox>
-                </HBox>
 
-                <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
+                        <Label text="Name:" />
+                        <Input
+                            value="{dialogModel>/name}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>   
+                </HBox>
+                <HBox class="adminScreenActions">
+                   
+                     <VBox>
+                        <Label text="Description:" />
                         <Input
                             value="{dialogModel>/description}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
-                </HBox>
 
-                <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+                        <Label text="CustomerID:" />
                         <Input
-                            value="{dialogModel>/name}"
+                            value="{dialogModel>/custid}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
                 </HBox>
+                 <HBox class="adminScreenActions">
+                     <VBox>
+                        <Label text="Location:" />
+                        <Input
+                            value="{dialogModel>/location}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox> 
+                </HBox>
             </content>
 
             <beginButton>
-                <Button
-                    text="{dialogModel>/buttonText}"
+               <Button
+                  text="{dialogModel>/buttonText}"
                     press="onToggleEdit"
                 />
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

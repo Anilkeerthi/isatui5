@@ -67,7 +67,7 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="CustID" />
+                    <Text text="CustomerID" />
                 </Column>
 
                    <Column
@@ -123,18 +123,13 @@
                          <ObjectIdentifier text="{jsonModel>active}" />
 
 
-                        <HBox class="ActionButtons">
+                       
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                    
                     </cells>
                 </ColumnListItem>
             </items>
@@ -151,7 +146,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Users Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -162,9 +157,22 @@
             </customHeader>
             <content>
                 <HBox class="adminScreenActions">
+                    
+                       
                     <VBox>
                         <Label
-                            text="name:"
+                            text="CustomerID:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="usersCustomerID"
+                        />
+                    </VBox>
+                     
+                     <VBox>
+                        <Label
+                            text="Name:"
                             required="true"
                         />
                         <Input
@@ -175,14 +183,48 @@
                 </HBox>
 
                 <HBox class="adminScreenActions">
+                   
                     <VBox>
                         <Label
-                            text="description:"
+                            text="EmailID:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="usersDescription"
+                            id="usersEmailID"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label
+                            text="Role:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="usersRole"
+                        />
+                    </VBox>
+                </HBox>
+
+                 <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="UserID:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="usersUserID"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label
+                            text="Active:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="usersActive"
                         />
                     </VBox>
                 </HBox>
@@ -192,7 +234,7 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveUsersNew"
                 />
             </beginButton>
             <endButton>
@@ -215,7 +257,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Users Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -226,19 +268,16 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
                             editable="false"
                         />
                     </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="description :" />
+                     <VBox>
+                        <Label text="CustomerID:" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/custid}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -246,25 +285,64 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+                        <Label text="EmailID:" />
+                        <Input
+                            value="{dialogModel>/emailid}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                     <VBox>
+                        <Label text="Name:" />
                         <Input
                             value="{dialogModel>/name}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
+                    
                 </HBox>
+
+                 <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="Role:" />
+                        <Input
+                            value="{dialogModel>/role}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                     <VBox>
+                        <Label text="UserID:" />
+                        <Input
+                            value="{dialogModel>/userid}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    
+                </HBox>
+                 <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="Active:" />
+                        <Input
+                            value="{dialogModel>/active}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    
+                    
+                </HBox>
+
+               
             </content>
 
             <beginButton>
                 <Button
-                    text="{dialogModel>/buttonText}"
+                  text="{dialogModel>/buttonText}"
                     press="onToggleEdit"
                 />
             </beginButton>
             <endButton>
-                <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+               <Button
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

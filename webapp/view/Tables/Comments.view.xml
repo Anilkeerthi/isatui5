@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onCommentsNew"
             />
             <Button
                 text="Import"
@@ -56,7 +56,7 @@
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="DDType" />
+                    <Label text="Comments" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
@@ -85,7 +85,7 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="RefID" />
+                    <Text text="ReferenceID" />
                 </Column>
                 <Column
                     minScreenWidth="Desktop"
@@ -109,18 +109,14 @@
                          <ObjectIdentifier text="{jsonModel>type}" />
 
 
-                        <HBox class="ActionButtons">
+                     
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                           
+                        
                     </cells>
                 </ColumnListItem>
             </items>
@@ -137,7 +133,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Comments" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -150,12 +146,47 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="RefID:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="CommentsName"
+                            id="CommentsRefID"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <Label
+                            text="Type:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="CommentsType"
+                        />
+                    </VBox>
+                </HBox>
+
+                 <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="Comments:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="CommentsComments"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <Label
+                            text="CreatedBy:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="CommentsCreatedBy"
                         />
                     </VBox>
                 </HBox>
@@ -163,12 +194,12 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="description:"
+                            text="Created Datetime:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="CommentsDescription"
+                            id="CommentsCreatedDatetime"
                         />
                     </VBox>
                 </HBox>
@@ -178,7 +209,7 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveCommentsNew"
                 />
             </beginButton>
             <endButton>
@@ -201,7 +232,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Comments" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -212,9 +243,17 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
+                            editable="false"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label text="RefID:" />
+                        <Input
+                            value="{dialogModel>/refid}"
                             editable="false"
                         />
                     </VBox>
@@ -222,9 +261,17 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
+                        <Label text="Type:" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/type}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label text="Comments:" />
+                        <Input
+                            value="{dialogModel>/comment}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -232,9 +279,17 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+                        <Label text="CreatedBy" />
                         <Input
-                            value="{dialogModel>/name}"
+                            value="{dialogModel>/created_by}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <Label text="Created Datetime" />
+                        <Input
+                            value="{dialogModel>/created_datetime}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -242,15 +297,15 @@
             </content>
 
             <beginButton>
-                <Button
+               <Button
                     text="{dialogModel>/buttonText}"
                     press="onToggleEdit"
                 />
             </beginButton>
             <endButton>
-                <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                 <Button
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

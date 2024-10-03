@@ -32,7 +32,9 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onProjectsNew"
+                class="customPointerButton"
+                
             />
             <Button
                 text="Import"
@@ -79,7 +81,7 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="ProjID" />
+                    <Text text="ProjectID" />
                 </Column>
                 <Column
                     minScreenWidth="Desktop"
@@ -102,18 +104,14 @@
                         <ObjectIdentifier text="{jsonModel>projid}" />
                         <ObjectIdentifier text="{jsonModel>status}" />
 
-                        <HBox class="ActionButtons">
+                        
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
-                            />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                                tooltip="ShowDetails"
+                           
+                           />
                     </cells>
                 </ColumnListItem>
             </items>
@@ -130,7 +128,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Projects Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -143,7 +141,7 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="Name:"
                             required="true"
                         />
                         <Input
@@ -151,17 +149,38 @@
                             id="ProjectsName"
                         />
                     </VBox>
-                </HBox>
 
-                <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="description:"
+                            text="Description:"
                             required="true"
                         />
                         <Input
                             value=""
                             id="ProjectsDescription"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="ProjectID:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="ProjectsProjectID"
+                        />
+                    </VBox>
+                     <VBox>
+                        <Label
+                            text="Status:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="ProjectsStatus"
                         />
                     </VBox>
                 </HBox>
@@ -171,7 +190,7 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveProjectsNew"
                 />
             </beginButton>
             <endButton>
@@ -194,7 +213,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Projects Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -205,33 +224,51 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
                             editable="false"
                         />
                     </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="description :" />
-                        <Input
-                            value="{dialogModel>/description}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="name" />
+                     <VBox>
+                        <Label text="Name:" />
                         <Input
                             value="{dialogModel>/name}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
                 </HBox>
+
+                <HBox class="adminScreenActions">
+                     <VBox>
+                        <Label text="Description:" />
+                        <Input
+                            value="{dialogModel>/description}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label text="ProjectID:" />
+                        <Input
+                            value="{dialogModel>/projid}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    
+                </HBox>
+                <HBox class="adminScreenActions">
+                     <VBox>
+                        <Label text="Status:" />
+                        <Input
+                            value="{dialogModel>/status}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    
+                </HBox>
+
+               
             </content>
 
             <beginButton>
@@ -241,9 +278,9 @@
                 />
             </beginButton>
             <endButton>
-                <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+               <Button
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

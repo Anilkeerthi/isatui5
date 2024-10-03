@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onTeamsNew"
             />
             <Button
                 text="Import"
@@ -56,7 +56,7 @@
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="DDType" />
+                    <Label text="Teams" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
@@ -97,18 +97,14 @@
                         <ObjectIdentifier text="{jsonModel>teamid}" />
 
 
-                        <HBox class="ActionButtons">
+                
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                           
+                        
                     </cells>
                 </ColumnListItem>
             </items>
@@ -125,7 +121,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Team Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -135,10 +131,21 @@
                 </Toolbar>
             </customHeader>
             <content>
-                <HBox class="adminScreenActions">
+
+                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="TeamID:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="TeamsTeamID"
+                        />
+                    </VBox>
+                     <VBox>
+                        <Label
+                            text="Name:"
                             required="true"
                         />
                         <Input
@@ -148,10 +155,12 @@
                     </VBox>
                 </HBox>
 
+
                 <HBox class="adminScreenActions">
-                    <VBox>
+                   
+                     <VBox>
                         <Label
-                            text="description:"
+                            text="Description:"
                             required="true"
                         />
                         <Input
@@ -160,13 +169,15 @@
                         />
                     </VBox>
                 </HBox>
+
+                
             </content>
 
             <beginButton>
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveTeamsNew"
                 />
             </beginButton>
             <endButton>
@@ -189,7 +200,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Teams Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -200,15 +211,30 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
+                            editable="false"
+                        />
+                    </VBox>
+                     <VBox>
+                        <Label text="TeamID:" />
+                        <Input
+                            value="{dialogModel>/teamid}"
                             editable="false"
                         />
                     </VBox>
                 </HBox>
 
                 <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="Name:" />
+                        <Input
+                            value="{dialogModel>/name}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
                     <VBox>
                         <Label text="description :" />
                         <Input
@@ -218,27 +244,19 @@
                     </VBox>
                 </HBox>
 
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="name" />
-                        <Input
-                            value="{dialogModel>/name}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                </HBox>
+                
             </content>
 
             <beginButton>
-                <Button
+                 <Button
                     text="{dialogModel>/buttonText}"
                     press="onToggleEdit"
                 />
             </beginButton>
             <endButton>
-                <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+               <Button
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

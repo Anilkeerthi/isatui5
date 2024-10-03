@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onComponent_TaskListNew"
             />
             <Button
                 text="Import"
@@ -87,18 +87,14 @@
                         <ObjectIdentifier text="{jsonModel>stage_id_autoid}" />
                         <ObjectIdentifier text="{jsonModel>tasklist_id_autoid}" />
 
-                        <HBox class="ActionButtons">
+                      
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                           
+                        
                     </cells>
                 </ColumnListItem>
             </items>
@@ -115,7 +111,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Component_TaskList Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"

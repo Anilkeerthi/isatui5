@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onRolesNew"
             />
             <Button
                 text="Import"
@@ -67,21 +67,21 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="Name" />
+                    <Text text="RoleID" />
                 </Column>
                 <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
                     hAlign="Center"
                 >
-                    <Text text="Description" />
+                    <Text text="Name" />
                 </Column>
                  <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
                     hAlign="Center"
                 >
-                    <Text text="RoleID" />
+                    <Text text="Description" />
                 </Column>
                 <Column hAlign="Begin" width="12em">
                     <Text text="Actions" />
@@ -91,22 +91,17 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
+                        <ObjectIdentifier text="{jsonModel>roleid}" />
                         <ObjectIdentifier text="{jsonModel>name}" />
                         <ObjectIdentifier text="{jsonModel>description}" />
-                        <ObjectIdentifier text="{jsonModel>roleid}" />
 
-                        <HBox class="ActionButtons">
+            
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                           
                     </cells>
                 </ColumnListItem>
             </items>
@@ -136,7 +131,18 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="RoleID:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="RolesRoleID"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <Label
+                            text="Name:"
                             required="true"
                         />
                         <Input
@@ -149,7 +155,7 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="description:"
+                            text="Description:"
                             required="true"
                         />
                         <Input
@@ -164,7 +170,7 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveRolesNew"
                 />
             </beginButton>
             <endButton>
@@ -187,7 +193,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Roles Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -198,19 +204,16 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID :" />
                         <Input
                             value="{dialogModel>/autoid}"
                             editable="false"
                         />
                     </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
+                        <Label text="RoleID :" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/roleid}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -218,25 +221,35 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+                        <Label text="Name:" />
                         <Input
                             value="{dialogModel>/name}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
+                    <VBox>
+                        <Label text="Description:" />
+                        <Input
+                            value="{dialogModel>/description}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    
                 </HBox>
+
+                
             </content>
 
-            <beginButton>
-                <Button
+             <beginButton>
+                 <Button
                     text="{dialogModel>/buttonText}"
                     press="onToggleEdit"
                 />
             </beginButton>
             <endButton>
-                <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+               <Button
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

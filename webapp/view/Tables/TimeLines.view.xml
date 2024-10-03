@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onTimeLinesNew"
             />
             <Button
                 text="Import"
@@ -56,7 +56,7 @@
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="DDType" />
+                    <Label text="TimeLines" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
@@ -79,7 +79,7 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="RefID" />
+                    <Text text="ReferenceID" />
                 </Column>
                 <Column
                     minScreenWidth="Desktop"
@@ -101,18 +101,14 @@
                         <ObjectIdentifier text="{jsonModel>refid}" />
                         <ObjectIdentifier text="{jsonModel>type}" />
 
-                        <HBox class="ActionButtons">
+        
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                        
+    
                     </cells>
                 </ColumnListItem>
             </items>
@@ -129,7 +125,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New TimeLines Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -142,25 +138,47 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="StartDatetime:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="TimeLinesName"
+                            id="TimeLinesStartDatetime"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label
+                            text="EndDatetime:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="TimeLinesEndDatetime"
                         />
                     </VBox>
                 </HBox>
 
                 <HBox class="adminScreenActions">
-                    <VBox>
+                         <VBox>
                         <Label
-                            text="description:"
+                            text="ReferenceID:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="TimeLinesDescription"
+                            id="TimeLinesReferenceID"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label
+                            text="Type:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="TimeLinesType"
                         />
                     </VBox>
                 </HBox>
@@ -170,7 +188,7 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveTimeLinesNew"
                 />
             </beginButton>
             <endButton>
@@ -193,7 +211,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="TimeLines Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -204,19 +222,17 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
                             editable="false"
                         />
                     </VBox>
-                </HBox>
 
-                <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
+                        <Label text="StartDatetime:" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/start_datetime}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -224,25 +240,43 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+                        <Label text="EndDatetime:" />
                         <Input
-                            value="{dialogModel>/name}"
+                            value="{dialogModel>/end_datetime}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label text="ReferenceID:" />
+                        <Input
+                            value="{dialogModel>/refid}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="Type" />
+                        <Input
+                            value="{dialogModel>/type}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
                 </HBox>
             </content>
 
-            <beginButton>
-                <Button
+           <beginButton>
+                 <Button
                     text="{dialogModel>/buttonText}"
                     press="onToggleEdit"
                 />
             </beginButton>
             <endButton>
-                <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+               <Button
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

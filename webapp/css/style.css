@@ -177,6 +177,10 @@ div#__title0-expand-wrapper {
     gap: 3px;
 }
 
+.customPointerButton {
+    cursor: pointer !important;
+}
+
 
 
 

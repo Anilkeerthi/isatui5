@@ -64,15 +64,15 @@
                 viewName="com.isat.isatui5.view.Tables.Projects"
                 visible="false"
             />
-            <!--  -->
-            <mvc:XMLView
+            
+             <mvc:XMLView
                 id="DDDataView"
                 viewName="com.isat.isatui5.view.Tables.DDData"
                 visible="false"
-            />
+            /> 
 
             <!-- Other views can also be added here if needed -->
-            <mvc:XMLView
+             <mvc:XMLView
                 id="DDTypeView"
                 viewName="com.isat.isatui5.view.Tables.DDType"
                 visible="false"

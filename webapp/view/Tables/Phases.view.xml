@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onPhasesNew"
             />
             <Button
                 text="Import"
@@ -82,18 +82,13 @@
                         <ObjectIdentifier text="{jsonModel>phase_name}" />
                        
 
-                        <HBox class="ActionButtons">
+                       
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                           
                     </cells>
                 </ColumnListItem>
             </items>
@@ -110,7 +105,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Phases Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -123,35 +118,24 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="PhaseName:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="PhasesName"
+                            id="PhasesPhaseName"
                         />
                     </VBox>
                 </HBox>
 
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label
-                            text="description:"
-                            required="true"
-                        />
-                        <Input
-                            value=""
-                            id="PhasesDescription"
-                        />
-                    </VBox>
-                </HBox>
+               
             </content>
 
             <beginButton>
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSavePhasesNew"
                 />
             </beginButton>
             <endButton>
@@ -174,7 +158,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Phases Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -185,33 +169,24 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
                             editable="false"
                         />
                     </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="description :" />
+                     <VBox>
+                        <Label text="PhaseName:" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/phase_name}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
                 </HBox>
 
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="name" />
-                        <Input
-                            value="{dialogModel>/name}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                </HBox>
+              
+
+               
             </content>
 
             <beginButton>
@@ -222,8 +197,8 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>
