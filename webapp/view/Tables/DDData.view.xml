@@ -206,7 +206,7 @@
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialog"
+                        press="onCloseDialogDDDataActions"
                     />
                 </Toolbar>
             </customHeader>
@@ -217,16 +217,10 @@
                         <Label text="autoid :" />
                         <Input
                             value="{dialogModel>/autoid}"
-                            editable="{dialogModel>/editable}"
+                            editable="false"
                         />
                     </VBox>
                     <VBox>
-                        <!-- <Label text="DDType_Name :" />
-                        <Input
-                            value="{dialogModel>/ddType_id/name}"
-                            editable="{dialogModel>/editable}"
-                        /> -->
-
                         <Label text="DDType_Name :" />
 
                         <Input
@@ -239,8 +233,10 @@
                         <ComboBox
                             id="DDTypeNameComboBoxx"
                             change="onDDTypeNameComboBoxChange"
-                            placeholder="All"
-                            width="100%"
+                            enabled="{dialogModel>/editable}"
+                            value="{dialogModel>/ddType_id/name}"
+                            width="87%"
+                            selectedKey="{dialogModel>/ddType_id/autoid}"  
                             items="{
                                      path: 'jsonModel>/DDType'
                                 }"
@@ -281,7 +277,7 @@
             <endButton>
                 <Button
                     text="{dialogModel>/deleteButtonText}"
-                    press="onCloseDialog"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

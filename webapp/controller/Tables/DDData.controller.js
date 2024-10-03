@@ -1,8 +1,9 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/m/MessageToast",
-  "sap/ui/model/json/JSONModel"
-], (Controller, MessageToast, JSONModel) => {
+  "sap/ui/model/json/JSONModel",
+  "sap/m/MessageBox"
+], (Controller, MessageToast, JSONModel,MessageBox) => {
   "use strict";
 
   return Controller.extend("com.isat.isatui5.controller.Tables.DDData", {
@@ -66,7 +67,7 @@ sap.ui.define([
         ddType_id: {
           "autoid": addType_id  // autoid should now be a valid integer
         }
-      } 
+      }
       );
       // Close the dialog after saving
       this.onCloseDDDataNewDialog();
@@ -89,7 +90,7 @@ sap.ui.define([
         oBinding.refresh();
       }
     },
- 
+
     //To perform edit, delete operation by opening ACTIONS Dailog
     onShowDetailsOfDDData: function (oEvent) {
       // Get the selected row's data
@@ -103,7 +104,7 @@ sap.ui.define([
       // Add a new property 'editable' to control the edit mode
       oData.editable = false;
       oData.buttonText = "Edit"; // Button starts as 'Edit'
-      oData.deleteButtonText="Delete"
+      oData.deleteButtonText = "Delete"
 
       // Create a new JSON model to bind the dialog content
       var oDialogModel = new sap.ui.model.json.JSONModel();
@@ -116,58 +117,145 @@ sap.ui.define([
       this.byId("DDDataDialog").open();
     },
 
-  onToggleEdit: function () {
-    // Get the dialog model
-    var oDialogModel = this.getView().getModel("dialogModel");
-    var oData = oDialogModel.getData();
 
-    // Toggle the 'editable' property and button texts
-    if (oData.editable) {
+    onToggleEdit: function () {
+      // Get the dialog model
+      var oDialogModel = this.getView().getModel("dialogModel");
+      var oData = oDialogModel.getData();
+
+      // Toggle the 'editable' property and button texts
+      if (oData.editable) {
         // Currently in edit mode, save changes
         oData.editable = false;
         oData.buttonText = "Edit";          // Change Save to Edit
         oData.deleteButtonText = "Delete";  // Reset to Delete
         // Save the changes to the backend and update the original model
         this._saveChanges(oData);
-    } else {
+      } else {
         // Enable edit mode
         oData.editable = true;
         oData.buttonText = "Save";           // Change Edit to Save
         oData.deleteButtonText = "Cancel";   // Change Delete to Cancel
-    }
+      }
 
-    // Update the model
-    oDialogModel.setData(oData);
+      // Update the model
+      oDialogModel.setData(oData);
 
-    // Control visibility of the Input and ComboBox
-    var oInput = this.byId("DDTypeNameInput");
-    var oComboBox = this.byId("DDTypeNameComboBoxx");
-    oInput.setVisible(!oData.editable);
-    oComboBox.setVisible(oData.editable);
-},
+      // Control visibility of the Input and ComboBox
+      var oInput = this.byId("DDTypeNameInput");
+      var oComboBox = this.byId("DDTypeNameComboBoxx");
+      oInput.setVisible(!oData.editable);
+      oComboBox.setVisible(oData.editable);
+    },
 
-  
+    //update function for ACTIONS Dialog
     _saveChanges: function (oData) {
-      // Get the original model
-      var oJsonModel = this.getView().getModel("jsonModel");
+      var that = this;
+      let itemID = oData.autoid;
 
-      // Update the original model's data using the stored context path
-      oJsonModel.setProperty(this._originalContextPath, oData);
 
-      // You can implement backend save logic here if necessary
-      // Example: Sending the updated data to the backend
-      console.log("Saving changes:", oData);
+      let oModel = this.getView().getModel();
+      let oBindList = oModel.bindList("/DDData");
 
-      // Close the dialog after saving
-      this.onCloseDDDataNewDialog();
+      let DDType_autoId=oData.ddType_id.autoid;
+
+       // Ensure addType_id is handled as a proper integer
+      // DDType_autoId = DDType_autoId.replace(/,/g, '');  // Remove any commas if present
+       DDType_autoId = Number(DDType_autoId);  // Convert to a plain integer
+
+
+      let aFilter = new sap.ui.model.Filter("autoid", sap.ui.model.FilterOperator.EQ, itemID);
+
+      // Filter and request contexts (rows) to update data
+      oBindList.filter(aFilter).requestContexts().then(function (aContexts) {
+        if (aContexts && aContexts.length > 0) {
+          // Set the new property values
+          aContexts[0].setProperty("autoid", oData.autoid);
+          aContexts[0].setProperty("name", oData.name);
+          aContexts[0].setProperty("value", oData.value);
+          aContexts[0].setProperty("ddType_id",{
+            "autoid": addType_id 
+          });
+
+          // Submit the changes for OData V4
+          oModel.submitBatch("myBatchGroup").then(function () {
+            MessageToast.show("Changes saved successfully!");
+            that._refreshTable();  // Trigger the table refresh after successful save
+          }).catch(function () {
+            MessageToast.show("Error saving changes.");
+          });
+        }
+      });
+
+      this.onCloseDialogDDDataActions();
+
     },
 
 
+    
+  
 
+    //to close the actions dialog box
+    onCloseDialogDDDataActions: function () {
+      this.byId("DDDataDialog").close();
+    },
 
+    // Delete functionality for ACTIONS DialogBox
+    onDeletePress: function () {
+      // Get the dialog model
+      var oDialogModel = this.getView().getModel("dialogModel");
+      var oData = oDialogModel.getData();
 
+      // Check if the delete button is pressed and currently showing 'Delete'
+      if (oData.deleteButtonText === "Delete") {
+        // Call the delete function and pass the unique ID
+        this._deleteDDType(oData.autoid);
+      } else {
+        // Cancel the edit mode
+        oData.editable = false;
+        oData.buttonText = "Edit";           // Reset Save to Edit
+        oData.deleteButtonText = "Delete";   // Reset Cancel to Delete
+        oDialogModel.setData(oData);
+      }
+    },
 
+    //Add the delete function for ACTIONS Dialog
+    _deleteDDType: function (autoid) {
+      var oModel = this.getView().getModel();
+      var that = this;
 
+      // Confirmation dialog to ask the user before deleting
+      MessageBox.confirm("Are you sure you want to delete this item?", {
+        actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+        onClose: function (oAction) {
+          if (oAction === MessageBox.Action.YES) {
+            // OData V4 Binding list
+            let oBindList = oModel.bindList("/DDData");
+            // Create a filter based on the unique autoid field
+            let aFilter = new sap.ui.model.Filter("autoid", sap.ui.model.FilterOperator.EQ, autoid);
+
+            // Request the list of items based on the filter
+            oBindList.filter(aFilter).requestContexts().then(function (aContexts) {
+              if (aContexts && aContexts.length > 0) {
+                // Perform the delete on the first context
+                aContexts[0].delete().then(function () {
+                  // Show success message
+                  MessageToast.show("Item deleted successfully.");
+                  // Optionally, refresh the table
+                  that._refreshTable();
+                }).catch(function (oError) {
+                  // Error handling
+                  MessageBox.error("Error deleting the item: " + oError.message);
+                });
+              }
+            });
+
+            // Close the dialog after deletion
+            that.onCloseDialogDDDataActions();
+          }
+        }
+      });
+    },
 
   });
 });

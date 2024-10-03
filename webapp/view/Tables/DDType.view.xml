@@ -200,9 +200,9 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
+                        <Label text="Name" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/name}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -210,9 +210,9 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+                        <Label text="Description :" />
                         <Input
-                            value="{dialogModel>/name}"
+                            value="{dialogModel>/description}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>

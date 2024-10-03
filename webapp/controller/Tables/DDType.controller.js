@@ -116,6 +116,8 @@ sap.ui.define([
   onCloseDialogAction: function () {
     this.byId("DDTypeDialog").close();
 },
+
+
 // Refresh table functionality
 _refreshTable: function () {
     var oTable = this.byId("idDDtype");  
