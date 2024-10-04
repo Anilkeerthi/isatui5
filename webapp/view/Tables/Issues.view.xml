@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onIssuesNew"
             />
             <Button
                 text="Import"
@@ -56,7 +56,7 @@
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="DDType" />
+                    <Label text="Issues" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
@@ -75,18 +75,20 @@
                 >
                     <Text text="CreatedTime" />
                 </Column>
-                <Column
+
+                 <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="DetailedDesc" />
+                    <Text text="IssueDescription" />
                 </Column>
                 <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="IssueDesc" />
+                    <Text text="DetailedDescription" />
                 </Column>
+               
                 <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
@@ -122,8 +124,8 @@
                         <ObjectIdentifier text="{jsonModel>autoid}" />
                         <ObjectIdentifier text="{jsonModel>createdBy}" />
                         <ObjectIdentifier text="{jsonModel>createdTime}" />
-                         <ObjectIdentifier text="{jsonModel>detailedDesc}" />
                         <ObjectIdentifier text="{jsonModel>issueDesc}" />
+                         <ObjectIdentifier text="{jsonModel>detailedDesc}" />
                         <ObjectIdentifier text="{jsonModel>status}" />
                          <ObjectIdentifier text="{jsonModel>type}" />
                         <ObjectIdentifier text="{jsonModel>updatedBy}" />
@@ -131,18 +133,14 @@
 
 
 
-                        <HBox class="ActionButtons">
+                      
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                           
+                
                     </cells>
                 </ColumnListItem>
             </items>
@@ -159,7 +157,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Issue Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -169,28 +167,105 @@
                 </Toolbar>
             </customHeader>
             <content>
-                <HBox class="adminScreenActions">
+
+              <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="CreatedBy:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="IssuesName"
+                            id="IssuesCreatedBy"
                         />
                     </VBox>
+
+                     <VBox>
+                        <Label
+                            text="CreatedTime:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="IssuesCreatedTime"
+                        />
+                    </VBox>
+
+                   
                 </HBox>
 
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="description:"
+                            text="IssueDescription:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="IssuesDescription"
+                            id="IssuesIssueDescription"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <Label
+                            text="DetailedDescription:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="IssuesDetailedDescription"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+
+                <VBox>
+                        <Label
+                            text="Status:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="IssuesStatus"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label
+                            text="Type:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="IssuesType"
+                        />
+                    </VBox>
+
+                     
+                </HBox>
+
+
+              
+                <HBox class="adminScreenActions">
+                     <VBox>
+                        <Label
+                            text="UpdatedBy:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="IssuesUpdatedBy"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label
+                            text="UpdatedTime:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="IssuesUpdatedTime"
                         />
                     </VBox>
                 </HBox>
@@ -200,7 +275,7 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveIssuesNew"
                 />
             </beginButton>
             <endButton>
@@ -223,7 +298,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Issues Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -234,19 +309,17 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
                             editable="false"
                         />
                     </VBox>
-                </HBox>
 
-                <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
+                        <Label text="CreatedBy:" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/createdBy}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -254,9 +327,65 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+                        <Label text="CreatedTime:" />
                         <Input
-                            value="{dialogModel>/name}"
+                            value="{dialogModel>/createdTime}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label text="IssueDescription:" />
+                        <Input
+                            value="{dialogModel>/issueDesc}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+
+                 <VBox>
+                        <Label text="DetailedDescription:" />
+                        <Input
+                            value="{dialogModel>/detailedDesc}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                   
+
+                    <VBox>
+                        <Label text="Type:" />
+                        <Input
+                            value="{dialogModel>/type}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="Status:" />
+                        <Input
+                            value="{dialogModel>/status}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <Label text="UpdatedBy:" />
+                        <Input
+                            value="{dialogModel>/updatedBy}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="UpdatedTime:" />
+                        <Input
+                            value="{dialogModel>/updatedTime}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -271,8 +400,8 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

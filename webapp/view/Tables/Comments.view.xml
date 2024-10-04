@@ -200,7 +200,15 @@
                         <Input
                             value=""
                             id="CommentsCreatedDatetime"
+
                         />
+
+                        <!--  <DateTimePicker
+			id="CommentsCreatedDatetime"
+			placeholder="Enter Date"
+			change="handleChange"
+			class="sapUiSmallMarginBottom"/> -->
+
                     </VBox>
                 </HBox>
             </content>

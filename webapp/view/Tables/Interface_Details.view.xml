@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onInterface_DetailsNew"
             />
             <Button
                 text="Import"
@@ -193,25 +193,17 @@
                         <ObjectIdentifier text="{jsonModel>process}" />
                         <ObjectIdentifier text="{jsonModel>receiversystem}" />
 
-                         <ObjectIdentifier text="{jsonModel>senderssystem}" />
+                        <ObjectIdentifier text="{jsonModel>senderssystem}" />
                         <ObjectIdentifier text="{jsonModel>sourceadapter}" />
                         <ObjectIdentifier text="{jsonModel>targetadapter}" />
 
                         <ObjectIdentifier text="{jsonModel>techpoc}" />
 
-
-                        <HBox class="ActionButtons">
-                            <Button
-                                type="Emphasized"
-                                press=".onShowDetails"
-                                icon="sap-icon://display"
-                            />
-                            <Button
-                                type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                        <Button
+                            type="Emphasized"
+                            press=".onShowDetails"
+                            icon="sap-icon://display"
+                        />
                     </cells>
                 </ColumnListItem>
             </items>
@@ -228,7 +220,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Interface_Details Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -241,7 +233,7 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="Name:"
                             required="true"
                         />
                         <Input
@@ -249,17 +241,159 @@
                             id="Interface_DetailsName"
                         />
                     </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="description:"
+                            text="Description:"
                             required="true"
                         />
                         <Input
                             value=""
                             id="Interface_DetailsDescription"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="Module:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsModule"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label
+                            text="Package:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsPackage"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="SendersSystem:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsSendersSystem"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label
+                            text="ReceiverSystem:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsReceiverSystem"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="Process:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsProcess"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label
+                            text="SourceAdapter:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsSourceAdapter"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="TargetAdapter:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsTargetAdapter"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label
+                            text="TechPOC:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsTechPOC"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="FunctionalPOC:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsFunctionalPOC"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label
+                            text="BusinessPOC:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsBusinessPOC"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="Doctype:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsDoctype"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label
+                            text="Frequency:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsFrequency"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label
+                            text="CCEnabled:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Interface_DetailsCCEnabled"
                         />
                     </VBox>
                 </HBox>
@@ -269,7 +403,7 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveInterface_DetailsNew"
                 />
             </beginButton>
             <endButton>
@@ -292,7 +426,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Interface Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -303,19 +437,16 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
                             editable="false"
                         />
                     </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
+                        <Label text="Name:" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/name}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -323,9 +454,113 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+                        <Label text="Description:" />
                         <Input
-                            value="{dialogModel>/name}"
+                            value="{dialogModel>/description}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="Module:" />
+                        <Input
+                            value="{dialogModel>/module}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="Package:" />
+                        <Input
+                            value="{dialogModel>/package}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="SendersSystem:" />
+                        <Input
+                            value="{dialogModel>/senderssystem}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="ReceiverSystem:" />
+                        <Input
+                            value="{dialogModel>/receiversystem}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="Process:" />
+                        <Input
+                            value="{dialogModel>/process}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="SourceAdapter:" />
+                        <Input
+                            value="{dialogModel>/sourceadapter}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="TargetAdapter:" />
+                        <Input
+                            value="{dialogModel>/targetadapter}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="TechPOC:" />
+                        <Input
+                            value="{dialogModel>/techpoc}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="FunctionalPOC" />
+                        <Input
+                            value="{dialogModel>/functionalpoc}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="BusinessPOC:" />
+                        <Input
+                            value="{dialogModel>/businesspoc}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="Doctype:" />
+                        <Input
+                            value="{dialogModel>/doctype}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+                <HBox class="adminScreenActions">
+                    <VBox>
+                        <Label text="Frequency:" />
+                        <Input
+                            value="{dialogModel>/frequency}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                    <VBox>
+                        <Label text="CCEnabled" />
+                        <Input
+                            value="{dialogModel>/ccenabled}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -340,8 +575,8 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                    text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

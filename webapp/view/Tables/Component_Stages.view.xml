@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onComponent_StagesNew"
             />
             <Button
                 text="Import"
@@ -67,7 +67,7 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="StageID AutoID" />
+                    <Text text="StageID_Name" />
                 </Column>
                 <Column
                     minScreenWidth="Desktop"
@@ -83,22 +83,15 @@
             <items>
                 <ColumnListItem vAlign="Middle">
                     <cells>
-                        <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <ObjectIdentifier text="{jsonModel>stage_id_autoid}" />
-                        <ObjectIdentifier text="{jsonModel>status}" />
+                        <ObjectIdentifier text="{jsonModel>autoid}"/>
+                        <ObjectIdentifier text="{jsonModel>stage_id/name}"/>
+                        <ObjectIdentifier text="{jsonModel>status}"/>
 
-                        <HBox class="ActionButtons">
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
-                            />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                            /> 
                     </cells>
                 </ColumnListItem>
             </items>
@@ -127,36 +120,47 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
+                    <Label
+                            text="DDType
+                             Name"
+                            required="true"/>
+                      <ComboBox
+                            id="Component_StagesDialogNewComboBox"
+                            change="onComponent_StagesDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+                                     path: 'jsonModel>/Stages'
+                   
+                                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
+                    </VBox>
+
+                    <VBox>
                         <Label
-                            text="name:"
+                            text="Status:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="Component_StagesName"
+                            id="Component_StagesStatus"
                         />
                     </VBox>
                 </HBox>
 
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label
-                            text="description:"
-                            required="true"
-                        />
-                        <Input
-                            value=""
-                            id="Component_StagesDescription"
-                        />
-                    </VBox>
-                </HBox>
+               
             </content>
 
             <beginButton>
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveComponent_StagesNew"
                 />
             </beginButton>
             <endButton>
@@ -179,7 +183,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="ComponentStages Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -190,19 +194,17 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
                             editable="false"
                         />
                     </VBox>
-                </HBox>
 
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="description :" />
+                     <VBox>
+                        <Label text="Status:" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/status}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -210,16 +212,16 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+                        <Label text="StageID_Name:" />
                         <Input
-                            value="{dialogModel>/name}"
-                            editable="{dialogModel>/editable}"
+                            value="{dialogModel>/stage_id/name}"
+                             editable="false"
                         />
                     </VBox>
                 </HBox>
             </content>
 
-            <beginButton>
+           <beginButton>
                 <Button
                     text="{dialogModel>/buttonText}"
                     press="onToggleEdit"
@@ -227,8 +229,8 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>
