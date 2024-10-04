@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onCustomer_ProjectNew"
             />
             <Button
                 text="Import"
@@ -67,14 +67,14 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="Customer_id_autoid" />
+                    <Text text="Customer_Name" />
                 </Column>
                 <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
                     hAlign="Center"
                 >
-                    <Text text="Proj_id_autoid" />
+                    <Text text="Project_Name" />
                 </Column>
                 <Column hAlign="Begin" width="12em">
                     <Text text="Actions" />
@@ -84,21 +84,17 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <ObjectIdentifier text="{jsonModel>customer_id_autoid}" />
-                        <ObjectIdentifier text="{jsonModel>proj_id_autoid}" />
+                        <ObjectIdentifier text="{jsonModel>customer_id/name}" />
+                        <ObjectIdentifier text="{jsonModel>proj_id/name}" />
 
-                        <HBox class="ActionButtons">
+                     
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                          
+                      
                     </cells>
                 </ColumnListItem>
             </items>
@@ -119,7 +115,7 @@
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialog"
+                        press="onCloseCustomers_ProjectsDialogNew"
                         tooltip="Close"
                     />
                 </Toolbar>
@@ -128,26 +124,50 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="Tasklist_Name:"
                             required="true"
                         />
-                        <Input
-                            value=""
-                            id="Customers_ProjectsName"
-                        />
+                         <ComboBox
+                            id="CustomersDialogNewComboBox"
+                            change="onTasksDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+					        
+                                     path: 'jsonModel>/Customers'
+					
+				                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
                     </VBox>
                 </HBox>
 
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="description:"
+                            text="Stage_Name:"
                             required="true"
                         />
-                        <Input
-                            value=""
-                            id="Customers_ProjectsDescription"
-                        />
+                         <ComboBox
+                            id="ProjectsDialogNewComboBox"
+                            change="onTasksDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+					        
+                                     path: 'jsonModel>/Projects'
+					
+				                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
                     </VBox>
                 </HBox>
             </content>
@@ -156,14 +176,14 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveCustomers_ProjectsDialogNew"
                 />
             </beginButton>
             <endButton>
                 <Button
                     text="Clear"
                     tooltip="Clear"
-                    press="onClearDialog"
+                    press="onClearaveCustomers_ProjectsDialogNew"
                 />
             </endButton>
         </Dialog>

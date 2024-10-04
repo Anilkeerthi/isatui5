@@ -165,7 +165,7 @@ sap.ui.define([
     //Creating a New Customer Data
     onCustomerNew: function () {
       // Open the dialog
-      this.byId("onCommentsNew").open();
+      this.byId("CustomersDialogNew").open();
     },
 
     onSaveCustomerNew: function () {

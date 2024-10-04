@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onDDTasksNew"
             />
             <Button
                 text="Import"
@@ -56,7 +56,7 @@
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="DDType" />
+                    <Label text="Tasks Data" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
@@ -164,23 +164,18 @@
                         <ObjectIdentifier text="{jsonModel>parent_task_id}" />
                         <ObjectIdentifier text="{jsonModel>status}" />
                         <ObjectIdentifier text="{jsonModel>task_name}" />
-                        <ObjectIdentifier text="{jsonModel>tasklist_id_autoid}" />
+                        <ObjectIdentifier text="{jsonModel>tasklist_id/name}" />
                         <ObjectIdentifier text="{jsonModel>type}" />
                         <ObjectIdentifier text="{jsonModel>updated_by}" />
                         <ObjectIdentifier text="{jsonModel>updated_datetime}" />
 
-                        <HBox class="ActionButtons">
+                       
                             <Button
                                 type="Emphasized"
-                                press=".onShowDetails"
+                                press=".onShowDetailsTasks"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                                type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                         
                     </cells>
                 </ColumnListItem>
             </items>
@@ -188,6 +183,7 @@
 
         <!-- Dialog Box for New -->
 
+       
         <Dialog
             id="TasksDialogNew"
             stretch="false"
@@ -197,58 +193,216 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Tasks Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialog"
+                        press="onCloseTasksDialogNew"
                         tooltip="Close"
                     />
                 </Toolbar>
             </customHeader>
             <content>
                 <HBox class="adminScreenActions">
-                    <VBox>
+                     <VBox>
                         <Label
-                            text="name:"
+                            text="task_name:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="TasksName"
+                            id="Taskstask_name"
+                        />
+                    </VBox>
+
+                      <VBox>
+                        <Label
+                            text="duration:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Tasksduration"
                         />
                     </VBox>
                 </HBox>
 
                 <HBox class="adminScreenActions">
-                    <VBox>
+
+                 <VBox>
                         <Label
-                            text="description:"
+                            text="startdate:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="TasksDescription"
+                            id="Tasksstartdate"
+                        />
+                    </VBox>
+
+                      <VBox>
+                        <Label
+                            text="enddate:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Tasksenddate"
+                        />
+                    </VBox>
+                   
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                     <VBox>
+                        <Label
+                            text="status:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Tasksstatus"
+                        />
+                    </VBox>
+
+                      <VBox>
+                        <Label
+                            text="type:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Taskstype"
                         />
                     </VBox>
                 </HBox>
+
+                <HBox class="adminScreenActions">
+
+                <VBox>
+                        <Label
+                            text="parent_task_id:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Tasksparent_task_id"
+                        />
+                    </VBox>
+
+                 <VBox>
+                        <Label
+                            text="assignedto:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Tasksassignedto"
+                        />
+                    </VBox>
+                   
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                  
+                  
+
+                      <VBox>
+                        <Label
+                            text="created_by:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Taskscreated_by"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label
+                            text="created_datetime:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Taskscreated_datetime"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+
+                   <VBox>
+                        <Label
+                            text="updated_by:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Tasksupdated_by"
+                        />
+                    </VBox>
+
+                 <VBox>
+                        <Label
+                            text="updated_datetime :"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="Tasksupdated_datetime"
+                        />
+                    </VBox>
+
+                    
+    
+                </HBox>
+                <HBox class="adminScreenActions">
+
+              
+
+                      <VBox>
+                        <Label
+                            text="tasklist_name:"
+                            required="true"
+                        />
+                         <ComboBox
+                            id="TasksDialogNewComboBox"
+                            change="onTasksDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+					        
+                                     path: 'jsonModel>/Tasklist'
+					
+				                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
+                    </VBox>
+                
+                    </HBox>
             </content>
 
             <beginButton>
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveTasksDialogNew"
                 />
             </beginButton>
             <endButton>
                 <Button
                     text="Clear"
                     tooltip="Clear"
-                    press="onClearDialog"
+                    press="onClearTasksDialogNew"
                 />
             </endButton>
         </Dialog>
+
 
         <!-- Dialog Box for Actions -->
 
@@ -261,44 +415,197 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Tasks Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialogAction"
+                        press="onCloseTasksDialog"
                     />
                 </Toolbar>
             </customHeader>
             <content>
+
+              <HBox class="adminScreenActions">
+                     <VBox>
+                        <Label
+                            text="task_name:"
+                            required="true"
+                        />
+                        <Input
+                            value="{dialogModel>/task_name}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                      <VBox>
+                        <Label
+                            text="duration:"
+                            required="true"
+                        />
+                        <Input
+                            value="{dialogModel>/duration}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
                 <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="autoid :" />
+
+                 <VBox>
+                        <Label
+                            text="startdate:"
+                            required="true"
+                        />
+                          <Input
+                            value="{dialogModel>/startdate}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                      <VBox>
+                        <Label
+                            text="enddate:"
+                            required="true"
+                        />
+                         <Input
+                            value="{dialogModel>/enddate}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                   
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                     <VBox>
+                        <Label
+                            text="status:"
+                            required="true"
+                        />
+                        <Input
+                            value="{dialogModel>/status}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                      <VBox>
+                        <Label
+                            text="type:"
+                            required="true"
+                        />
+                          <Input
+                            value="{dialogModel>/type}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+
+                <VBox>
+                        <Label
+                            text="parent_task_id:"
+                            required="true"
+                        />
+                         <Input
+                            value="{dialogModel>/parent_task_id}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                 <VBox>
+                        <Label
+                            text="assignedto:"
+                            required="true"
+                        />
+                         <Input
+                            value="{dialogModel>/assignedto}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                   
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                  
+                  
+
+                      <VBox>
+                        <Label
+                            text="created_by:"
+                            required="true"
+                        />
+                          <Input
+                            value="{dialogModel>/created_by}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label
+                            text="created_datetime:"
+                            required="true"
+                        />
+                         <Input
+                            value="{dialogModel>/created_datetime}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                <HBox class="adminScreenActions">
+
+                   <VBox>
+                        <Label
+                            text="updated_by:"
+                            required="true"
+                        />
+                         <Input
+                            value="{dialogModel>/updated_by}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                 <VBox>
+                        <Label
+                            text="updated_datetime :"
+                            required="true"
+                        />
+                         <Input
+                            value="{dialogModel>/updated_datetime}"
+                           editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+
+                    
+    
+                </HBox>
+                <HBox class="adminScreenActions">
+
+              
+
+                      <VBox>
+                        <Label
+                            text="tasklist_name:"
+                            required="true"
+                        />
+                         <Input
+                           value="{dialogModel>/tasklist_id/name}"
+                            editable="false"
+                        />
+                    </VBox>
+
+                     <VBox>
+                        <Label
+                            text="task_name:"
+                            required="true"
+                        />
                         <Input
                             value="{dialogModel>/autoid}"
                             editable="false"
                         />
                     </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="description :" />
-                        <Input
-                            value="{dialogModel>/description}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="name" />
-                        <Input
-                            value="{dialogModel>/name}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                </HBox>
+                
+                    </HBox>
             </content>
 
             <beginButton>
@@ -309,8 +616,8 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                    text="{dialogModel>/deleteButtonText}"
+                    press="onDeleteTasksDialog"
                 />
             </endButton>
         </Dialog>

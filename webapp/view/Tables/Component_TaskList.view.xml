@@ -67,14 +67,14 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="Stage_id_autoid" />
+                    <Text text="Tasklist_Name" />
                 </Column>
                 <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
                     hAlign="Center"
                 >
-                    <Text text="Tasklist_id_autoid" />
+                    <Text text="Stage_Name" />
                 </Column>
                 <Column hAlign="Begin" width="12em">
                     <Text text="Actions" />
@@ -84,13 +84,13 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <ObjectIdentifier text="{jsonModel>stage_id_autoid}" />
-                        <ObjectIdentifier text="{jsonModel>tasklist_id_autoid}" />
+                        <ObjectIdentifier text="{jsonModel>tasklist_id/name}" />
+                        <ObjectIdentifier text="{jsonModel>stage_id/name}" />
 
                       
                             <Button
                                 type="Emphasized"
-                                press=".onShowDetails"
+                                press=".onShowDetailsComponent_TaskList"
                                 icon="sap-icon://display"
                             />
                            
@@ -115,7 +115,7 @@
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialog"
+                        press="onClosecomponent_TaskListDialogNew"
                         tooltip="Close"
                     />
                 </Toolbar>
@@ -124,26 +124,50 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="Tasklist_Name:"
                             required="true"
                         />
-                        <Input
-                            value=""
-                            id="component_TaskListName"
-                        />
+                         <ComboBox
+                            id="TasklistDialogNewComboBox"
+                            change="onTasksDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+					        
+                                     path: 'jsonModel>/Tasklist'
+					
+				                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
                     </VBox>
                 </HBox>
 
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="description:"
+                            text="Stage_Name:"
                             required="true"
                         />
-                        <Input
-                            value=""
-                            id="component_TaskListDescription"
-                        />
+                         <ComboBox
+                            id="StageDialogNewComboBox"
+                            change="onTasksDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+					        
+                                     path: 'jsonModel>/Stages'
+					
+				                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
                     </VBox>
                 </HBox>
             </content>
@@ -152,14 +176,14 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSavecomponent_TaskListDialogNew"
                 />
             </beginButton>
             <endButton>
                 <Button
                     text="Clear"
                     tooltip="Clear"
-                    press="onClearDialog"
+                    press="onClearcomponent_TaskListDialogNew"
                 />
             </endButton>
         </Dialog>
@@ -175,20 +199,20 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="component_TaskList details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialogAction"
+                        press="onClosecomponent_TaskListDialog"
                     />
                 </Toolbar>
             </customHeader>
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="tasklist_Name :" />
                         <Input
-                            value="{dialogModel>/autoid}"
+                            value="{dialogModel>/tasklist_id/name}"
                             editable="false"
                         />
                     </VBox>
@@ -196,23 +220,15 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
+                        <Label text="stage_Name:" />
                         <Input
-                            value="{dialogModel>/description}"
-                            editable="{dialogModel>/editable}"
+                            value="{dialogModel>/stage_id/name}"
+                            editable="false"
                         />
                     </VBox>
                 </HBox>
 
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="name" />
-                        <Input
-                            value="{dialogModel>/name}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                </HBox>
+              
             </content>
 
             <beginButton>
@@ -223,8 +239,8 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                    text="{dialogModel>/deleteButtonText}"
+                    press="onDeletecomponent_TaskListDialog"
                 />
             </endButton>
         </Dialog>

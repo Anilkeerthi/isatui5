@@ -141,11 +141,6 @@ sap.ui.define([
       // Update the model
       oDialogModel.setData(oData);
 
-      // Control visibility of the Input and ComboBox
-      var oInput = this.byId("DDTypeNameInput");
-      var oComboBox = this.byId("DDTypeNameComboBoxx");
-      oInput.setVisible(!oData.editable);
-      oComboBox.setVisible(oData.editable);
     },
 
     //update function for ACTIONS Dialog
@@ -157,11 +152,11 @@ sap.ui.define([
       let oModel = this.getView().getModel();
       let oBindList = oModel.bindList("/DDData");
 
-      let DDType_autoId=oData.ddType_id.autoid;
+     // let DDType_autoId=oData.ddType_id.autoid;
 
        // Ensure addType_id is handled as a proper integer
       // DDType_autoId = DDType_autoId.replace(/,/g, '');  // Remove any commas if present
-       DDType_autoId = Number(DDType_autoId);  // Convert to a plain integer
+      // DDType_autoId = Number(DDType_autoId);  // Convert to a plain integer
 
 
       let aFilter = new sap.ui.model.Filter("autoid", sap.ui.model.FilterOperator.EQ, itemID);
@@ -173,9 +168,8 @@ sap.ui.define([
           aContexts[0].setProperty("autoid", oData.autoid);
           aContexts[0].setProperty("name", oData.name);
           aContexts[0].setProperty("value", oData.value);
-          aContexts[0].setProperty("ddType_id",{
-            "autoid": addType_id 
-          });
+          // Set the autoid for the navigation property ddType_id using the full path
+          aContexts[0].setProperty("ddType_id/autoid", oData.ddType_id.autoid);
 
           // Submit the changes for OData V4
           oModel.submitBatch("myBatchGroup").then(function () {
@@ -191,9 +185,6 @@ sap.ui.define([
 
     },
 
-
-    
-  
 
     //to close the actions dialog box
     onCloseDialogDDDataActions: function () {

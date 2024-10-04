@@ -226,27 +226,11 @@
                         <Input
                             id="DDTypeNameInput"
                             value="{dialogModel>/ddType_id/name}"
-                            editable="{dialogModel>/editable}"
-                            visible="{dialogModel>/editable === false}"
+                            editable="false"
+                           
                         />
 
-                        <ComboBox
-                            id="DDTypeNameComboBoxx"
-                            change="onDDTypeNameComboBoxChange"
-                            enabled="{dialogModel>/editable}"
-                            value="{dialogModel>/ddType_id/name}"
-                            width="87%"
-                            selectedKey="{dialogModel>/ddType_id/autoid}"  
-                            items="{
-                                     path: 'jsonModel>/DDType'
-                                }"
-                            visible="{dialogModel>/editable}"
-                        >
-                            <core:Item
-                                key="{jsonModel>autoid}"
-                                text="{jsonModel>name}"
-                            />
-                        </ComboBox>
+                       
                     </VBox>
                 </HBox>
 

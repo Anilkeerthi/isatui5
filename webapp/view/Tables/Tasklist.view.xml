@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onTaskListNew"
             />
             <Button
                 text="Import"
@@ -87,24 +87,19 @@
                         <ObjectIdentifier text="{jsonModel>name}" />
                         <ObjectIdentifier text="{jsonModel>description}" />
 
-                        <HBox class="ActionButtons">
+
                             <Button
                                 type="Emphasized"
-                                press=".onShowDetails"
+                                press=".onShowDetailsOfTaskList"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                     
                     </cells>
                 </ColumnListItem>
             </items>
         </Table>
 
-        <!-- Dialog Box for New -->
+        <!-- Dialog Box for NEW -->
 
         <Dialog
             id="TasklistDialogNew"
@@ -119,7 +114,7 @@
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialog"
+                        press="onCloseTasklistDialogNew"
                         tooltip="Close"
                     />
                 </Toolbar>
@@ -156,14 +151,14 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveTasklistDialogNew"
                 />
             </beginButton>
             <endButton>
                 <Button
                     text="Clear"
                     tooltip="Clear"
-                    press="onClearDialog"
+                    press="onClearTasklistDialogNew"
                 />
             </endButton>
         </Dialog>
@@ -183,7 +178,7 @@
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialogAction"
+                        press="onCloseTasklistDialog"
                     />
                 </Toolbar>
             </customHeader>
@@ -196,23 +191,23 @@
                             editable="false"
                         />
                     </VBox>
-                </HBox>
-
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="description :" />
+                      <VBox>
+                      
+                          <Label text="name" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/name}"
                             editable="{dialogModel>/editable}"
                         />
+
                     </VBox>
                 </HBox>
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+
+                          <Label text="description :" />
                         <Input
-                            value="{dialogModel>/name}"
+                            value="{dialogModel>/description}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -227,8 +222,8 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                    text="{dialogModel>/deleteButtonText}"
+                    press="onDeleteTasklistDialog"
                 />
             </endButton>
         </Dialog>
