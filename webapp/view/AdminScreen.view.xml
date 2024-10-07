@@ -178,6 +178,12 @@
                 viewName="com.isat.isatui5.view.Tables.Issues"
                 visible="false"
             />
+
+            <mvc:XMLView
+                id="TaskAttachmentsView"
+                viewName="com.isat.isatui5.view.Tables.TaskAttachments"
+                visible="false"
+            />
         </VBox>
     </Page>
 </mvc:View>

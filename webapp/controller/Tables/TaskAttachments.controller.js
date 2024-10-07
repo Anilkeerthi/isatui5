@@ -6,7 +6,7 @@ sap.ui.define([
   ], (Controller, MessageToast,MessageBox,JSONModel) => {
     "use strict";
   
-    return Controller.extend("com.isat.isatui5.controller.Tables.TimeCapture", {
+    return Controller.extend("com.isat.isatui5.controller.Tables.TaskAttachments", {
   
         onInit: function () {
           var oDataModel = this.getOwnerComponent().getModel();
@@ -33,7 +33,7 @@ sap.ui.define([
           this.getView().setModel(oDialogModel, "dialogModel");
     
           // Open the dialog
-          this.byId("TimeCaptureDialog").open();
+          this.byId("TaskAttachmentsDialog").open();
         },
         // Toggle Buttons in DialogBox
     onToggleEdit: function () {
@@ -68,7 +68,7 @@ sap.ui.define([
         // Check if the delete button is pressed and currently showing 'Delete'
         if (oData.deleteButtonText === "Delete") {
           // Call the delete function and pass the unique ID
-          this._deleteTimeCapture(oData.autoid);
+          this._deleteTaskAttachments(oData.autoid);
         } else {
           // Cancel the edit mode
           oData.editable = false;
@@ -84,7 +84,7 @@ sap.ui.define([
       let itemID = oData.autoid;
 
       let oModel = this.getView().getModel();
-      let oBindList = oModel.bindList("/TimeCapture");
+      let oBindList = oModel.bindList("/TaskAttachments");
 
       let aFilter = new sap.ui.model.Filter("autoid", sap.ui.model.FilterOperator.EQ, itemID);
 
@@ -92,10 +92,12 @@ sap.ui.define([
       oBindList.filter(aFilter).requestContexts().then(function (aContexts) {
         if (aContexts && aContexts.length > 0) {
           // Set the new property values
-          aContexts[0].setProperty("start_time", oData.start_time);
-          aContexts[0].setProperty("end_time", oData.end_time);
+          aContexts[0].setProperty("name", oData.name);
+          aContexts[0].setProperty("type", oData.type);
+          aContexts[0].setProperty("attachmenturl", oData.attachmenturl);
           aContexts[0].setProperty("task_id_autoid", oData.task_id_autoid);
         
+
 
           // Submit the changes for OData V4
           oModel.submitBatch("myBatchGroup").then(function () {
@@ -110,12 +112,12 @@ sap.ui.define([
       this.onCloseDialogAction();
     },
     onCloseDialogAction: function () {
-      this.byId("TimeCaptureDialog").close();
+      this.byId("TaskAttachmentsDialog").close();
     },
 
           // Refresh table functionality
     _refreshTable: function () {
-      var oTable = this.byId("idTimeCapture");
+      var oTable = this.byId("idTaskAttachments");
       var oBinding = oTable.getBinding("items");
 
       if (oBinding) {
@@ -124,7 +126,7 @@ sap.ui.define([
     },
 
                   //Add the delete function
-    _deleteTimeCapture: function (autoid) {
+    _deleteTaskAttachments: function (autoid) {
       var oModel = this.getView().getModel();
       var that = this;
 
@@ -134,7 +136,7 @@ sap.ui.define([
         onClose: function (oAction) {
           if (oAction === MessageBox.Action.YES) {
             // OData V4 Binding list
-            let oBindList = oModel.bindList("/TimeCapture");
+            let oBindList = oModel.bindList("/TaskAttachments");
             // Create a filter based on the unique autoid field
             let aFilter = new sap.ui.model.Filter("autoid", sap.ui.model.FilterOperator.EQ, autoid);
 
@@ -162,46 +164,51 @@ sap.ui.define([
     },
 
      //Creating a New Customer Data
-    onTimeCaptureNew: function () {
+    onTaskAttachmentsNew: function () {
       // Open the dialog
-      this.byId("TimeCaptureDialogNew").open();
+      this.byId("TaskAttachmentsDialogNew").open();
     },
 
-    onSaveTimeCaptureNew: function () {
-      var sStartTime = this.byId("TimeCaptureStartTime").getValue();
-      var sEndTime = this.byId("TimeCaptureEndTime").getValue();
-      var sTimeCaptureRolesDialogNewComboBox = this.byId("TimeCaptureRolesDialogNewComboBox").getSelectedKey();
+    onSaveTaskAttachmentsNew: function () {
+      var sName = this.byId("TaskAttachmentsName").getValue();
+      var sType = this.byId("TaskAttachmentsType").getValue();
+      var sAttachmentURL = this.byId("TaskAttachmentsAttachmentURL").getValue();
+      var sTasks_Name = this.byId("TaskAttachmentsDialogNewComboBox").getSelectedKey();
      
 
-      if (!sStartTime && !sEndTime && !sTimeCaptureRolesDialogNewComboBox) {
+      if (!sName && !sType && !sAttachmentURL && !sTasks_Name) {
         sap.m.MessageToast.show("All fields are mandatory.");
         return;
-      } else if (!sStartTime) {
-        sap.m.MessageToast.show("StartTime is mandatory.");
+      } else if (!sName) {
+        sap.m.MessageToast.show("Name is mandatory.");
         return;
-      } else if (!sEndTime) {
-        sap.m.MessageToast.show("EndTime is mandatory.");
+      } else if (!sType) {
+        sap.m.MessageToast.show("Type is mandatory.");
         return;
-      } else if (!sTimeCaptureRolesDialogNewComboBox) {
+      } else if (!sAttachmentURL) {
+        sap.m.MessageToast.show("AttachmentURL is mandatory.");
+        return;
+      } else if (!sTasks_Name) {
         sap.m.MessageToast.show("TaskName is mandatory.");
         return;
       } 
     
 
     // Ensure addType_id is handled as a proper integer
-    sTimeCaptureRolesDialogNewComboBox = sTimeCaptureRolesDialogNewComboBox.replace(/,/g, '');  // Remove any commas if present
-    sTimeCaptureRolesDialogNewComboBox = Number(sTimeCaptureRolesDialogNewComboBox);  // Convert to a plain integer
+    sTasks_Name = sTasks_Name.replace(/,/g, '');  // Remove any commas if present
+    sTasks_Name = Number(sTasks_Name);  // Convert to a plain integer
 
     
 
 
       let oModel = this.getView().getModel();
-      let oBindList = oModel.bindList("/TimeCapture");
+      let oBindList = oModel.bindList("/TaskAttachments");
 
       oBindList.create({
-        start_time:sStartTime,
-        end_time:sEndTime,
-        role_id:{"autoid":sTimeCaptureRolesDialogNewComboBox}
+        name:sName,
+        type:sType,
+        attachmenturl:sAttachmentURL,
+        role_id:{"autoid":sTasks_Name}
       });
 
       // Close the dialog after saving
@@ -212,9 +219,10 @@ sap.ui.define([
 
     onClearDialog: function () {
       // Clear the input fields after saving
-      this.byId("TimeCaptureStartTime").setValue("");
-      this.byId("TimeCaptureEndTime").setValue("");
-      this.byId("TimeCaptureRolesDialogNewComboBox").setValue("");
+      this.byId("TaskAttachmentsName").setValue("");
+      this.byId("TaskAttachmentsType").setValue("");
+      this.byId("TaskAttachmentsAttachmentURL").setValue("");
+      this.byId("TaskAttachmentsDialogNewComboBox").setValue("");
      
     },
 
@@ -222,7 +230,7 @@ sap.ui.define([
 
     onCloseDialog: function () {
       // Close the dialog
-      this.byId("TimeCaptureDialogNew").close();
+      this.byId("TaskAttachmentsDialogNew").close();
 
       // Clear the input fields after saving 
       this.onClearDialog();

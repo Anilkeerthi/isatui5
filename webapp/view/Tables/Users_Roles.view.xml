@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onUsers_RolesNew"
             />
             <Button
                 text="Import"
@@ -56,7 +56,7 @@
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="DDType" />
+                    <Label text="Users_Roles" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
@@ -67,14 +67,14 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="UserID AutoID" />
+                    <Text text="UserID_Name" />
                 </Column>
                 <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
                     hAlign="Center"
                 >
-                    <Text text="RoleID AutoID" />
+                    <Text text="RoleID_Name" />
                 </Column>
                 <Column hAlign="Begin" width="12em">
                     <Text text="Actions" />
@@ -84,21 +84,15 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <ObjectIdentifier text="{jsonModel>user_id_autoid}" />
-                        <ObjectIdentifier text="{jsonModel>role_id_autoid}" />
+                        <ObjectIdentifier text="{jsonModel>user_id/name}" />
+                        <ObjectIdentifier text="{jsonModel>role_id/name}" />
 
-                        <HBox class="ActionButtons">
                             <Button
                                 type="Emphasized"
                                 press=".onShowDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                           
                     </cells>
                 </ColumnListItem>
             </items>
@@ -115,7 +109,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Users_Roles Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -127,36 +121,55 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label
-                            text="name:"
-                            required="true"
-                        />
-                        <Input
-                            value=""
-                            id="Users_RolesName"
-                        />
+                    <Label
+                            text="Users_Name"
+                            required="true"/>
+                      <ComboBox
+                            id="Users_RolesUsersDialogNewComboBox"
+                            change="onUsers_RolesDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+                                     path: 'jsonModel>/Users'
+                   
+                                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
+                    </VBox>
+                     <VBox>
+                    <Label
+                            text="Roles_Name"
+                            required="true"/>
+                      <ComboBox
+                            id="Users_RolesRolesDialogNewComboBox"
+                            change="onUsers_RolesDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+                                     path: 'jsonModel>/Roles'
+                   
+                                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
                     </VBox>
                 </HBox>
 
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label
-                            text="description:"
-                            required="true"
-                        />
-                        <Input
-                            value=""
-                            id="Users_RolesDescription"
-                        />
-                    </VBox>
-                </HBox>
+               
             </content>
 
             <beginButton>
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveUsers_RolesNew"
                 />
             </beginButton>
             <endButton>
@@ -179,7 +192,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Users_Roles Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -190,45 +203,46 @@
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="AutoID:" />
                         <Input
                             value="{dialogModel>/autoid}"
+                            editable="false"
+                        />
+                    </VBox>
+
+                      <VBox>
+                        <Label text="UserID_Name:" />
+                        <Input
+                            value="{dialogModel>/user_id/name}"
                             editable="false"
                         />
                     </VBox>
                 </HBox>
 
                 <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="description :" />
+                          <VBox>
+                        <Label text="RoleID_Name:" />
                         <Input
-                            value="{dialogModel>/description}"
-                            editable="{dialogModel>/editable}"
+                            value="{dialogModel>/role_id/name}"
+                            editable="false"
                         />
                     </VBox>
                 </HBox>
 
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="name" />
-                        <Input
-                            value="{dialogModel>/name}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                </HBox>
+
+               
             </content>
 
-            <beginButton>
+          <beginButton>
                 <Button
-                    text="{dialogModel>/buttonText}"
+                  text="{dialogModel>/buttonText}"
                     press="onToggleEdit"
                 />
             </beginButton>
             <endButton>
-                <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+               <Button
+                     text="{dialogModel>/deleteButtonText}"
+                    press="onDeletePress"
                 />
             </endButton>
         </Dialog>

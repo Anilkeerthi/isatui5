@@ -81,6 +81,8 @@ sap.ui.define(
 
         var oIssueView = this.byId("IssuesView");
 
+        var oTaskAttachmentsView = this.byId("TaskAttachmentsView");
+
 
 
 
@@ -218,6 +220,11 @@ switch (selectedKey) {
   case "IssueData":
       // Show Issue view
       oIssueView.setVisible(true);
+      break;
+
+      case "TaskAttachmentsData":
+      // Show Issue view
+      oTaskAttachmentsView.setVisible(true);
       break;
 
   default:

@@ -121,8 +121,7 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                     <Label
-                            text="DDType
-                             Name"
+                            text="Stages_Name"
                             required="true"/>
                       <ComboBox
                             id="Component_StagesDialogNewComboBox"

@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.isat.isatui5.controller.Tables.TimeCapture"
+    controllerName="com.isat.isatui5.controller.Tables.TaskAttachments"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
@@ -11,13 +11,13 @@
 >
     <mvc:content>
         <tnt:ToolHeader
-            id="shellLikeToolHeaderTimeCapture"
+            id="shellLikeToolHeaderTaskAttachments"
             class="sapUiTinyMargin"
         >
             <SearchField
                 width="auto"
                 class="searchFieldCustomWidth"
-                id="searchFieldTimeCapture"
+                id="searchFieldTaskAttachments"
                 placeholder="Search here"
             >
                 <layoutData>
@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onTimeCaptureNew"
+                press="onTaskAttachmentsNew"
             />
             <Button
                 text="Import"
@@ -47,16 +47,16 @@
         <ToolbarSpacer />
 
         <Table
-            id="idTimeCapture"
+            id="idTaskAttachments"
             inset="false"
             items="{
-			path: 'jsonModel>/TimeCapture'
+			path: 'jsonModel>/TaskAttachments'
 		
 		}"
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="TimeCapture" />
+                    <Label text="TaskAttachments" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
@@ -67,15 +67,23 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="StartTime" />
+                    <Text text="Name" />
                 </Column>
 
                 <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="EndTime" />
+                    <Text text="Type" />
                 </Column>
+
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                >
+                    <Text text="AttachmentURL" />
+                </Column>
+
 
                 <Column
                     minScreenWidth="Desktop"
@@ -95,8 +103,9 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <ObjectIdentifier text="{jsonModel>start_time}" />
-                        <ObjectIdentifier text="{jsonModel>end_time}" />
+                        <ObjectIdentifier text="{jsonModel>name}" />
+                        <ObjectIdentifier text="{jsonModel>type}" />
+                         <ObjectIdentifier text="{jsonModel>attachmenturl}" />
                         <ObjectIdentifier text="{jsonModel>task_id/name}" />
 
     
@@ -114,7 +123,7 @@
         <!-- Dialog Box for New -->
 
         <Dialog
-            id="TimeCaptureDialogNew"
+            id="TaskAttachmentsDialogNew"
             stretch="false"
             resizable="true"
             draggable="true"
@@ -122,7 +131,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New TimeCapture Data" />
+                    <Title text="Add New TaskAttachments Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -135,34 +144,46 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="StartTime:"
+                            text="Name:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="TimeCaptureStartTime"
+                            id="TaskAttachmentsName"
                         />
                     </VBox>
 
                     <VBox>
                         <Label
-                            text="EndTime:"
+                            text="Type:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="TimeCaptureEndTime"
+                            id="TaskAttachmentsType"
                         />
                     </VBox>
                 </HBox>
 
                    <HBox class="adminScreenActions">
+
+                              <VBox>
+                        <Label
+                            text="AttachmentURL:"
+                            required="true"
+                        />
+                        <Input
+                            value=""
+                            id="TaskAttachmentsAttachmentURL"
+                        />
+                    </VBox>
+
                         <VBox>
                     <Label
                             text="Tasks_Name"
                             required="true"/>
                       <ComboBox
-                            id="TimeCaptureRolesDialogNewComboBox"
+                            id="TaskAttachmentsDialogNewComboBox"
                             change="onUsers_RolesDialogNewComboBox"
                             placeholder="All"
                             width="100%"
@@ -186,7 +207,7 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveTimeCaptureNew"
+                    press="onSaveTaskAttachmentsNew"
                 />
             </beginButton>
             <endButton>
@@ -201,7 +222,7 @@
         <!-- Dialog Box for Actions -->
 
         <Dialog
-            id="TimeCaptureDialog"
+            id="TaskAttachmentsDialog"
             stretch="false"
             resizable="true"
             draggable="true"
@@ -209,7 +230,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="TaskAttachments Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
@@ -228,9 +249,9 @@
                     </VBox>
 
                       <VBox>
-                        <Label text="StartTime:" />
+                        <Label text="Name:" />
                         <Input
-                            value="{dialogModel>/start_time}"
+                            value="{dialogModel>/name}"
                              editable="{dialogModel>/editable}"
                         />
                     </VBox>
@@ -238,14 +259,25 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="EndTime:" />
+                        <Label text="Type:" />
                         <Input
-                            value="{dialogModel>/end_time}"
+                            value="{dialogModel>/type}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
                     <VBox>
-                        <Label text="TaskID_TaskName:" />
+                        <Label text="AttachmentURL:" />
+                        <Input
+                            value="{dialogModel>/attachmenturl}"
+                            editable="{dialogModel>/editable}"
+                        />
+                    </VBox>
+                </HBox>
+
+                  <HBox class="adminScreenActions">
+                  
+                    <VBox>
+                        <Label text="TaskID_Name:" />
                         <Input
                             value="{dialogModel>/task_id_autoid}"
                             editable="{dialogModel>/editable}"

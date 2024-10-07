@@ -21,7 +21,8 @@
       { "name": "Timelines", "key": "TimeLinesData" },
       { "name": "Phases", "key": "PhasesData" },
       { "name": "Users_Roles", "key": "UsersRolesData" },
-      { "name": "Issues", "key": "IssueData" }
+      { "name": "Issues", "key": "IssueData" },
+      { "name": "TaskAttachments", "key": "TaskAttachmentsData" }
     ]
   }
   

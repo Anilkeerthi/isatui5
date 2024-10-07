@@ -44,8 +44,8 @@ sap.ui.define([
       if (oData.editable) {
         // Currently in edit mode, save changes
         oData.editable = false;
-        oData.buttonText = "Edit";          // Change Save to Edit
-        oData.deleteButtonText = "Delete";  // Reset to Delete
+        oData.buttonText = "Edit";          
+        oData.deleteButtonText = "Delete"; 
         // Save the changes to the backend and update the original model
         this._saveChanges(oData);
       } else {
@@ -160,8 +160,6 @@ sap.ui.define([
       });
     },
 
-
-
     //Creating a New Customer Data
     onCustomerNew: function () {
       // Open the dialog
@@ -191,7 +189,6 @@ sap.ui.define([
         return;
       }
 
-
       let oModel = this.getView().getModel();
       let oBindList = oModel.bindList("/Customers");
 
@@ -204,8 +201,6 @@ sap.ui.define([
 
       // Close the dialog after saving
       this.onCloseDialog();
-
-
     },
 
     onClearDialog: function () {
@@ -215,8 +210,6 @@ sap.ui.define([
       this.byId("CustomersCustID").setValue("");
       this.byId("CustomersLocation").setValue("");
     },
-
-
 
     onCloseDialog: function () {
       // Close the dialog
@@ -228,9 +221,5 @@ sap.ui.define([
       //call the refresh function
       this._refreshTable();
     },
-
-
-
-
   });
 });
