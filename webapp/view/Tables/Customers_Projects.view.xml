@@ -90,7 +90,7 @@
                      
                             <Button
                                 type="Emphasized"
-                                press=".onShowDetails"
+                                press=".onShowDetailsCustomers_Projects"
                                 icon="sap-icon://display"
                             />
                           
@@ -203,16 +203,16 @@
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialogAction"
+                        press="onCloseCustomers_ProjectsDialog"
                     />
                 </Toolbar>
             </customHeader>
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="Customer_Name :" />
                         <Input
-                            value="{dialogModel>/autoid}"
+                            value="{dialogModel>/customer_id/name}"
                             editable="false"
                         />
                     </VBox>
@@ -220,23 +220,15 @@
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
+                        <Label text="Project_Name :" />
                         <Input
-                            value="{dialogModel>/description}"
-                            editable="{dialogModel>/editable}"
+                            value="{dialogModel>/proj_id/name}"
+                            editable="false"
                         />
                     </VBox>
                 </HBox>
 
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="name" />
-                        <Input
-                            value="{dialogModel>/name}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                </HBox>
+               
             </content>
 
             <beginButton>
@@ -247,8 +239,8 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                    text="{dialogModel>/deleteButtonText}"
+                    press="onDeleteCustomers_ProjectsDialog"
                 />
             </endButton>
         </Dialog>

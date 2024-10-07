@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onTeams_UsersNew"
             />
             <Button
                 text="Import"
@@ -56,7 +56,7 @@
         >
             <infoToolbar>
                 <OverflowToolbar>
-                    <Label text="DDType" />
+                    <Label text="Teams_Users Data" />
                 </OverflowToolbar>
             </infoToolbar>
             <columns>
@@ -68,14 +68,14 @@
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="User ID AutoID" />
+                    <Text text="Team Name" />
                 </Column>
 
                 <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                 >
-                    <Text text="Team ID AutoID" />
+                    <Text text="User Name" />
                 </Column>
 
                  
@@ -94,22 +94,18 @@
                 <ColumnListItem vAlign="Middle">
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
-                        <ObjectIdentifier text="{jsonModel>user_id_autoid}" />
-                        <ObjectIdentifier text="{jsonModel>team_id_autoid}" />
+                        <ObjectIdentifier text="{jsonModel>team_id/name}" />
+                        <ObjectIdentifier text="{jsonModel>user_id/name}" />
                          <ObjectIdentifier text="{jsonModel>active}" />
 
-                        <HBox class="ActionButtons">
+                      
                             <Button
                                 type="Emphasized"
-                                press=".onShowDetails"
+                                press=".onShowTeams_UsersDetails"
                                 icon="sap-icon://display"
                             />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
-                            />
-                        </HBox>
+                          
+                  
                     </cells>
                 </ColumnListItem>
             </items>
@@ -126,38 +122,74 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Teams_Users Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialog"
+                        press="onCloseTeams_UsersDialogNew"
                         tooltip="Close"
                     />
                 </Toolbar>
             </customHeader>
             <content>
                 <HBox class="adminScreenActions">
-                    <VBox>
+                     <VBox>
                         <Label
-                            text="name:"
+                            text="Tasklist_Name:"
                             required="true"
                         />
-                        <Input
-                            value=""
-                            id="Teams_UsersName"
-                        />
+                         <ComboBox
+                            id="TeamsDialogNewComboBox"
+                            change="onTasksDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+					        
+                                     path: 'jsonModel>/Teams'
+					
+				                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
                     </VBox>
+
+                     <VBox>
+                        <Label
+                            text="Stage_Name:"
+                            required="true"
+                        />
+                         <ComboBox
+                            id="UsersDialogNewComboBox"
+                            change="onTasksDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+					        
+                                     path: 'jsonModel>/Users'
+					
+				                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>name}"
+                            />
+                        </ComboBox>
+                    </VBox>
+
                 </HBox>
 
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="description:"
+                            text="active:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="Teams_UsersDescription"
+                            id="Teams_UsersActive"
                         />
                     </VBox>
                 </HBox>
@@ -167,14 +199,14 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveTeams_UsersDialogNew"
                 />
             </beginButton>
             <endButton>
                 <Button
                     text="Clear"
                     tooltip="Clear"
-                    press="onClearDialog"
+                    press="onClearTeams_UsersDialogNew"
                 />
             </endButton>
         </Dialog>
@@ -194,40 +226,42 @@
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialogAction"
+                        press="onCloseTeams_UsersDialog"
                     />
                 </Toolbar>
             </customHeader>
             <content>
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="autoid :" />
+                        <Label text="Team Name :" />
                         <Input
-                            value="{dialogModel>/autoid}"
+                            value="{dialogModel>/team_id/name}"
+                            editable="false"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <Label text="User Name :" />
+                        <Input
+                            value="{dialogModel>/user_id/name}"
                             editable="false"
                         />
                     </VBox>
                 </HBox>
 
                 <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="description :" />
+
+                <VBox>
+                        <Label text="Active :" />
                         <Input
-                            value="{dialogModel>/description}"
-                            editable="{dialogModel>/editable}"
+                            value="{dialogModel>/active}"
+                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
+                    
                 </HBox>
 
-                <HBox class="adminScreenActions">
-                    <VBox>
-                        <Label text="name" />
-                        <Input
-                            value="{dialogModel>/name}"
-                            editable="{dialogModel>/editable}"
-                        />
-                    </VBox>
-                </HBox>
+               
             </content>
 
             <beginButton>
@@ -238,10 +272,10 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                    text="{dialogModel>/deleteButtonText}"
+                    press="onDeleteCustomers_ProjectsDialog"
                 />
             </endButton>
-        </Dialog>
+                    </Dialog>
     </mvc:content>
 </mvc:View>
