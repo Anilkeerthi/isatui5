@@ -208,7 +208,7 @@ sap.ui.define([
         name:sName,
         type:sType,
         attachmenturl:sAttachmentURL,
-        role_id:{"autoid":sTasks_Name}
+        task_id:{"autoid":sTasks_Name}
       });
 
       // Close the dialog after saving

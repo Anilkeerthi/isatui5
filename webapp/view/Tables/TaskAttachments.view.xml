@@ -106,7 +106,7 @@
                         <ObjectIdentifier text="{jsonModel>name}" />
                         <ObjectIdentifier text="{jsonModel>type}" />
                          <ObjectIdentifier text="{jsonModel>attachmenturl}" />
-                        <ObjectIdentifier text="{jsonModel>task_id/name}" />
+                        <ObjectIdentifier text="{jsonModel>task_id/task_name}" />
 
     
                             <Button
@@ -194,7 +194,7 @@
                         >
                             <core:Item
                                 key="{jsonModel>autoid}"
-                                text="{jsonModel>name}"
+                                text="{jsonModel>task_name}"
                             />
                         </ComboBox>
                     </VBox>
@@ -279,8 +279,8 @@
                     <VBox>
                         <Label text="TaskID_Name:" />
                         <Input
-                            value="{dialogModel>/task_id_autoid}"
-                            editable="{dialogModel>/editable}"
+                            value="{dialogModel>/task_id/task_name}"
+                            editable="false"
                         />
                     </VBox>
                 </HBox>

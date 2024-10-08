@@ -201,7 +201,7 @@ sap.ui.define([
       oBindList.create({
         start_time:sStartTime,
         end_time:sEndTime,
-        role_id:{"autoid":sTimeCaptureRolesDialogNewComboBox}
+        task_id:{"autoid":sTimeCaptureRolesDialogNewComboBox}
       });
 
       // Close the dialog after saving

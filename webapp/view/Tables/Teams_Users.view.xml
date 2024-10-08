@@ -135,7 +135,7 @@
                 <HBox class="adminScreenActions">
                      <VBox>
                         <Label
-                            text="Tasklist_Name:"
+                            text="Team Name:"
                             required="true"
                         />
                          <ComboBox
@@ -158,7 +158,7 @@
 
                      <VBox>
                         <Label
-                            text="Stage_Name:"
+                            text="User Name:"
                             required="true"
                         />
                          <ComboBox
@@ -222,7 +222,7 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="Teams Users Details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"

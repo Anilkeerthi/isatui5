@@ -32,7 +32,7 @@
             <Button
                 text="NEW"
                 tooltip="New"
-                press="onDDTypeNew"
+                press="onTaskNotesNew"
             />
             <Button
                 text="Import"
@@ -69,12 +69,7 @@
                 >
                     <Text text="Name" />
                 </Column>
-                 <Column
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                >
-                    <Text text="TaskID AutoID" />
-                </Column>
+               
                 <Column
                     minScreenWidth="Desktop"
                     demandPopin="true"
@@ -82,6 +77,14 @@
                 >
                     <Text text="Notes" />
                 </Column>
+
+                  <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                >
+                    <Text text="TaskID AutoID" />
+                </Column>
+
                 <Column hAlign="Begin" width="12em">
                     <Text text="Actions" />
                 </Column>
@@ -91,19 +94,14 @@
                     <cells>
                         <ObjectIdentifier text="{jsonModel>autoid}" />
                         <ObjectIdentifier text="{jsonModel>name}" />
-                        <ObjectIdentifier text="{jsonModel>task_id_autoid}" />
-                        <ObjectIdentifier text="{jsonModel>notes}" />    
+                        <ObjectIdentifier text="{jsonModel>notes}" />  
+                         <ObjectIdentifier text="{jsonModel>task_id/task_name}" />  
 
                         <HBox class="ActionButtons">
                             <Button
                                 type="Emphasized"
-                                press=".onShowDetails"
+                                press=".onShowTasksNotes"
                                 icon="sap-icon://display"
-                            />
-                            <Button
-                               type="Reject"
-                                press="onDeleteDDType"
-                                icon="sap-icon://delete"
                             />
                         </HBox>
                     </cells>
@@ -122,11 +120,11 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Add New DDType Data" />
+                    <Title text="Add New Task_Notes Data" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialog"
+                        press="onCloseTaskNotesDialogNew"
                         tooltip="Close"
                     />
                 </Toolbar>
@@ -135,7 +133,7 @@
                 <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="name:"
+                            text="Name:"
                             required="true"
                         />
                         <Input
@@ -143,19 +141,45 @@
                             id="TaskNotesName"
                         />
                     </VBox>
-                </HBox>
 
-                <HBox class="adminScreenActions">
                     <VBox>
                         <Label
-                            text="description:"
+                            text="Notes:"
                             required="true"
                         />
                         <Input
                             value=""
-                            id="TaskNotesDescription"
+                            id="TaskNotesno"
                         />
                     </VBox>
+
+                </HBox>
+
+                <HBox class="adminScreenActions">
+                     <VBox>
+                        <Label
+                            text="Task Name:"
+                            required="true"
+                        />
+                         <ComboBox
+                            id="TaskDialogNewComboBox"
+                            change="onTasksDialogNewComboBox"
+                            placeholder="All"
+                            width="100%"
+                            items="{
+					        
+                                     path: 'jsonModel>/Tasks'
+					
+				                    }"
+                        >
+                            <core:Item
+                                key="{jsonModel>autoid}"
+                                text="{jsonModel>task_name}"
+                            />
+                        </ComboBox>
+                    </VBox>
+
+
                 </HBox>
             </content>
 
@@ -163,14 +187,14 @@
                 <Button
                     text="Save"
                     tooltip="Save"
-                    press="onSaveDDTypeNew"
+                    press="onSaveTaskNotesDialogNew"
                 />
             </beginButton>
             <endButton>
                 <Button
                     text="Clear"
                     tooltip="Clear"
-                    press="onClearDialog"
+                    press="onClearTaskNotesDialogNew"
                 />
             </endButton>
         </Dialog>
@@ -186,11 +210,11 @@
         >
             <customHeader>
                 <Toolbar>
-                    <Title text="Interface details" />
+                    <Title text="TasksNotes details" />
                     <ToolbarSpacer />
                     <Button
                         icon="sap-icon://decline"
-                        press="onCloseDialogAction"
+                        press="onCloseTaskNotesDialog"
                     />
                 </Toolbar>
             </customHeader>
@@ -203,27 +227,38 @@
                             editable="false"
                         />
                     </VBox>
+
+                      <VBox>
+                        <Label text="Task Name:" />
+                        <Input
+                            value="{dialogModel>/task_id/task_name}"
+                            editable="false"
+                        />
+                    </VBox>
+
+                     
                 </HBox>
 
                 <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="description :" />
+                        <Label text="Notes :" />
                         <Input
-                            value="{dialogModel>/description}"
+                            value="{dialogModel>/notes}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
-                </HBox>
 
-                <HBox class="adminScreenActions">
                     <VBox>
-                        <Label text="name" />
+                        <Label text="Name :" />
                         <Input
                             value="{dialogModel>/name}"
                             editable="{dialogModel>/editable}"
                         />
                     </VBox>
+                    
                 </HBox>
+
+             
             </content>
 
             <beginButton>
@@ -234,8 +269,8 @@
             </beginButton>
             <endButton>
                 <Button
-                    text="Delete"
-                    press="onDeleteDDType"
+                    text="{dialogModel>/deleteButtonText}"
+                    press="onDeleteTaskNotesDialog"
                 />
             </endButton>
         </Dialog>
